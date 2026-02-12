@@ -1,1 +1,73 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*Colors Palette*/
+:root {
+    --Hub: #ffb300;
+    --HubShadow: #d0d0d0;
+    --SpaceIndigo:#2D3047;
+    --HubDark: #ff8f00;
+    --Bckgr_divs: rgba(98, 98, 98, 0.3);
+    --Bckgr_divs2: rgba(0, 0, 0, 0.35);
+    --Btn: #000000;
+    --Btn_Gray: #333333;
+    --Info: #acacac;
+    --Black: #000000;
+}
+
+/*Fonts*/
+@font-face {
+    font-family: 'ROLNER';
+    src: url(../src/assets/fonts/ROLNER/ROLNER.woff2) format('woff2'),
+        url(../src/assets/fonts/ROLNER/ROLNER.woff) format('woff'),
+        url(../src/assets/fonts/ROLNER/ROLNER.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Gefika';
+    src: url(../src/assets/fonts/Gefika/Gefika.woff2) format('woff2'),
+        url(../src/assets/fonts/Gefika/Gefika.woff) format('woff'),
+        url(../src/assets/fonts/Gefika/Gefika.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Lemon-beach';
+    src: url(../src/assets/fonts/Lemon-beach/Lemon-Beach.otf) format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Work-krow';
+    src: url(../src/assets/fonts/work-krow/Work-krow.otf) format('opentype'),
+        url(../src/assets/fonts/work-krow/Work-krow.ttf) format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Spoiler-script';
+    src: url(../src/assets/fonts/spoiler-script/Spoilers-Script.woff2) format('woff2'),
+        url(../src/assets/fonts/spoiler-script/Spoilers-Script.woff) format('woff'),
+        url(../src/assets/fonts/spoiler-script/Spoilers-Script.ttf) format('opentype');
+}
+
+/*Scrolls bars*/
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Firefox */
+html {
+    scrollbar-width: none;
+}
+
+body {
+    /* IE / Edge antiguo */
+    -ms-overflow-style: none;
+    background: linear-gradient(to bottom, black 25%, var(--Hub) 75%);
+    margin: 0;
+    min-height: 100vh;
+}

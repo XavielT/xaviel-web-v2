@@ -1,0 +1,28 @@
+.xlogo-container{
+    display: flex;
+    align-items: center;
+    margin-left:auto;
+    margin-right: auto;
+    margin-top: 12px;
+    margin-bottom: 1px;
+    gap: 7px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+
+.x{
+    font-size: 20px;
+}
+
+.xlogo-highlight{
+    background-color: var(--Hub);
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px 1.5px white;
+    padding: 1px 8px;
+}
+
+.xlogo-span{
+    color:black;
+    font-family:'Gefika', sans-serif;
+    
+}
