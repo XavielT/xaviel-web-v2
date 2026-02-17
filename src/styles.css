@@ -33,7 +33,7 @@
 
 @font-face {
     font-family: 'Lemon-beach';
-    src: url(../src/assets/fonts/Lemon-beach/Lemon-Beach.otf) format('opentype');
+    src: url(assets/fonts/lemon-beach/Lemon-Beach.otf) format('opentype');
     font-weight: normal;
     font-style: normal;
 }
