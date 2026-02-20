@@ -53,6 +53,18 @@
         url(../src/assets/fonts/spoiler-script/Spoilers-Script.ttf) format('opentype');
 }
 
+@font-face {
+    font-family: 'Ducks-Fiesta';
+    src: url(../src/assets/fonts/Ducks-Fiesta/Ducks-Fiesta.ttf) format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Super-Wonder';
+    src: url(../src/assets/fonts/Super-Wonder/Super-Wonder.ttf) format('opentype');
+}
+
 /*Scrolls bars*/
 /* Chrome, Edge, Safari */
 ::-webkit-scrollbar {
