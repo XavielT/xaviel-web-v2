@@ -6,7 +6,7 @@
 :root {
     --Hub: #ffb300;
     --HubShadow: #d0d0d0;
-    --SpaceIndigo:#2D3047;
+    --SpaceIndigo: #2D3047;
     --HubDark: #ff8f00;
     --Bckgr_divs: rgba(98, 98, 98, 0.3);
     --Bckgr_divs2: rgba(0, 0, 0, 0.35);
@@ -67,7 +67,20 @@ html {
 body {
     /* IE / Edge antiguo */
     -ms-overflow-style: none;
-    background: linear-gradient(to bottom, black 25%, var(--Hub) 75%);
+    /*background: linear-gradient(to bottom, black 25%, var(--Hub) 75%);*/
+    background:
+        radial-gradient(circle at 50% 90%, rgba(255, 179, 0, 0.5), transparent 55%),
+        #000000; /*#1a1919*/
+
+    /*background:
+        radial-gradient(ellipse 1200px 950px at 50% 92%,
+            rgba(255, 179, 0, 0.65) 0%,
+            rgba(255, 179, 0, 0.35) 25%,
+            rgba(255, 179, 0, 0.15) 45%,
+            rgba(255, 179, 0, 0.05) 60%,
+            transparent 70%),
+        #0b0b0b;*/
     margin: 0;
     min-height: 100vh;
+    background-attachment: fixed;
 }
