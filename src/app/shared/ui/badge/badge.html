@@ -1,0 +1,4 @@
+<span class="badge" [ngClass]="['badge--' + variant, 'badge--' + size]">
+    <span *ngIf="showDot" class="badge__dot" [class.badge__dot--animated]="animatedDot"></span>
+    {{ text }}
+</span>

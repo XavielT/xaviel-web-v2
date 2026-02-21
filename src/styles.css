@@ -19,50 +19,50 @@
 /*Fonts*/
 @font-face {
     font-family: 'ROLNER';
-    src: url(../src/assets/fonts/ROLNER/ROLNER.woff2) format('woff2'),
-        url(../src/assets/fonts/ROLNER/ROLNER.woff) format('woff'),
-        url(../src/assets/fonts/ROLNER/ROLNER.otf) format('opentype');
+    src: url(/assets/fonts/ROLNER/ROLNER.woff2) format('woff2'),
+        url(/assets/fonts/ROLNER/ROLNER.woff) format('woff'),
+        url(/assets/fonts/ROLNER/ROLNER.otf) format('opentype');
 }
 
 @font-face {
     font-family: 'Gefika';
-    src: url(../src/assets/fonts/Gefika/Gefika.woff2) format('woff2'),
-        url(../src/assets/fonts/Gefika/Gefika.woff) format('woff'),
-        url(../src/assets/fonts/Gefika/Gefika.otf) format('opentype');
+    src: url(/assets/fonts/Gefika/Gefika.woff2) format('woff2'),
+        url(/assets/fonts/Gefika/Gefika.woff) format('woff'),
+        url(/assets/fonts/Gefika/Gefika.otf) format('opentype');
 }
 
 @font-face {
     font-family: 'Lemon-beach';
-    src: url(assets/fonts/lemon-beach/Lemon-Beach.otf) format('opentype');
+    src: url(/assets/fonts/lemon-beach/Lemon-Beach.otf) format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Work-krow';
-    src: url(../src/assets/fonts/work-krow/Work-krow.otf) format('opentype'),
-        url(../src/assets/fonts/work-krow/Work-krow.ttf) format('opentype');
+    src: url(/assets/fonts/work-krow/Work-krow.otf) format('opentype'),
+        url(/assets/fonts/work-krow/Work-krow.ttf) format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Spoiler-script';
-    src: url(../src/assets/fonts/spoiler-script/Spoilers-Script.woff2) format('woff2'),
-        url(../src/assets/fonts/spoiler-script/Spoilers-Script.woff) format('woff'),
-        url(../src/assets/fonts/spoiler-script/Spoilers-Script.ttf) format('opentype');
+    src: url(/assets/fonts/spoiler-script/Spoilers-Script.woff2) format('woff2'),
+        url(/assets/fonts/spoiler-script/Spoilers-Script.woff) format('woff'),
+        url(/assets/fonts/spoiler-script/Spoilers-Script.ttf) format('truetype');
 }
 
 @font-face {
     font-family: 'Ducks-Fiesta';
-    src: url(../src/assets/fonts/Ducks-Fiesta/Ducks-Fiesta.ttf) format('opentype');
+    src: url(/assets/fonts/Ducks-Fiesta/Ducks-Fiesta.ttf) format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Super-Wonder';
-    src: url(../src/assets/fonts/Super-Wonder/Super-Wonder.ttf) format('opentype');
+    src: url(/assets/fonts/Super-Wonder/Super-Wonder.ttf) format('truetype');
 }
 
 /*Scrolls bars*/

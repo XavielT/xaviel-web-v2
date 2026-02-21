@@ -4,4 +4,30 @@
 
 <router-outlet></router-outlet>
 
+<section id="Home" class="home-container">
+    <app-badge text="Available for projects" variant="success" size="lg" [showDot]="true"
+        [animatedDot]="true"></app-badge>
+    <div class="home-title">
+        <h1 class="title">Software
+            <span class="title-highlight">Developer</span>
+        </h1>
+        <p class="title-text">Creating modern and functional web experiences. Specializing in Angular and UI design.</p>
+    </div>
+    <div class="home-btns-container">
+        <button class="home-btn" (mouseenter)="onGithubEnter()" (mouseleave)="onGithubLeave()">
+
+            <img class="home-btn-icon" [src]="isGithubHover() 
+      ? '/assets/icons/github.svg' 
+      : '/assets/icons/github-outline.svg'" />
+
+            <span> View Projects </span>
+        </button>
+        <button class="home-btn-highlight" (mouseenter)="onEmailEnter()" (mouseleave)="onEmailLeave()"><img
+                class="home-btn-icon" [src]="isEmailHover() 
+            ? '/assets/icons/email-fill-hub.svg' 
+            : '/assets/icons/email-outline.svg'" /><span>Contact</span></button>
+    </div>
+</section>
+
+
 <app-footer></app-footer>
