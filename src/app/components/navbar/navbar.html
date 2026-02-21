@@ -2,19 +2,22 @@
     <nav>
         <ul class="nav-list">
             <li>
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="#Home" [class.active]="activeSection() === 'Home'">Home</a>
             </li>
             <li>
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="#About" [class.active]="activeSection() === 'About'">About</a>
             </li>
             <li>
-                <a class="nav-link" href="#">Main Projects</a>
+                <a class="nav-link" href="#Main-Projects" [class.active]="activeSection() === 'Main-Projects'">Main Projects</a>
             </li>
             <li>
-                <a class="nav-link" href="#">Certificates</a>
+                <a class="nav-link" href="#Skills" [class.active]="activeSection() === 'Skills'">SKills</a>
             </li>
             <li>
-                <a class="nav-link" href="#">Contact</a>
+                <a class="nav-link" href="#Certificates" [class.active]="activeSection() === 'Certificates'">Certificates</a>
+            </li>
+            <li>
+                <a class="nav-link" href="#Contact" [class.active]="activeSection() === 'Contact'">Contact</a>
             </li>
         </ul>
     </nav>
