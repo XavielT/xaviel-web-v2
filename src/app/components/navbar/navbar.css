@@ -1,5 +1,7 @@
 .Xbar{
-    background-color: var(--SpaceIndigo);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Safari */
     margin-top: 1px;
     margin-left:auto;
     margin-right: auto;
@@ -10,6 +12,14 @@
     width: 600px;
     height: auto;
     box-shadow: 0px 0px 10px 1px var(--HubShadow);
+    position: sticky;
+    top: 20px;
+    transition: box-shadow 0.35s cubic-bezier(.4, 0, .2, 1);
+    z-index: 1;
+}
+
+.Xbar:hover{
+    box-shadow: 0px 0px 10px 1px var(--Hub);
 }
 
 .nav-list{
@@ -29,14 +39,31 @@
     font-weight: 500;
     transition: color 0.3s ease;
     font-family: 'Gefika', sans-serif;
+    position: relative;
+}
+
+/* línea oculta */
+.nav-link::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 2px;
+    background: var(--Hub);
+    transition: width 0.3s cubic-bezier(0.22,1,0.36,1);
 }
 
 .nav-link:hover{
     color: var(--Hub);
-    text-decoration: underline;
+    /*text-decoration: underline;
     text-underline-offset: 5px;
     text-decoration-thickness: 2px;
     text-decoration-color: var(--Hub);
     text-decoration-style: solid;
-    text-decoration-skip-ink: none;
+    text-decoration-skip-ink: none;*/
+}
+
+.nav-link:hover::after{
+    width: 100%;
 }
