@@ -4,10 +4,14 @@ import { Navbar } from "./components/navbar/navbar";
 import { Footer } from "./components/footer/footer";
 import { Xlogo } from "./components/xlogo/xlogo";
 import { Badge } from './shared/ui/badge/badge';
+import { Card } from './shared/components/card/card';
+import { CertificateCard } from './shared/components/certificate-card/certificate-card';
+import { ProgressBarCard } from './shared/components/progress-bar-card/progress-bar-card';
+import { ContactForm } from './components/contact-form/contact-form';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, Footer, Xlogo, Badge],
+  imports: [RouterOutlet, Navbar, Footer, Xlogo, Badge, Card, CertificateCard, ProgressBarCard, ContactForm],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

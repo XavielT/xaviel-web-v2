@@ -1,3 +1,10 @@
+/*Global*/
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
 /*home*/
 
 .home-container {
@@ -151,11 +158,11 @@
     width: 140px;
     /* se expande */
     background: rgba(255, 255, 255, 0.12);
-    padding-left:15px;
+    padding-left: 15px;
 }
 
 .social-link:hover .social-text {
     opacity: 1;
     transform: translateX(0);
-    
+
 }

@@ -4,6 +4,7 @@
 
 <router-outlet></router-outlet>
 
+<!-- ---------Home--------- -->
 <section id="Home" class="home-container">
     <app-badge text="Available for projects" variant="success" size="lg" [showDot]="true"
         [animatedDot]="true"></app-badge>
@@ -28,9 +29,12 @@
             : '/assets/icons/email-outline.svg'" /><span>Contact</span></button>
     </div>
     <div class="home-social-links">
-        <a class="social-link github" href="#"><img src="/assets/icons/github-social.svg"><span class="social-text">GitHub</span></a>
-        <a class="social-link linkedin" href="#"><img src="/assets/icons/linkedin-social.svg"><span class="social-text">Linkedin</span></a>
-        <a class="social-link whatsapp" href="#"><img src="/assets/icons/whatsapp-social.svg"><span class="social-text">Whatsapp</span></a>
+        <a class="social-link github" href="#"><img src="/assets/icons/github-social.svg"><span
+                class="social-text">GitHub</span></a>
+        <a class="social-link linkedin" href="#"><img src="/assets/icons/linkedin-social.svg"><span
+                class="social-text">Linkedin</span></a>
+        <a class="social-link whatsapp" href="#"><img src="/assets/icons/whatsapp-social.svg"><span
+                class="social-text">Whatsapp</span></a>
     </div>
     <!--<dialog #myDialog>
         <p>Hola 👋 soy un modal</p>
@@ -39,11 +43,49 @@
       
       <button (click)="myDialog.showModal()">Abrir</button>-->
 </section>
-<section id="About"></section>
-<section id="Main-Projects"></section>
-<section id="Skills"></section>
-<section id="Certificates"></section>
-<section id="Contact"></section>
+
+<!-- ---------About--------- -->
+<section id="About" class="container">
+    <div class="About-Container">
+        <div class="About-text">
+            <h3 class="About-title"><img class="About-text-icon" src="#" alt="About-icon">About Me</h3>
+            <p>I’m a Software Developer with a strong focus on frontend development. With over two years of experience, I specialize in building modern, scalable web applications using Angular, TypeScript, and JavaScript.
+    
+                My strength lies in creating clean, intuitive interfaces and user-focused experiences that feel smooth, responsive, and thoughtfully designed. While I can work across the full stack when needed, frontend architecture and UI/UX refinement are where I deliver the most impact.
+                
+                I build with intention — prioritizing clarity, scalability, and modern design in every project.</p>
+        </div>
+        <div class="About-card">
+            <div class="About-card-content"><img class="About-card-icon" src="#" alt="About-card-icon"><h4>50+<span>Completed Projects</span></h4></div>
+            <div class="About-card-content"><img class="About-card-icon" src="#" alt="About-card-icon"><h4>2+<span>Years of experience </span></h4></div>
+            <div class="About-card-content"><img class="About-card-icon" src="#" alt="About-card-icon"><h4>10+<span>Satisfied Customers</span></h4></div>
+        </div>
+    </div>
+    
+</section>
+
+<!-- ---------Main Projects--------- -->
+<section id="Main-Projects" class="container">
+    <div class="Main-title-container"><h3 class="Main-title">Main Projects</h3><span class="Main-span">Some of my recent work</span></div>
+    <div class="Main-cards"><!-- Project Card templates here --><app-card></app-card></div>
+</section>
+
+<!-- ---------Skills--------- -->
+<section id="Skills" class="container">
+    <div class="Skills-title-container"><h3 class="Skills-title">Skills</h3><span class="Skills-span">Technologies I work with</span></div>
+    <div class="Skills-cards"><!-- Skill Progress Bar Card templates here --><app-progress-bar-card></app-progress-bar-card></div>
+</section>
+
+<!-- ---------Certificates--------- -->
+<section id="Certificates" class="container">
+    <div class="Certificates-title-container"><h3 class="Certificates-title">Certificates</h3><span class="Certificates-span">Technologies I work with</span></div>
+    <div class="Certificates-cards"><!-- Certificates Card templates here --><app-certificate-card></app-certificate-card></div>
+</section>
+
+<!-- ---------Contact--------- -->
+<section id="Contact" class="container">
+    <app-contact-form></app-contact-form>
+</section>
 
 
 <app-footer></app-footer>
