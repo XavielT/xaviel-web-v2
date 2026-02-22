@@ -35,7 +35,7 @@
 }
 
 .title-text {
-    color: rgba(255, 255, 255, 0.800);
+    color: #ffffffcc;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 20px;
 }
@@ -165,4 +165,201 @@
     opacity: 1;
     transform: translateX(0);
 
+}
+
+/*---------------------------------------------------------- About ----------------------------------------------------------*/
+
+/*Reveal of section*/
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#About{
+    margin-top: 330px;
+}
+
+.about-wrapper {
+    display: grid;
+    grid-template-columns: 1.1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about-left {
+    color: white;
+}
+
+.about-title-container {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 10px;
+}
+
+.about-title-icon {
+    width: 35px;
+}
+
+.about-title {
+    font-family: 'Gefika', 'Trebuchet MS';
+    font-size: 22px;
+
+}
+
+.about-description {
+    color: var(--Txt-weak);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.about-right {
+    /*background-color: #00000049;*/
+    /*Efecto glass*/
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    /*Safari*/
+    -webkit-backdrop-filter: blur(10px);
+    /*width: 550px;*/
+    width: 100%;
+    max-width: 550px;
+    padding: 18px 23px;
+    border-radius: 15px;
+    /*border: 1px solid var(--HubDark);*/
+    border: 1px solid rgba(255, 179, 0, 0.35);
+    box-shadow: 0 0 30px rgba(var(--Hub-rgb), 0.5),
+        0 0 60px rgba(var(--Hub-rgb), 0.3),
+        0 0 120px rgba(var(--Hub-rgb), 0.15);
+    transition: transform 0.4s cubic-bezier(.4, 0, .2, 1),
+        box-shadow 0.4s ease;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.about-right:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(var(--Hub-rgb), 0.6),
+        0 0 100px rgba(var(--Hub-rgb), 0.25);
+}
+
+.about-right::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(circle,
+            rgba(var(--Hub-rgb), 0.25) 0%,
+            transparent 70%);
+    z-index: -1;
+}
+
+/*Reactive Glow to the mouse pointer*/
+/*
+.about-right::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%),
+            rgba(var(--Hub-rgb), 0.25),
+            transparent 40%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.about-right:hover::after {
+    opacity: 1;
+}
+*/
+
+.about-right-content {
+    display: flex;
+    margin: 20px 0;
+    gap: 15px;
+    align-items: center;
+    transition: transform 0.3s ease, background 0.3s ease;
+    border-radius: 10px;
+    padding: 2px 10px;
+}
+
+.about-right-content:hover {
+    transform: translateX(6px);
+    background: rgba(255, 255, 255, 0.06);
+    /*padding: 0px 10px;*/
+    /*box-shadow: 0px 0px 10px 1px var(--HubShadow);*/
+}
+
+.about-right-icon-container {
+    background-color: var(--Hub);
+    padding: 5px;
+    border-radius: 8px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    max-height: 52px;
+}
+
+.about-right-icon {
+    width: 35px;
+    padding: 5px;
+}
+
+.about-right-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-right-text h4 {
+    color: white;
+    font-family: 'ROLNER', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+    margin: 0;
+}
+
+.about-right-text span {
+    color: var(--Txt-weak2);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 17px;
+}
+
+
+/*Responsive*/
+@media (max-width: 992px) {
+    .about-wrapper {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .about-description {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-title {
+        font-size: 42px;
+        text-align: center;
+    }
+
+    .title-text {
+        font-size: 16px;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .home-btns-container {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .about-right {
+        max-width: 100%;
+    }
 }

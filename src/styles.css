@@ -5,6 +5,7 @@
 /*Colors Palette*/
 :root {
     --Hub: #ffb300;
+    --Hub-rgb: 255, 179, 0;
     --HubShadow: #d0d0d0;
     --SpaceIndigo: #2D3047;
     --HubDark: #ff8f00;
@@ -15,6 +16,8 @@
     --Info: #acacac;
     --Black: #000000;
     --Bckg-pill: #ffffff59;
+    --Txt-weak: rgba(255, 255, 255, 0.85);
+    --Txt-weak2: rgba(255, 255, 255, 0.59);
 }
 
 /*Fonts*/

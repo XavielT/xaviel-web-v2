@@ -37,4 +37,31 @@ export class App {
   onEmailLeave() {
     this.isEmailHover.set(false);
   }
+
+  ngAfterViewInit() {
+    const reveals = document.querySelectorAll('.reveal');
+  
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+  
+    reveals.forEach(el => observer.observe(el));
+
+    /* Reactive Glow */
+    /*const card = document.querySelector('.about-right') as HTMLElement;
+
+    card.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+  
+      card.style.setProperty('--x', `${x}%`);
+      card.style.setProperty('--y', `${y}%`);
+    });*/
+  }
 }
