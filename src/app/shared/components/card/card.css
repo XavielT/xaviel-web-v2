@@ -1,0 +1,83 @@
+/* GLobals */
+.card {
+    border-radius: 16px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.card:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(var(--Hub-rgb), 0.4);
+}
+
+.card-img{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.title-container {
+    display: flex;
+}
+
+.card-featured h3 {
+    color: white;
+    font-family: 'Gefika','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 22px;
+}
+
+/*.card-featured h3:hover{
+    text-shadow: 0 0 9px var(--Hub);
+}*/
+
+.card-link{
+    display: flex;
+}
+
+.card-link-icon {
+    width: 23px;
+    margin-left: 8px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.card-link-icon:hover{
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 10px rgba(var(--Hub-rgb), 0.7));
+}
+
+.card-description{
+    color: var(--Txt-weak2);
+    margin-bottom: 10px;
+    font-size: 17px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.badges{
+    display: flex;
+    gap: 10px;
+}
+
+
+
+
+/* DEFAULT */
+.card-default {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* FEATURED */
+.card-featured {
+    background: rgba(var(--Hub-rgb), 0.08);
+    border: 1px solid rgba(var(--Hub-rgb), 0.6);
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(var(--Hub-rgb), 0.4);
+    width: 100%;
+    margin-top: 60px;
+}
+
+/* MINIMAL */
+.card-minimal {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}

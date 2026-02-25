@@ -87,7 +87,7 @@
     box-shadow: 0px 0px 5px 1px var(--HubShadow);
 }
 
-.home-btn:hover .home-btn-icon .home-btn-highlight:hover .home-btn-icon {
+.home-btn:hover .home-btn-icon, .home-btn-highlight:hover .home-btn-icon {
     transform: scale(1.1);
     transition: transform 0.3s ease;
 }
@@ -181,7 +181,7 @@
     transform: translateY(0);
 }
 
-#About{
+#about{
     margin-top: 330px;
 }
 
@@ -363,3 +363,52 @@
         max-width: 100%;
     }
 }
+
+/*---------------------------------------------------------- Main Projects ----------------------------------------------------------*/
+
+.projects-container{
+    margin: 200px auto;
+}
+
+.main-title-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-title{
+    color: white;
+    font-family: 'Gefika','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 28px;
+}
+
+.main-span{
+    color: var(--Txt-weak2);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: italic;
+    font-size: 18px;
+}
+
+.main-cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 50px;
+}
+
+/*Managing the blur in cards*/
+
+/* When hover is active, blur the others cards */
+/*.main-cards:hover .card {
+    filter: blur(4px);
+    opacity: 0.5;
+    transform: scale(0.98);
+    transition: 0.3s ease;
+}*/
+
+/* But the selected card dont change */
+/*.main-cards .card:hover {
+    filter: blur(0);
+    opacity: 1;
+    transform: scale(1.1);
+    z-index: 2;
+}*/

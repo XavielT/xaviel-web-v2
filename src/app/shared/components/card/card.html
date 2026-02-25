@@ -1,7 +1,17 @@
-<p>card works!</p>
+<div class="card" [ngClass]="'card-' + computedVariant">
+
+    <img class="card-img" [src]="project.image" alt="{{ project.title }}" />
+
+    <div class="title-container">
+        <a class="card-link" href="#"><h3>{{ project.title }}</h3>
+        <img class="card-link-icon" src="/assets/icons/link-hub.svg" /></a>
+    </div>
+    <p class="card-description">{{ project.description }}</p>
 
 
-<!--badges-->
-<!--<app-badge text="React" variant="tech" size="sm"></app-badge>
-<app-badge text="Node.js" variant="tech" size="sm"></app-badge>
--->
+    <div class="badges">
+        <!--badges-->
+        <app-badge *ngFor="let badge of project.badges" [text]="badge" variant="tech" size="sm" class="tag">
+        </app-badge>
+    </div>
+</div>

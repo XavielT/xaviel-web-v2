@@ -8,10 +8,12 @@ import { Card } from './shared/components/card/card';
 import { CertificateCard } from './shared/components/certificate-card/certificate-card';
 import { ProgressBarCard } from './shared/components/progress-bar-card/progress-bar-card';
 import { ContactForm } from './components/contact-form/contact-form';
+import { ProjectCard } from './shared/models/project-card.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, Footer, Xlogo, Badge, Card, CertificateCard, ProgressBarCard, ContactForm],
+  imports: [RouterOutlet, Navbar, Footer, Xlogo, Badge, Card, CertificateCard, ProgressBarCard, ContactForm, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -40,7 +42,7 @@ export class App {
 
   ngAfterViewInit() {
     const reveals = document.querySelectorAll('.reveal');
-  
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -49,7 +51,7 @@ export class App {
         }
       });
     }, { threshold: 0.2 });
-  
+
     reveals.forEach(el => observer.observe(el));
 
     /* Reactive Glow */
@@ -64,4 +66,64 @@ export class App {
       card.style.setProperty('--y', `${y}%`);
     });*/
   }
+
+  projects: ProjectCard[] = [
+    {
+      image: '/assets/projects-imgs/mk4-jetta-lowered.jpg',
+      title: 'Lorep ipsum',
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      badges: ['React', 'Node'],
+      variant: 'featured'
+    },
+    {
+      image: '/assets/projects-imgs/mk4-jetta-lowered.jpg',
+      title: 'Lorep ipsum',
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      badges: ['React', 'Node'],
+      variant: 'featured'
+    },
+    {
+      image: '/assets/projects-imgs/mk4-jetta-lowered.jpg',
+      title: 'Lorep ipsum',
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      badges: ['React', 'Node'],
+      variant: 'featured'
+    },
+    {
+      image: '/assets/projects-imgs/mk4-jetta-lowered.jpg',
+      title: 'Lorep ipsum',
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      badges: ['React', 'Node'],
+      variant: 'featured'
+    },
+    {
+      image: '/assets/projects-imgs/mk4-jetta-lowered.jpg',
+      title: 'Lorep ipsum',
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      badges: ['React', 'Node'],
+      variant: 'featured'
+    },
+    {
+      image: '/assets/projects-imgs/mk4-jetta-lowered.jpg',
+      title: 'Lorep ipsum',
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      badges: ['React', 'Node'],
+      variant: 'featured'
+    },
+    {
+      image: '/assets/projects-imgs/mk4-jetta-lowered.jpg',
+      title: 'Lorep ipsum',
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      badges: ['React', 'Node'],
+      variant: 'featured'
+    },
+    {
+      image: '/assets/projects-imgs/mk4-jetta-lowered.jpg',
+      title: 'Lorep ipsum',
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      badges: ['React', 'Node'],
+      variant: 'featured'
+    }
+  ]
+
 }
