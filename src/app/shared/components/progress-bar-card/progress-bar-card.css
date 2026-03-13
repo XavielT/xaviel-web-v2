@@ -1,0 +1,64 @@
+.progress-bar-card{
+    background-color: rgba(0, 0, 0, 0.500);
+    border: 1px solid var(--HubDark);
+    padding: 15px;
+    border-radius: 18px;
+    transition: transform 0.2s ease;
+}
+
+.progress-bar-card:hover{
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px 1px var(--HubShadow);
+    border: 1px solid var(--HubShadow);
+}
+
+.skillName{
+    color: white;
+    font-size: 16px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.progress-bar-level-container{
+    /*to aply background to the bar progress*/
+    /*
+    background-image: url("/assets/textures/code-texture.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: 120px;
+    */
+    background-color: #ffb30049;
+}
+
+.progress-bar-level{
+    background: linear-gradient(
+        90deg,
+        var(--Hub),
+        var(--HubDark)
+    );
+
+    transition: width 1.3s ease;
+}
+
+.icon-and-name-skill{
+    display:flex;
+    gap: 8px;
+}
+
+.skillName-and-percent-container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.skill-level{
+    display:flex;
+    justify-content:flex-end;
+    color: var(--Hub);
+    font-weight: bold;
+    background: rgba(255,255,255,0.08);
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 12px;
+}

@@ -1,1 +1,15 @@
-<p>progress-bar-card works!</p>
+<div class="progress-bar-card tw-flex tw-flex-col tw-gap-2">
+    <div class="skillName-and-percent-container">
+        <div class="icon-and-name-skill">
+            <img [src]="skill.icon" class="tw-w-6 tw-h-6" alt="skill icon" />
+            <span class="skillName tw-text-sm tw-font-medium">{{ skill.name }}</span>
+        </div>
+        <div class="skill-level">
+            <span>{{ skill.level }}%</span>
+        </div>
+    </div>
+
+    <div class="progress-bar-level-container tw-w-full tw-h-2 tw-rounded-full">
+        <div class="progress-bar-level tw-h-2 tw-rounded-full" [style.width.%]="animatedLevel"></div>
+    </div>
+</div>

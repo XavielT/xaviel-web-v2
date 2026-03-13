@@ -7,9 +7,11 @@ import { Badge } from './shared/ui/badge/badge';
 import { Card } from './shared/components/card/card';
 import { CertificateCard } from './shared/components/certificate-card/certificate-card';
 import { ProgressBarCard } from './shared/components/progress-bar-card/progress-bar-card';
+import { Skill } from './shared/models/skill.model';
 import { ContactForm } from './components/contact-form/contact-form';
 import { ProjectCard } from './shared/models/project-card.model';
 import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-root',
@@ -67,6 +69,7 @@ export class App {
     });*/
   }
 
+  //Projects cards
   projects: ProjectCard[] = [
     {
       image: '/assets/projects-imgs/mk4-jetta-lowered.jpg',
@@ -125,5 +128,63 @@ export class App {
       variant: 'featured'
     }
   ]
+
+  //Skills progress bars
+  skills: Skill[]=[
+    {
+      name: 'Angular',
+      icon: 'assets/skills-icons/angular-icon.svg',
+      level: 63
+    },
+    {
+      name: 'JavaScript',
+      icon: 'assets/skills-icons/javascript-icon.svg',
+      level: 77
+    },
+    {
+      name: 'TypeScript',
+      icon: 'assets/skills-icons/typescript-icon.svg',
+      level: 70
+    },
+    {
+      name: 'CSS',
+      icon: 'assets/skills-icons/css-icon.svg',
+      level: 90
+    },
+    {
+      name: 'React',
+      icon: 'assets/skills-icons/react-icon.svg',
+      level: 46
+    },
+    {
+      name: 'Git',
+      icon: 'assets/skills-icons/git-icon.svg',
+      level: 77
+    },
+    {
+      name: 'Linux',
+      icon: 'assets/skills-icons/linux-icon.svg',
+      level: 54
+    },
+    {
+      name: 'SQL',
+      icon: 'assets/skills-icons/sql-icon.svg',
+      level: 63
+    },
+    {
+      name: 'Figma',
+      icon: 'assets/skills-icons/figma-icon.svg',
+      level: 78
+    },
+    {
+      name: 'Android Studio',
+      icon: 'assets/skills-icons/android-studio-icon.svg',
+      level: 43
+    },
+  ]
+
+  trackByName(index: number, skill: Skill) {
+    return skill.name;
+  }
 
 }

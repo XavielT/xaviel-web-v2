@@ -98,12 +98,13 @@
 </section>
 
 <!-- ---------Skills--------- -->
-<section id="skills" class="container">
+<section id="skills" class="container skills-container">
     <div class="Skills-title-container">
-        <h3 class="Skills-title">Skills</h3><span class="Skills-span">Technologies I work with</span>
+        <h3 class="Skills-title">Skills</h3><span class="Skills-span">Main Technologies I work with</span>
     </div>
     <div class="Skills-cards">
-        <!-- Skill Progress Bar Card templates here --><app-progress-bar-card></app-progress-bar-card>
+        <!-- Skill Progress Bar Card -->
+         <app-progress-bar-card *ngFor="let skill of skills; trackBy: trackByName" [skill]="skill"></app-progress-bar-card>
     </div>
 </section>
 
