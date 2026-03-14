@@ -1,1 +1,54 @@
-<p>contact-form works!</p>
+<form class="contact-form">
+    <div class="form-title">
+        <h2>Contact Information</h2>
+    </div>
+    <div class="info-container">
+
+        <div class="form-group">
+            <label class="form-label" for="name">Name</label>
+            <div class="input-bg">
+                <img class="form-input-icon" src="assets/icons/user-hub.svg" alt="Input icon" />
+                <input class="form-input" type="text" id="name" name="name" placeholder="Your Name" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <div class="input-bg">
+                <img class="form-input-icon" src="assets/icons/arroba-hub.svg" alt="Input icon" />
+                <input class="form-input" type="email" id="email" name="email" placeholder="your@gmail.com" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Reason for contact</label>
+            <div class="input-bg custom-select">
+                <img class="form-input-icon" src="assets/icons/dropdown-arrow-hub.svg" alt="Input icon" />
+
+                <!-- hidden input to send the value -->
+                <input type="hidden" name="topic" [value]="selectedValue">
+
+                <button type="button" class="select-trigger" (click)="toggleDropdown()">
+                    {{ selectedLabel }}
+                </button>
+
+                <!-- dropdown -->
+                <ul class="select-dropdown" *ngIf="isOpen">
+                    <li (click)="selectOption('job','Job Opportunity')">Job Opportunity</li>
+                    <li (click)="selectOption('project','Project')">Project</li>
+                    <li (click)="selectOption('other','Other reasons')">Other reason</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="message">Message</label>
+        <textarea class="form-text-area" type="text" id="message" name="message" rows="5"
+            placeholder="Write your message..." required></textarea>
+    </div>
+    <div class="buttons-container">
+        <button class="rst-btn" type="reset">Clear</button>
+        <button class="snd-btn" type="submit">Send</button>
+    </div>
+</form>

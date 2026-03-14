@@ -10,12 +10,13 @@ import { ProgressBarCard } from './shared/components/progress-bar-card/progress-
 import { Skill } from './shared/models/skill.model';
 import { ContactForm } from './components/contact-form/contact-form';
 import { ProjectCard } from './shared/models/project-card.model';
+import { Maintenance } from './shared/components/maintenance/maintenance';
 import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, Footer, Xlogo, Badge, Card, CertificateCard, ProgressBarCard, ContactForm, CommonModule],
+  imports: [RouterOutlet, Navbar, Footer, Xlogo, Badge, Card, ProgressBarCard, ContactForm, Maintenance, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

@@ -443,3 +443,72 @@
     gap: 28px;
     margin-top: 40px;
 }
+
+
+/*.certificates-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}*/
+
+/*---------------------------------------------------------- Certificates ----------------------------------------------------------*/
+
+.certificates-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.certificates-title-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.certificates-title{
+    color: white;
+    font-family: 'Gefika','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 28px;
+}
+
+.certificates-span{
+    color: var(--Txt-weak2);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: italic;
+    font-size: 18px;
+}
+
+/*---------------------------------------------------------- Contact ----------------------------------------------------------*/
+
+.contact-form-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 230px;
+}
+
+.contact-title-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.contact-title{
+    color: white;
+    font-family: 'Gefika','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 28px;
+}
+
+.contact-title-highlight{
+    font-family: 'Ducks-Fiesta','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.contact-span{
+    color: var(--Txt-weak2);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: italic;
+    font-size: 18px;
+}

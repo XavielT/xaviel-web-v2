@@ -104,22 +104,33 @@
     </div>
     <div class="Skills-cards">
         <!-- Skill Progress Bar Card -->
-         <app-progress-bar-card *ngFor="let skill of skills; trackBy: trackByName" [skill]="skill"></app-progress-bar-card>
+        <app-progress-bar-card *ngFor="let skill of skills; trackBy: trackByName"
+            [skill]="skill"></app-progress-bar-card>
     </div>
 </section>
 
 <!-- ---------Certificates--------- -->
-<section id="certificates" class="container">
-    <div class="Certificates-title-container">
-        <h3 class="Certificates-title">Certificates</h3><span class="Certificates-span">Technologies I work with</span>
+<section id="certificates" class="container certificates-container">
+
+    <div class="certificates-title-container">
+        <h3 class="certificates-title">Certificates</h3><span class="certificates-span">Technologies I work with</span>
     </div>
+    <!--
     <div class="Certificates-cards">
-        <!-- Certificates Card templates here --><app-certificate-card></app-certificate-card>
+        <app-certificate-card></app-certificate-card>
     </div>
+    -->
+
+    <app-maintenance></app-maintenance>
 </section>
 
 <!-- ---------Contact--------- -->
-<section id="contact" class="container">
+<section id="contact" class="container contact-form-container">
+    <div class="contact-title-container">
+        <h3 class="contact-title"><span class="contact-title-highlight">¿ </span>Do you have a project in mind<span
+                class="contact-title-highlight"> ?</span></h3><span class="contact-span">I'm available for new projects
+            and collaborations. Feel free to contact me.</span>
+    </div>
     <app-contact-form></app-contact-form>
 </section>
 
