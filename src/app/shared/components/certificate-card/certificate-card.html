@@ -1,1 +1,16 @@
-<p>certificate-card works!</p>
+<div class="certificate-card">
+    <div class="certificate-container">
+        <a [href]="certificate.pdf" target="_blank">
+            <img class="certificate-img" [src]="certificate.img" [alt]="certificate.name" />
+        </a>
+    </div>
+    <div class="certificate-info">
+        <a class="certificate-link" [href]="certificate.pdf" target="_blank">
+            <h3 class="certificate-title">{{ certificate.name }}</h3>
+            <img class="certificate-link-icon" src="assets/icons/external-link-hub.svg" alt="Link icon" />
+        </a>
+    </div>
+    <div class="certificate-info-line">
+        <div class="certificate-info-line-internal"></div>
+    </div>
+</div>

@@ -65,7 +65,7 @@
                 <div class="about-right-icon-container"><img class="about-right-icon" src="/assets/icons/code.svg"
                         alt="About Icon"></div>
                 <div class="about-right-text">
-                    <h4>50+</h4><span>Completed Projects</span>
+                    <h4>15+</h4><span>Completed Projects</span>
                 </div>
             </div>
             <div class="about-right-content">
@@ -92,7 +92,7 @@
     <div class="main-title-container">
         <h3 class="main-title">Main Projects</h3><span class="main-span">Some of my recent work</span>
     </div>
-    <div class="main-cards"><!-- Project Card templates here -->
+    <div class="main-cards"><!-- Project Card -->
         <app-card *ngFor="let project of projects" [project]="project"></app-card>
     </div>
 </section>
@@ -115,13 +115,13 @@
     <div class="certificates-title-container">
         <h3 class="certificates-title">Certificates</h3><span class="certificates-span">Technologies I work with</span>
     </div>
-    <!--
+    
     <div class="Certificates-cards">
-        <app-certificate-card></app-certificate-card>
+        <app-certificate-card *ngFor="let certificate of certificates" [certificate]="certificate"></app-certificate-card>
     </div>
-    -->
+    
 
-    <app-maintenance></app-maintenance>
+    <!--<app-maintenance></app-maintenance>-->
 </section>
 
 <!-- ---------Contact--------- -->

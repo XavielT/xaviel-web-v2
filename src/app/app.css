@@ -479,6 +479,17 @@
     font-size: 18px;
 }
 
+.Certificates-cards{
+    background-color: var(--Bckgr_divs2);
+    border: 5px dotted var(--Hub);
+    border-radius: 30px;
+    padding: 50px 20px;
+    display: inline-flex;
+    column-gap: 60px;
+    justify-content: center;
+    align-items: center;
+}
+
 /*---------------------------------------------------------- Contact ----------------------------------------------------------*/
 
 .contact-form-container{

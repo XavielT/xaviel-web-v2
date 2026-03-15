@@ -1,0 +1,69 @@
+.certificate-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/*.certificate-container{}*/
+
+.certificate-img{
+    width: 300px;
+    border-radius: 18px;
+    box-shadow: 0 0 30px rgba(var(--Hub-rgb), 0.4);
+    transition: 0.2s ease;
+}
+
+.certificate-img:hover{
+    box-shadow: 0 0 30px rgba(var(--Hub-rgb), 0.7);
+    cursor: pointer;
+    transform: translateY(-5px);
+}
+
+.certificate-info{
+    display: flex;
+    margin-top: 20px;
+}
+
+.certificate-info:hover{
+    cursor: pointer;
+}
+
+.certificate-link{
+    display: flex;
+}
+
+.certificate-title{
+    color: white;
+    font-size: 20px;
+    font-family: 'Gefika','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.certificate-link-icon{
+    width: 30px;
+    transition: 0.2s ease;
+}
+
+.certificate-link-icon:hover{
+    transform: translateY(-5px);
+}
+
+.certificate-info-line{
+    height: 8px;
+    width: 300px;
+    background-color: var(--Hub);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+    border-radius: 30px;
+    margin-bottom: 30px;
+
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: 0.3s ease;
+    margin-top: 2px;
+}
+
+.certificate-card:hover .certificate-info-line{
+    opacity: 1;
+    transform: scaleX(1);
+}

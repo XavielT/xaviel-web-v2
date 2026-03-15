@@ -100,3 +100,9 @@ body {
     min-height: 100vh;
     background-attachment: fixed;
 }
+
+/*Making the navbar scroolling smooth*/
+html, body{
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}

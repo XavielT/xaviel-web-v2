@@ -6,17 +6,19 @@ import { Xlogo } from "./components/xlogo/xlogo";
 import { Badge } from './shared/ui/badge/badge';
 import { Card } from './shared/components/card/card';
 import { CertificateCard } from './shared/components/certificate-card/certificate-card';
+import { Certificate } from './shared/models/certificate.model';
 import { ProgressBarCard } from './shared/components/progress-bar-card/progress-bar-card';
 import { Skill } from './shared/models/skill.model';
 import { ContactForm } from './components/contact-form/contact-form';
 import { ProjectCard } from './shared/models/project-card.model';
-import { Maintenance } from './shared/components/maintenance/maintenance';
+/*import { Maintenance } from './shared/components/maintenance/maintenance';*/
 import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, Footer, Xlogo, Badge, Card, ProgressBarCard, ContactForm, Maintenance, CommonModule],
+  standalone: true,
+  imports: [RouterOutlet, Navbar, Footer, Xlogo, Badge, Card, ProgressBarCard, CertificateCard, ContactForm, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -187,5 +189,23 @@ export class App {
   trackByName(index: number, skill: Skill) {
     return skill.name;
   }
+
+  certificates : Certificate[]=[
+    {
+      name: 'Responsive Design',
+      img: 'assets/certificates-imgs/responsive-design-certificate.png',
+      pdf: 'assets/certificates-pdfs/Certificado-Responsive-Web-Design.pdf',
+    },
+    {
+      name: 'Scrum fundamentals',
+      img: 'assets/certificates-imgs/scrum-certificate.png',
+      pdf: 'assets/certificates-pdfs/Certificado-Fundamentos-SCRUM.pdf',
+    },
+    {
+      name: 'Jira fundamentals',
+      img: 'assets/certificates-imgs/jira-certificate.png',
+      pdf: 'assets/certificates-pdfs/Certificado-Introduccion-JIRA.pdf',
+    }
+  ]
 
 }
