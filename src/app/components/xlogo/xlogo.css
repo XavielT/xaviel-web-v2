@@ -1,4 +1,4 @@
-.xlogo-container{
+.xlogo-container {
     /*display: flex;
     align-items: center;
     margin-left:auto;
@@ -12,20 +12,20 @@
     flex-direction: row;
     margin: 13px 0px 20px 0px;
     gap: 10px;
-    
+
 }
 
-.x{
+.x {
     font-size: 30px;
     font-family: 'ROLNER', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.xlogo-x{
+.xlogo-x {
     font-family: 'Spoiler-script', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 40px;
 }
 
-.xlogo-highlight{
+.xlogo-highlight {
     background-color: var(--Hub);
     border-radius: 8px;
     box-shadow: 0px 0px 8px 1.5px white;
@@ -34,8 +34,85 @@
     height: auto;
 }
 
-.xlogo-span{
-    color:black;
-    font-family:'ROLNER', sans-serif;
+.xlogo-span {
+    color: black;
+    font-family: 'ROLNER', sans-serif;
     font-size: 30px;
+}
+
+/*Responsive*/
+@media (max-width: 415px) {
+    .x {
+        font-size: 20px;
+    }
+
+    .xlogo-x {
+        font-size: 30px;
+    }
+
+    .xlogo-highlight {
+        padding: 0px 8px;
+        width: auto;
+        height: auto;
+    }
+    .xlogo-span{
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 416px) {
+    .x {
+        font-size: 20px;
+    }
+
+    .xlogo-x {
+        font-size: 30px;
+    }
+
+    .xlogo-highlight {
+        padding: 0px 8px;
+        width: auto;
+        height: auto;
+    }
+    .xlogo-span{
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 700px) {
+    .x {
+        font-size: 20px;
+    }
+
+    .xlogo-x {
+        font-size: 30px;
+    }
+
+    .xlogo-highlight {
+        padding: 0px 8px;
+        width: auto;
+        height: auto;
+    }
+    .xlogo-span{
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .x {
+        font-size: 30px;
+    }
+
+    .xlogo-x {
+        font-size: 40px;
+    }
+
+    .xlogo-highlight {
+        padding: 0px 8px;
+        width: auto;
+        height: auto;
+    }
+    .xlogo-span{
+        font-size: 30px;
+    }
 }

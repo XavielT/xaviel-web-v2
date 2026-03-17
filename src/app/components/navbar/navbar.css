@@ -1,38 +1,55 @@
-.Xbar{
+.Xbar {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px); /* Safari */
+    -webkit-backdrop-filter: blur(12px);
+    /* Safari */
     margin-top: 1px;
-    margin-left:auto;
-    margin-right: auto;
-    padding:5px 10px;
-    border-radius:13px;
-    max-width: fit-content;
+    margin: 0 auto;
+    padding: 5px 10px;
+    border-radius: 13px;
+    max-width: 700px;
     align-items: center;
-    width: 700px;
+    width: 100%;
     height: auto;
     box-shadow: 0px 0px 10px 1px var(--HubShadow);
     position: sticky;
     top: 20px;
     transition: box-shadow 0.35s cubic-bezier(.4, 0, .2, 1);
-    z-index: 1;
+    
+    z-index: 100; 
+    overflow: visible;
 }
 
-.Xbar:hover{
+.Xbar:hover {
     box-shadow: 0px 0px 10px 1px var(--Hub);
 }
 
-.nav-list{
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nav-list {
     list-style: none;
     display: flex;
     gap: 20px;
     max-width: fit-content;
     align-items: center;
     justify-content: center;
-    margin:5px 13px;
+    margin: 5px 13px;
+
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 5px;
 }
 
-.nav-link{
+.nav-list::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-link {
     text-decoration: none;
     color: white;
     font-size: 16px;
@@ -43,7 +60,7 @@
 }
 
 /* línea oculta */
-.nav-link::after{
+.nav-link::after {
     content: "";
     position: absolute;
     left: 0;
@@ -51,10 +68,10 @@
     width: 0%;
     height: 2px;
     background: var(--Hub);
-    transition: width 0.3s cubic-bezier(0.22,1,0.36,1);
+    transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.nav-link:hover{
+.nav-link:hover {
     color: var(--Hub);
     /*text-decoration: underline;
     text-underline-offset: 5px;
@@ -64,14 +81,147 @@
     text-decoration-skip-ink: none;*/
 }
 
-.nav-link:hover::after{
+.nav-link:hover::after {
     width: 100%;
 }
 
-.nav-link.active{
+.nav-link.active {
     color: var(--Hub);
 }
 
-.nav-link.active::after{
+.nav-link.active::after {
     width: 100%;
+}
+
+/*Responsive*/
+/* Mobile pequeño */
+@media (max-width: 415px) {
+    .Xbar {
+        border-radius: 18px;
+        padding: 5px 8px;
+    }
+
+    .nav-list {
+        gap: 8px;
+        margin: 5px 8px;
+    }
+
+    .nav-link {
+        font-size: 11px;
+    }
+}
+
+/* Mobile grande */
+@media (min-width: 416px) {
+    .Xbar {
+        border-radius: 18px;
+        padding: 5px 10px;
+    }
+
+    .nav-list {
+        gap: 10px;
+    }
+
+    .nav-link {
+        font-size: 13px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 700px) {
+    .Xbar {
+        max-width: 600px;
+        border-radius: 16px;
+    }
+
+    .nav-list {
+        gap: 14px;
+    }
+
+    .nav-link {
+        font-size: 14px;
+    }
+}
+
+/* Desktop */
+@media screen and (min-width: 1024px) {
+    .Xbar {
+        max-width: 700px;
+        border-radius: 13px;
+    }
+
+    .nav-list {
+        gap: 20px;
+    }
+
+    .nav-link {
+        font-size: 16px;
+    }
+}
+
+/* Hamburger Button */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 26px;
+    color: white;
+    cursor: pointer;
+    z-index: 2;
+}
+
+/* Mobile behavior */
+@media (max-width: 700px) {
+
+    .Xbar {
+        overflow: visible;
+        width: fit-content; 
+        min-width: unset;
+        margin: 0 18px;
+    }
+
+    /* Show the button only in mobile */
+    .menu-toggle {
+        display: block;
+        width: auto;
+        flex-shrink: 0;
+    }
+
+    
+    .nav-container {
+        position: relative;
+    }
+
+    nav {
+        position: absolute;
+        top: calc(100% + 10px); /* Just under to the container */
+        left: 0;
+        width: max-content;
+        background: rgba(20, 20, 20, 0.85);
+        backdrop-filter: blur(14px);
+        border-radius: 12px;
+        padding: 10px 0;
+        display: none;
+        flex-direction: column;
+        opacity: 0;
+        transform: translateY(-10px) scale(0.98);
+        pointer-events: none;
+        transition: all 0.25s ease;
+        z-index: 10;
+    }
+
+    nav.open {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        overflow: hidden;
+        white-space: normal;
+    }
 }

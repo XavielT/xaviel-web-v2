@@ -1,57 +1,340 @@
-.x-footer{
-    background-color: rgba(0, 0, 0, 0.500);
+.x-footer {
     background-color: #ffb30049;
     border-top: 2px solid var(--Hub);
     /*margin: 100px 30px 30px 30px;*/
     margin-top: 100px;
-    padding:20px;
+    padding: 20px;
     height: 110px;
+    width: 100%;
 }
 
-.footer-container{
+.footer-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 250px;
     align-items: center;
 }
 
-.footer-text{
+.footer-text {
     color: var(--Txt-weak2);
+    font-size: 18px;
 }
 
-.footer-list{
+.footer-list {
     display: flex;
-    column-gap:23px;
+    column-gap: 23px;
 }
 
 /*.footer-item{}*/
 
-.footer-link{
+.footer-link {
     display: flex;
     gap: 13px;
     align-items: center;
 }
 
-.footer-link-icon{
+.footer-link-icon {
     width: 25px;
     transition: 0.2s ease;
 }
 
-.footer-item-name{
+.footer-item-name {
     color: whitesmoke;
     transition: 0.2s ease;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
+    font-size: 18px;
 }
 
-.footer-link:hover .footer-link-icon, .footer-link:hover .footer-item-name{
+.footer-link:hover .footer-link-icon,
+.footer-link:hover .footer-item-name {
     transform: translateY(-5px);
 }
 
-.footer-link:hover .footer-link-icon{
+.footer-link:hover .footer-link-icon {
     filter: drop-shadow(0px 0px 10px var(--Hub));
 }
 
-.footer-link:hover .footer-item-name{
+.footer-link:hover .footer-item-name {
     text-shadow: 0px 0px 5px #ffffffc4;
 }
+
+/*Responsive*/
+/*Responsive*/
+@media (max-width: 415px) {
+    .x-footer {
+        width: 100%;
+        height: 100%;
+    }
+
+    .footer-container {
+        gap: 30px;
+        padding-bottom: 30px;
+    }
+
+    .footer-text {
+        font-size: 15px;
+    }
+
+    .footer-list {
+        column-gap: 35px;
+    }
+
+    .footer-link {
+        gap: 8px;
+    }
+
+    .footer-link-icon {
+        width: 22px;
+    }
+
+    .footer-item-name {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 416px) {
+    .x-footer {
+        width: 100%;
+        height: 100%;
+    }
+
+    .footer-container {
+        gap: 30px;
+        padding-bottom: 30px;
+    }
+
+    .footer-text {
+        font-size: 15px;
+    }
+
+    .footer-list {
+        column-gap: 35px;
+    }
+
+    .footer-link {
+        gap: 8px;
+    }
+
+    .footer-link-icon {
+        width: 22px;
+    }
+
+    .footer-item-name {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 700px) {
+    .x-footer {
+        width: 100%;
+        height: 100%;
+    }
+
+    .footer-container {
+        gap: 20px;
+        padding-bottom: 15px;
+        width: 100%;
+    }
+
+    .footer-text {
+        font-size: 15px;
+    }
+
+    .footer-list {
+        column-gap: 35px;
+    }
+
+    .footer-link {
+        gap: 8px;
+    }
+
+    .footer-link-icon {
+        width: 22px;
+    }
+
+    .footer-item-name {
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .x-footer {
+        width: 100%;
+        height: 100%;
+    }
+
+    .footer-container {
+        gap: 20px;
+        padding-bottom: 15px;
+        width: 100%;
+    }
+
+    .footer-text {
+        font-size: 18px;
+    }
+
+    .footer-list {
+        column-gap: 35px;
+    }
+
+    .footer-link {
+        gap: 8px;
+    }
+
+    .footer-link-icon {
+        width: 25px;
+    }
+
+    .footer-item-name {
+        font-size: 18px;
+    }
+}
+
+/*-------------TO FIX-------------*/
+/* Mobile pequeño */
+/*@media (max-width: 415px) {
+
+    .x-footer {
+        padding: 16px;
+        height: 100%;
+    }
+
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .footer-text {
+        font-size: 14px;
+    }
+
+    .footer-list {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .footer-link {
+        gap: 6px;
+    }
+
+    .footer-link-icon {
+        width: 20px;
+    }
+
+    .footer-item-name {
+        font-size: 13px;
+    }
+}*/
+
+
+/* Mobile grande */
+/*@media (min-width: 416px) {
+    .x-footer {
+        padding: 16px;
+        height: 100%;
+    }
+
+
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
+        text-align: center;
+    }
+
+    .footer-text {
+        font-size: 15px;
+    }
+
+    .footer-list {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+}*/
+
+
+/* Tablet */
+/*@media (min-width: 700px) {
+
+    .footer-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        text-align: left;
+    }
+
+    .footer-text {
+        grid-column: span 2;
+        text-align: center;
+    }
+
+    .footer-list {
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+    }
+
+    .footer-item-name {
+        font-size: 15px;
+    }
+}*/
+
+
+/* Desktop */
+/*@media screen and (min-width: 1024px) {
+
+    .x-footer {
+        background-color: #ffb30049;
+        border-top: 2px solid var(--Hub);
+        
+        margin-top: 100px;
+        padding: 20px;
+        height: 110px;
+        width: 100%;
+    }
+
+    .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 250px;
+        align-items: center;
+    }
+
+    .footer-text {
+        color: var(--Txt-weak2);
+        font-size: 18px;
+    }
+
+    .footer-list {
+        display: flex;
+        column-gap: 23px;
+    }
+
+    
+
+    .footer-link {
+        display: flex;
+        gap: 13px;
+        align-items: center;
+    }
+
+    .footer-link-icon {
+        width: 25px;
+        transition: 0.2s ease;
+    }
+
+    .footer-item-name {
+        color: whitesmoke;
+        transition: 0.2s ease;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+}*/

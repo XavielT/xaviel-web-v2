@@ -1,4 +1,4 @@
-.contact-form{
+.contact-form {
     background-color: rgba(0, 0, 0, 0.500);
     margin-top: 20px;
     /*background-color: var(--HubShadow);*/
@@ -7,7 +7,7 @@
     border-radius: 30px;
 }
 
-.form-title{
+.form-title {
     color: whitesmoke;
     display: flex;
     justify-content: center;
@@ -19,31 +19,31 @@
     margin-bottom: 20px;
 }
 
-.form-label{
+.form-label {
     color: whitesmoke;
     font-size: 17px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.info-container{
+.info-container {
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 
-.form-group{
+.form-group {
     display: flex;
     flex-direction: column;
     gap: 6px;
 }
 
-.input-bg{
+.input-bg {
     display: flex;
     position: relative;
     width: 100%;
 }
 
-.form-input-icon{
+.form-input-icon {
     position: absolute;
     left: 12px;
     top: 50%;
@@ -52,9 +52,9 @@
     pointer-events: none;
 }
 
-.form-input{
+.form-input {
     background-color: #ffb30049;
-    border: 1px solid rgba(255, 179, 0,0.6);
+    border: 1px solid rgba(255, 179, 0, 0.6);
     width: 100%;
     padding: 10px 10px 10px 40px;
     border-radius: 30px;
@@ -62,17 +62,17 @@
     transition: 0.3s ease;
 }
 
-.form-input:focus{
+.form-input:focus {
     box-shadow: 0px 0px 10px 1px var(--HubShadow);
     outline: none;
 }
 
-.form-input::placeholder{
+.form-input::placeholder {
     color: var(--Txt-weak2);
 }
 
 /* TODO: Remove this */
-.form-select{
+.form-select {
     background: whitesmoke;
     width: 100%;
     padding: 10px 30px 10px 40px;
@@ -84,15 +84,20 @@
     -moz-appearance: none;
 }
 
+/*Honeypot*/
+.honeypot {
+    display: none;
+}
+
 /* --- Drowpdown --- */
-.custom-select{
+.custom-select {
     position: relative;
 }
 
-.select-trigger{
+.select-trigger {
     width: 100%;
     background-color: #ffb30049;
-    border: 1px solid rgba(255, 179, 0,0.6);
+    border: 1px solid rgba(255, 179, 0, 0.6);
     padding: 10px 40px 10px 40px;
     border-radius: 30px;
     text-align: left;
@@ -102,20 +107,20 @@
     color: var(--Txt-weak2);
 }
 
-.select-trigger:focus{
+.select-trigger:focus {
     box-shadow: 0px 0px 10px 1px var(--HubShadow);
 }
 
-.select-dropdown{
+.select-dropdown {
     position: absolute;
     top: 110%;
     left: 0;
     width: 100%;
     /*background-color: #ffb30049;*/
-    background: rgb(0, 0, 0,0.7);
-    border: 1px solid rgba(255, 179, 0,0.6);
+    background: rgb(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 179, 0, 0.6);
     border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     list-style: none;
     padding: 5px 0;
     margin: 0;
@@ -126,47 +131,47 @@
     animation: dropdownFade 0.15s ease forwards;
 }
 
-@keyframes dropdownFade{
-    to{
+@keyframes dropdownFade {
+    to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-.select-dropdown li{
+.select-dropdown li {
     padding: 10px 15px;
     cursor: pointer;
     color: whitesmoke;
 }
 
-.select-dropdown li:hover{
+.select-dropdown li:hover {
     /*background: rgba(0,0,0,0.05);*/
     /*background: rgba(255, 179, 0,0.15);*/
     background: rgba(255, 143, 0, 0.15);
     border-radius: 20px;
 }
 
-.form-text-area{
+.form-text-area {
     background-color: #ffb30049;
-    border: 1px solid rgba(255, 179, 0,0.6);
+    border: 1px solid rgba(255, 179, 0, 0.6);
     color: white;
     padding: 10px;
     border-radius: 15px;
     transition: 0.3s ease;
 }
 
-.form-text-area:focus{
+.form-text-area:focus {
     outline: none;
     box-shadow: 0px 0px 10px 1px var(--HubShadow);
 }
 
-.form-text-area::placeholder{
+.form-text-area::placeholder {
     color: var(--Txt-weak2);
 }
 
 /* ---Buttons--- */
 
-.buttons-container{
+.buttons-container {
     color: white;
     margin-top: 25px;
     display: flex;
@@ -175,7 +180,7 @@
     gap: 22px;
 }
 
-.rst-btn{
+.rst-btn {
     background-color: rgba(255, 255, 255, 0.200);
     border: 1px solid #ffffff59;
     border-radius: 30px;
@@ -192,12 +197,12 @@
     gap: 8px;
 }
 
-.rst-btn:hover{
+.rst-btn:hover {
     box-shadow: 0px 0px 5px 1px var(--HubShadow);
     transform: translateY(-5px);
 }
 
-.snd-btn{
+.snd-btn {
     background-color: var(--Hub);
     color: black;
     border-radius: 10px;
@@ -212,9 +217,244 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+    cursor: pointer;
 }
 
 .snd-btn:hover {
     box-shadow: 0px 0px 5px 1px var(--Hub);
     transform: translateY(-5px);
+}
+
+.snd-btn:active {
+    transform: scale(0.97);
+}
+
+.sending {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/*message status*/
+.form-message {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    border-radius: 14px;
+    font-size: 14px;
+    animation: fadeInMessage 0.25s ease;
+}
+
+.message-icon {
+    font-size: 20px;
+}
+
+.message-text strong {
+    display: block;
+    font-size: 15px;
+}
+
+.success-message {
+    background: rgba(76, 175, 80, 0.15);
+    border: 1px solid rgba(76, 175, 80, 0.4);
+    color: #4CAF50;
+}
+
+.error-message {
+    background: rgba(255, 82, 82, 0.15);
+    border: 1px solid rgba(255, 82, 82, 0.4);
+    color: #ff5252;
+}
+
+@keyframes fadeInMessage {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.success {
+    color: #4CAF50;
+}
+
+.error {
+    color: #ff5252;
+}
+
+.snd-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/*Rate limit*/
+.rate-limit-message {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--Txt-weak2);
+}
+
+/*Validation*/
+.input-error {
+    font-size: 12px;
+    color: #ff5252;
+    margin-left: 8px;
+    margin-top: 2px;
+    animation: fadeInMessage 0.2s ease;
+}
+
+.form-input.ng-invalid.ng-touched,
+.form-text-area.ng-invalid.ng-touched {
+    border: 1px solid #ff5252;
+}
+
+/*Responsive*/
+/* Mobile pequeño */
+@media (max-width: 415px) {
+
+    .contact-form {
+        padding: 16px;
+        border-radius: 20px;
+    }
+
+    .form-title {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .info-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .form-label {
+        font-size: 14px;
+    }
+
+    .form-input,
+    .select-trigger {
+        font-size: 13px;
+        padding: 8px 10px 8px 36px;
+    }
+
+    .form-input-icon {
+        width: 14px;
+        left: 10px;
+    }
+
+    .form-text-area {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .buttons-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .rst-btn,
+    .snd-btn {
+        width: 100%;
+        font-size: 16px;
+        padding: 8px;
+    }
+}
+
+
+/* Mobile grande */
+@media (min-width: 416px) {
+
+    .contact-form {
+        padding: 18px;
+    }
+
+    .form-title {
+        font-size: 22px;
+    }
+
+    .info-container {
+        flex-direction: column;
+    }
+
+    .buttons-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .rst-btn,
+    .snd-btn {
+        width: 100%;
+        font-size: 17px;
+    }
+}
+
+
+/* Tablet */
+@media (min-width: 700px) {
+
+    .info-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .form-group {
+        flex: 1 1 48%;
+    }
+
+    .buttons-container {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    .rst-btn,
+    .snd-btn {
+        width: 150px;
+        font-size: 18px;
+    }
+}
+
+
+/* Desktop grande */
+@media screen and (min-width: 1024px) {
+
+    .info-container {
+        flex-wrap: nowrap;
+    }
+
+    .form-group {
+        flex: unset;
+    }
+
+    .rst-btn,
+    .snd-btn {
+        width: 170px;
+        font-size: 20px;
+    }
 }

@@ -1,6 +1,8 @@
 <app-xlogo></app-xlogo>
 
-<app-navbar></app-navbar>
+<div class="navbar">
+    <app-navbar></app-navbar>
+</div>
 
 <router-outlet></router-outlet>
 
@@ -16,25 +18,36 @@
     </div>
     <div class="home-btns-container">
         <button class="home-btn" (mouseenter)="onGithubEnter()" (mouseleave)="onGithubLeave()">
-
+            
+            <a class="home-btn-link" href="#main-projects">
             <img class="home-btn-icon" [src]="isGithubHover() 
       ? '/assets/icons/github.svg' 
       : '/assets/icons/github-outline.svg'" />
 
             <span> View Projects </span>
+        </a>
         </button>
-        <button class="home-btn-highlight" (mouseenter)="onEmailEnter()" (mouseleave)="onEmailLeave()"><img
-                class="home-btn-icon" [src]="isEmailHover() 
+        <button class="home-btn-highlight" (mouseenter)="onEmailEnter()" (mouseleave)="onEmailLeave()">
+            <a class="home-btn-link" href="#contact">
+                <img class="home-btn-icon" [src]="isEmailHover() 
             ? '/assets/icons/email-fill-hub.svg' 
-            : '/assets/icons/email-outline.svg'" /><span>Contact</span></button>
+            : '/assets/icons/email-outline.svg'" /><span>Contact</span>
+            </a>
+        </button>
     </div>
     <div class="home-social-links">
-        <a class="social-link github" href="#"><img src="/assets/icons/github-social.svg"><span
-                class="social-text">GitHub</span></a>
-        <a class="social-link linkedin" href="#"><img src="/assets/icons/linkedin-social.svg"><span
-                class="social-text">Linkedin</span></a>
-        <a class="social-link whatsapp" href="#"><img src="/assets/icons/whatsapp-social.svg"><span
-                class="social-text">Whatsapp</span></a>
+        <a class="social-link github" href="https://github.com/XavielT" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/icons/github-social.svg">
+            <span class="social-text">GitHub</span>
+        </a>
+        <a class="social-link linkedin" href="https://www.linkedin.com/in/xaviel-jose-terrero-cuevas-a6602821a/" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/icons/linkedin-social.svg">
+            <span class="social-text">Linkedin</span>
+        </a>
+        <a class="social-link whatsapp" href="https://wa.me/18097799782?text=Hello%20Xaviel%2C%20I%20saw%20your%20portfolio" target="_blank">
+            <img src="/assets/icons/whatsapp-social.svg">
+            <span class="social-text">Whatsapp</span>
+        </a>
     </div>
     <!--<dialog #myDialog>
         <p>Hola 👋 soy un modal</p>
@@ -57,6 +70,12 @@
                 Angular, TypeScript, and JavaScript. I specialize in clean interfaces, smooth user experiences, and
                 scalable frontend architecture.
             </p>
+
+            <button class="about-btn">
+                <a href="assets/pdfs/CV-2026.pdf" target="_blank" rel="noopener noreferrer">
+                    See CV
+                </a>
+            </button>
         </div>
 
         <!--Right-->
@@ -89,9 +108,13 @@
 
 <!-- ---------Main Projects--------- -->
 <section id="main-projects" class="container projects-container">
+
     <div class="main-title-container">
         <h3 class="main-title">Main Projects</h3><span class="main-span">Some of my recent work</span>
     </div>
+
+    <app-maintenance></app-maintenance>
+
     <div class="main-cards"><!-- Project Card -->
         <app-card *ngFor="let project of projects" [project]="project"></app-card>
     </div>
@@ -115,11 +138,12 @@
     <div class="certificates-title-container">
         <h3 class="certificates-title">Certificates</h3><span class="certificates-span">Technologies I work with</span>
     </div>
-    
+
     <div class="Certificates-cards">
-        <app-certificate-card *ngFor="let certificate of certificates" [certificate]="certificate"></app-certificate-card>
+        <app-certificate-card *ngFor="let certificate of certificates"
+            [certificate]="certificate"></app-certificate-card>
     </div>
-    
+
 
     <!--<app-maintenance></app-maintenance>-->
 </section>

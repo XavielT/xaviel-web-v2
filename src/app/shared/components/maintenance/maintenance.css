@@ -1,15 +1,16 @@
 .maintenance{
     background-color: rgba(0, 0, 0, 0.500);
-    padding: 20px;
     border: 5px dotted var(--Hub);
     border-radius: 30px;
     padding: 90px 10px;
+    margin-top: 50px;
 }
 
 .maintenance-info{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .maintenance-title{
@@ -34,4 +35,89 @@
 
 .maintenance-img{
     width: 90px;
+}
+
+/*Responsive*/
+@media (max-width: 415px) {
+    .maintenance{
+        border: 5px dotted var(--Hub);
+        border-radius: 30px;
+        padding: 30px 10px;
+        margin-top: 40px;
+    }
+
+    .maintenance-title{
+        font-size: 14px;
+    }
+
+    .maintenance-subtitle{
+        font-size: 14px;
+    }
+
+    .maintenance-img{
+        width: 50px;
+    }
+}
+
+@media (min-width: 416px) {
+    .maintenance{
+        border: 5px dotted var(--Hub);
+        border-radius: 30px;
+        padding: 30px 10px;
+        margin-top: 40px;
+    }
+
+    .maintenance-title{
+        font-size: 14px;
+    }
+
+    .maintenance-subtitle{
+        font-size: 14px;
+    }
+
+    .maintenance-img{
+        width: 50px;
+    }
+}
+
+@media (min-width: 700px) {
+    .maintenance{
+        border: 5px dotted var(--Hub);
+        border-radius: 30px;
+        padding: 50px 10px;
+        margin-top: 40px;
+    }
+
+    .maintenance-title{
+        font-size: 20px;
+    }
+
+    .maintenance-subtitle{
+        font-size: 18px;
+    }
+
+    .maintenance-img{
+        width: 70px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .maintenance{
+        border: 5px dotted var(--Hub);
+        border-radius: 30px;
+        padding: 90px 10px;
+        margin-top: 50px;
+    }
+
+    .maintenance-title{
+        font-size: 28px;
+    }
+
+    .maintenance-subtitle{
+        font-size: 20px;
+    }
+
+    .maintenance-img{
+        width: 90px;
+    }
 }

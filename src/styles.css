@@ -86,7 +86,8 @@ body {
     /*background: linear-gradient(to bottom, black 25%, var(--Hub) 75%);*/
     background:
         radial-gradient(circle at 50% 90%, rgba(255, 179, 0, 0.5), transparent 55%),
-        #000000; /*#1a1919*/
+        #000000;
+    /*#1a1919*/
 
     /*background:
         radial-gradient(ellipse 1200px 950px at 50% 92%,
@@ -102,7 +103,25 @@ body {
 }
 
 /*Making the navbar scroolling smooth*/
-html, body{
+html,
+body {
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
+}
+
+/*Responsive*/
+@media (max-width: 415px) {
+    
+}
+
+@media (min-width: 416px) {
+    
+}
+
+@media (min-width: 700px) {
+    
+}
+
+@media screen and (min-width: 1024px) {
+    
 }

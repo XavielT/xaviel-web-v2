@@ -1,24 +1,40 @@
-<div class="Xbar tw-text-white tw-flex tw-justify-center tw-items-center tw-gap-[70px]">
-    <nav>
-        <ul class="nav-list">
-            <li>
-                <a class="nav-link" href="#home" [class.active]="activeSection() === 'home'">Home</a>
-            </li>
-            <li>
-                <a class="nav-link" href="#about" [class.active]="activeSection() === 'about'">About</a>
-            </li>
-            <li>
-                <a class="nav-link" href="#main-projects" [class.active]="activeSection() === 'main-projects'">Main Projects</a>
-            </li>
-            <li>
-                <a class="nav-link" href="#skills" [class.active]="activeSection() === 'skills'">SKills</a>
-            </li>
-            <li>
-                <a class="nav-link" href="#certificates" [class.active]="activeSection() === 'certificates'">Certificates</a>
-            </li>
-            <li>
-                <a class="nav-link" href="#contact" [class.active]="activeSection() === 'contact'">Contact</a>
-            </li>
-        </ul>
-    </nav>
+<div class="Xbar">
+
+    <div class="nav-container">
+
+        <!-- Hamburger Button -->
+        <button class="menu-toggle" (click)="toggleMenu()">
+            {{ menuOpen() ? '✖' : '☰' }}
+        </button>
+
+        <nav [class.open]="menuOpen()">
+            <ul class="nav-list">
+                <li>
+                    <a class="nav-link" href="#home" (click)="closeMenu()"
+                        [class.active]="activeSection() === 'home'">Home</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#about" (click)="closeMenu()"
+                        [class.active]="activeSection() === 'about'">About</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#main-projects" (click)="closeMenu()"
+                        [class.active]="activeSection() === 'main-projects'">Main Projects</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#skills" (click)="closeMenu()"
+                        [class.active]="activeSection() === 'skills'">SKills</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#certificates" (click)="closeMenu()"
+                        [class.active]="activeSection() === 'certificates'">Certificates</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#contact" (click)="closeMenu()"
+                        [class.active]="activeSection() === 'contact'">Contact</a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
 </div>

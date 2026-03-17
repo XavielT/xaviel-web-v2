@@ -27,6 +27,16 @@ export class Navbar implements AfterViewInit {
 
     sections.forEach(section => observer.observe(section));
   }
+
+  menuOpen = signal(false);
+
+  toggleMenu() {
+    this.menuOpen.set(!this.menuOpen());
+  }
+
+  closeMenu() {
+    this.menuOpen.set(false);
+  }
 }
 
 
