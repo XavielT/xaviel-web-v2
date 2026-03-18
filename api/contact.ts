@@ -8,7 +8,11 @@ let lastRequestTime = 0;
 
 export default async function handler(req: any, res: any) {
 
-  const { name, email, topic, message, company } = req.body;
+  const body = typeof req.body === 'string'
+  ? JSON.parse(req.body)
+  : req.body;
+
+const { name, email, topic, message, company } = body;
 
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
