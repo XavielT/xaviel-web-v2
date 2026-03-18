@@ -49,7 +49,7 @@ export class ContactForm {
     }
 
     const formData = new FormData(formElement);
-    const data = Object.fromEntries(formData.entries());
+    const data: any = Object.fromEntries(formData.entries());
 
     /* VALIDATION */
 
@@ -78,10 +78,15 @@ export class ContactForm {
 
     try {
 
+      const payload = {
+        ...data,
+        topic: this.selectedValue
+      };
+      
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(payload)
       });
 
       if (response.ok) {

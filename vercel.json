@@ -1,13 +1,6 @@
 {
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/portfolio-v2/browser"
-      }
-    }
-  ],
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/portfolio-v2/browser",
   "routes": [
     {
       "src": "/api/(.*)",
