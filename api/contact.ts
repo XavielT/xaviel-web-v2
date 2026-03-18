@@ -4,19 +4,26 @@ export const config = {
 
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-console.log('RESEND_API_KEY loaded?', !!process.env.RESEND_API_KEY);
 
 let lastRequestTime = 0;
 
 export default async function handler(req: any, res: any) {
 
-  const body = typeof req.body === 'string'
-  ? JSON.parse(req.body)
-  : req.body;
+  if (!process.env.RESEND_API_KEY) {
+    return res.status(500).json({
+      error: 'Missing API key'
+    });
+  }
 
-const { name, email, topic, message, company } = body;
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
+  console.log('RESEND_API_KEY loaded?', !!process.env.RESEND_API_KEY);
+
+  const body = typeof req.body === 'string'
+    ? JSON.parse(req.body)
+    : req.body;
+
+  const { name, email, topic, message, company } = body;
 
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
