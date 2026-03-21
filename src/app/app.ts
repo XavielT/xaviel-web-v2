@@ -156,7 +156,7 @@ export class App {
       level: 54
     },
     {
-      name: 'SQL',
+      name: 'PostgreSQL',
       icon: 'assets/skills-icons/sql-icon.svg',
       level: 63
     },
@@ -166,8 +166,18 @@ export class App {
       level: 78
     },
     {
-      name: 'Android Studio',
-      icon: 'assets/skills-icons/android-studio-icon.svg',
+      name: 'React Native',
+      icon: 'assets/skills-icons/react-icon.svg',
+      level: 43
+    },
+    {
+      name: 'Flutter',
+      icon: 'assets/skills-icons/flutter-icon.svg',
+      level: 43
+    },
+    {
+      name: 'Tailwind CSS',
+      icon: 'assets/skills-icons/tailwind-icon.svg',
       level: 43
     },
   ]
