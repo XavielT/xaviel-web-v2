@@ -3,6 +3,6 @@ export interface ProjectCard{
     title: string;
     description: string;
     badges: string[];
-    link?: string;
+    url?: string;
     variant?: 'default' | 'featured' | 'minimal';
   }

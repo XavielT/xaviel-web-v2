@@ -3,7 +3,7 @@
     <img class="card-img" [src]="project.image" alt="{{ project.title }}" />
 
     <div class="title-container">
-        <a class="card-link" href="#"><h3>{{ project.title }}</h3>
+        <a class="card-link" href="{{ project.url }}" target="_blank" rel="noopener noreferrer"><h3>{{ project.title }}</h3>
         <img class="card-link-icon" src="/assets/icons/link-hub.svg" /></a>
     </div>
     <p class="card-description">{{ project.description }}</p>

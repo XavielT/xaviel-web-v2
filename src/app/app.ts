@@ -78,28 +78,32 @@ export class App {
       title: 'X AutoHub',
       description: 'Website for displaying a catalog of parts and vehicles. Implementation of search, filtering and shopping cart functionalities. Integration of payment gateway and administration panel for product and order management.',
       badges: ['Angular', 'NodeJS', 'SCSS', 'Typescript'],
-      variant: 'featured'
+      variant: 'featured',
+      url: 'https://github.com/XavielT/x-autohub',
     },
     {
       image: '/assets/projects-imgs/good-drive.jpeg',
       title: 'Good Drive',
       description: 'Uber / Indriver type travel platform mobile app. With the specialty of referral system. Implementation of geolocation functionalities, real-time chat, rating system, driver and passenger view, and referral system with rewards.',
       badges: ['Flutter', 'Dart'],
-      variant: 'featured'
+      variant: 'featured',
+      url: 'https://github.com/XavielT/Good-drive',
     },
     {
       image: '/assets/projects-imgs/under-development.png',
       title: 'Mi Taller',
       description: 'Web for mechanical workshop management. Implementation of customer, vehicle, work order, inventory and billing management functionalities. Integration of notification system and administration panel to track tasks and statistics.',
       badges: ['Angular', 'SCSS', 'Typescript', 'NodeJS'],
-      variant: 'featured'
+      variant: 'featured',
+      url: 'https://github.com/XavielT/mi-taller',
     },
     {
       image: '/assets/projects-imgs/under-development.png',
       title: 'Pork Tech',
       description: 'Mobile app for pig farm management. Implementation of functionalities for animal monitoring, feed management, health control, event registration and report generation. Integration of notification system for alerts and reminders.',
       badges: ['Flutter', 'Dart', 'PostgreSQL', 'NodeJS'],
-      variant: 'featured'
+      variant: 'featured',
+      url: 'https://github.com/XavielT/pork-tech',
     },
   ]
 
