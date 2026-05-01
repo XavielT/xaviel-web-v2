@@ -55,43 +55,27 @@ export class ContactForm {
     /* VALIDATION */
 
     if (!data['name'] || data['name'].toString().trim().length < 2) {
-      this.messageStatus = 'error';
-      setTimeout(() => {
-        this.messageStatus = null;
-        this.cd.detectChanges();
-      }, 3000);
+      this.showErrorMessage();
       return;
     }
 
     if (!data['email'] || !this.isValidEmail(data['email'])) {
-      this.messageStatus = 'error';
-      setTimeout(() => {
-        this.messageStatus = null;
-        this.cd.detectChanges();
-      }, 3000);
+      this.showErrorMessage();
       return;
     }
 
     if (!this.selectedValue) {
-      this.messageStatus = 'error';
-      setTimeout(() => {
-        this.messageStatus = null;
-        this.cd.detectChanges();
-      }, 3000);
+      this.showErrorMessage();
       return;
     }
 
     if (!data['message'] || data['message'].toString().trim().length < 10) {
-      this.messageStatus = 'error';
-      setTimeout(() => {
-        this.messageStatus = null;
-        this.cd.detectChanges();
-      }, 3000);
+      this.showErrorMessage();
       return;
     }
 
     this.isLoading = true;
-    this.messageStatus = null;
+    this.cd.detectChanges();
 
     try {
 
@@ -109,6 +93,7 @@ export class ContactForm {
       if (response.ok) {
 
         this.messageStatus = 'success';
+        this.cd.detectChanges();
 
         contactForm.resetForm();
         this.selectedLabel = 'Select an option';
@@ -117,25 +102,41 @@ export class ContactForm {
       } else if (response.status === 429) {
 
         this.messageStatus = 'rateLimit';
+        this.cd.detectChanges();
 
       } else {
 
         this.messageStatus = 'error';
+        this.cd.detectChanges();
 
       }
 
-    } catch {
+    } catch (error) {
 
+      console.error('Contact form error:', error);
       this.messageStatus = 'error';
+      this.cd.detectChanges();
+
+    } finally {
+
+      this.isLoading = false;
+      this.cd.detectChanges();
+
+      setTimeout(() => {
+        this.messageStatus = null;
+        this.cd.detectChanges();
+      }, 3000);
 
     }
+  }
 
+  private showErrorMessage() {
+    this.messageStatus = 'error';
+    this.cd.detectChanges();
     setTimeout(() => {
       this.messageStatus = null;
       this.cd.detectChanges();
     }, 3000);
-
-    this.isLoading = false;
   }
 
   @HostListener('document:click', ['$event'])
