@@ -37,16 +37,17 @@ export class ContactForm {
     this.isOpen = false;
   }
 
+  isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
   /* To manage the submmit */
   async onSubmit(event: Event, contactForm: any) {
 
     event.preventDefault();
 
     const formElement = event.currentTarget as HTMLFormElement;
-
-    if (contactForm.invalid) {
-      return;
-    }
 
     const formData = new FormData(formElement);
     const data: any = Object.fromEntries(formData.entries());
@@ -55,21 +56,37 @@ export class ContactForm {
 
     if (!data['name'] || data['name'].toString().trim().length < 2) {
       this.messageStatus = 'error';
+      setTimeout(() => {
+        this.messageStatus = null;
+        this.cd.detectChanges();
+      }, 3000);
       return;
     }
 
-    if (!data['email']) {
+    if (!data['email'] || !this.isValidEmail(data['email'])) {
       this.messageStatus = 'error';
+      setTimeout(() => {
+        this.messageStatus = null;
+        this.cd.detectChanges();
+      }, 3000);
       return;
     }
 
     if (!this.selectedValue) {
       this.messageStatus = 'error';
+      setTimeout(() => {
+        this.messageStatus = null;
+        this.cd.detectChanges();
+      }, 3000);
       return;
     }
 
     if (!data['message'] || data['message'].toString().trim().length < 10) {
       this.messageStatus = 'error';
+      setTimeout(() => {
+        this.messageStatus = null;
+        this.cd.detectChanges();
+      }, 3000);
       return;
     }
 

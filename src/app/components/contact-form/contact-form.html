@@ -52,7 +52,7 @@
                 <img class="form-input-icon" src="assets/icons/dropdown-arrow-hub.svg" alt="Input icon" />
 
                 <!-- hidden input to send the value -->
-                <input type="hidden" name="topic" [value]="selectedValue" required>
+                <input type="hidden" name="topic" [(ngModel)]="selectedValue" required>
 
                 <!--Honeypot-->
                 <input type="text" name="company" class="honeypot">
