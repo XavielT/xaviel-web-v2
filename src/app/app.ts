@@ -11,14 +11,13 @@ import { ProgressBarCard } from './shared/components/progress-bar-card/progress-
 import { Skill } from './shared/models/skill.model';
 import { ContactForm } from './components/contact-form/contact-form';
 import { ProjectCard } from './shared/models/project-card.model';
-import { Maintenance } from './shared/components/maintenance/maintenance';
 import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Navbar, Footer, Xlogo, Badge, Card, ProgressBarCard, CertificateCard, ContactForm, Maintenance, CommonModule],
+  imports: [RouterOutlet, Navbar, Footer, Xlogo, Badge, Card, ProgressBarCard, CertificateCard, ContactForm, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -75,47 +74,33 @@ export class App {
   //Projects cards
   projects: ProjectCard[] = [
     {
-      image: '/assets/projects-imgs/mk4-jetta-lowered.jpg',
-      title: 'Lorep ipsum',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      badges: ['React', 'NodeJS'],
+      image: '/assets/projects-imgs/x-autohub.png',
+      title: 'X AutoHub',
+      description: 'Website for displaying a catalog of parts and vehicles. Implementation of search, filtering and shopping cart functionalities. Integration of payment gateway and administration panel for product and order management.',
+      badges: ['Angular', 'NodeJS', 'SCSS', 'Typescript'],
       variant: 'featured'
     },
     {
-      image: '/assets/projects-imgs/mk4-jetta-lowered.jpg',
-      title: 'Lorep ipsum',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      badges: ['Angular', 'NodeJS'],
+      image: '/assets/projects-imgs/good-drive.jpeg',
+      title: 'Good Drive',
+      description: 'Uber / Indriver type travel platform mobile app. With the specialty of referral system. Implementation of geolocation functionalities, real-time chat, rating system, driver and passenger view, and referral system with rewards.',
+      badges: ['Flutter', 'Dart'],
       variant: 'featured'
     },
     {
-      image: '/assets/projects-imgs/mk4-jetta-lowered.jpg',
-      title: 'Lorep ipsum',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      badges: ['Kotlin', 'SQLite', 'Javascript'],
+      image: '/assets/projects-imgs/under-development.png',
+      title: 'Mi Taller',
+      description: 'Web for mechanical workshop management. Implementation of customer, vehicle, work order, inventory and billing management functionalities. Integration of notification system and administration panel to track tasks and statistics.',
+      badges: ['Angular', 'SCSS', 'Typescript', 'NodeJS'],
       variant: 'featured'
     },
     {
-      image: '/assets/projects-imgs/mk4-jetta-lowered.jpg',
-      title: 'Lorep ipsum',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      badges: ['Javascript', 'CSS', 'HTML'],
+      image: '/assets/projects-imgs/under-development.png',
+      title: 'Pork Tech',
+      description: 'Mobile app for pig farm management. Implementation of functionalities for animal monitoring, feed management, health control, event registration and report generation. Integration of notification system for alerts and reminders.',
+      badges: ['Flutter', 'Dart', 'PostgreSQL', 'NodeJS'],
       variant: 'featured'
     },
-    {
-      image: '/assets/projects-imgs/mk4-jetta-lowered.jpg',
-      title: 'Lorep ipsum',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      badges: ['C++'],
-      variant: 'featured'
-    },
-    {
-      image: '/assets/projects-imgs/mk4-jetta-lowered.jpg',
-      title: 'Lorep ipsum',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      badges: ['TypeScript', 'NodeJS'],
-      variant: 'featured'
-    }
   ]
 
   //Skills progress bars
