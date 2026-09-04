@@ -168,13 +168,23 @@
     }
 }
 
-/* Row layout (>=701px): the pill must bound the links no matter how long the
-   labels get. Chrome's auto-translate makes them much longer — Spanish needs
+/* Row layout (>=701px): the pill hugs its links rather than sitting at a
+   fixed width, so it never shows dead space around them. The host element's
+   max-width acts purely as a ceiling: short (English) labels give a snug
+   pill, longer (translated) ones grow it up to that cap and then clip.
+
+   The pill must also bound the links no matter how long the labels get. Chrome's auto-translate makes them much longer — Spanish needs
    ~973px against an 820px pill — and without constraining the <nav> wrapper
    too, .nav-list's max-width resolved against nav's content-sized width and
    the row escaped the pill again. Clipping here lets .nav-list's
    overflow-x: auto do its job, so long labels scroll inside the bar. */
 @media (min-width: 701px) {
+    .Xbar {
+        /* Size to the links, centred by the existing margin: 0 auto. */
+        width: fit-content;
+        max-width: 100%;
+    }
+
     .nav-container {
         min-width: 0;
     }
