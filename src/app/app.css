@@ -749,3 +749,20 @@
 @media screen and (min-width: 1024px) {
     
 }
+/* ---------Apps--------- */
+.apps-container {
+    margin: 200px auto;
+}
+
+.apps-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+@media (max-width: 420px) {
+    .apps-cards {
+        grid-template-columns: 1fr;
+    }
+}

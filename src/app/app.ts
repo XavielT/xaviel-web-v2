@@ -11,13 +11,15 @@ import { ProgressBarCard } from './shared/components/progress-bar-card/progress-
 import { Skill } from './shared/models/skill.model';
 import { ContactForm } from './components/contact-form/contact-form';
 import { ProjectCard } from './shared/models/project-card.model';
+import { AppCard as AppCardModel } from './shared/models/app-card.model';
+import { AppCard } from './shared/components/app-card/app-card';
 import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Navbar, Footer, Xlogo, Badge, Card, ProgressBarCard, CertificateCard, ContactForm, CommonModule],
+  imports: [RouterOutlet, Navbar, Footer, Xlogo, Badge, Card, ProgressBarCard, CertificateCard, ContactForm, AppCard, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -70,6 +72,23 @@ export class App {
       card.style.setProperty('--y', `${y}%`);
     });*/
   }
+
+  // Apps you can actually install and use, as opposed to source-code projects.
+  // Adding a future app is one entry in this array.
+  apps: AppCardModel[] = [
+    {
+      icon: '/assets/apps-imgs/music-hub.png',
+      name: 'Music Hub',
+      description:
+        'A personal music app: upload your own songs, they sync across every device through Supabase, and download them for offline listening. Installable on iPhone and desktop, with a native Android build.',
+      badges: ['Angular', 'Capacitor', 'Supabase', 'PWA'],
+      url: 'https://music-hub-xaviel.vercel.app',
+      // Filled in once the first GitHub release is published; until then the
+      // button renders disabled as "coming soon".
+      apkUrl: '',
+      iosHint: 'On iPhone: open the app in Safari, then Share → Add to Home Screen.',
+    },
+  ];
 
   //Projects cards
   projects: ProjectCard[] = [

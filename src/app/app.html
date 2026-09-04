@@ -118,6 +118,18 @@
     </div>
 </section>
 
+<!-- ---------Apps--------- -->
+<section id="apps" class="container apps-container">
+
+    <div class="main-title-container">
+        <h3 class="main-title">Apps</h3><span class="main-span">Things you can install and use</span>
+    </div>
+
+    <div class="apps-cards">
+        <app-app-card *ngFor="let app of apps" [app]="app"></app-app-card>
+    </div>
+</section>
+
 <!-- ---------Skills--------- -->
 <section id="skills" class="container skills-container">
     <div class="Skills-title-container">
