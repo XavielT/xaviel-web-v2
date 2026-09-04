@@ -17,8 +17,9 @@
             rel="noopener noreferrer">Open app</a>
         <span *ngIf="!hasWebApp" class="app-card-btn app-card-btn-disabled" title="Coming soon">Open app</span>
 
-        <a *ngIf="hasApk" class="app-card-btn" [href]="app.apkUrl" rel="noopener noreferrer">Download APK</a>
-        <span *ngIf="!hasApk" class="app-card-btn app-card-btn-disabled" title="Coming soon">Download APK</span>
+        <a *ngIf="hasApk" class="app-card-btn" [href]="app.apkUrl" target="_blank"
+            rel="noopener noreferrer">Android APK</a>
+        <span *ngIf="!hasApk" class="app-card-btn app-card-btn-disabled" title="Coming soon">Android APK</span>
     </div>
 
     <p class="app-card-ios" *ngIf="app.iosHint">{{ app.iosHint }}</p>

@@ -83,9 +83,11 @@ export class App {
         'A personal music app: upload your own songs, they sync across every device through Supabase, and download them for offline listening. Installable on iPhone and desktop, with a native Android build.',
       badges: ['Angular', 'Capacitor', 'Supabase', 'PWA'],
       url: 'https://music-hub-xaviel.vercel.app',
-      // Filled in once the first GitHub release is published; until then the
-      // button renders disabled as "coming soon".
-      apkUrl: '',
+      // Points at the releases page rather than the direct
+      // releases/latest/download/music-hub.apk asset: that direct URL 404s
+      // whenever no release is published, while this page never breaks and
+      // always offers the newest build.
+      apkUrl: 'https://github.com/XavielT/music-hub/releases/latest',
       iosHint: 'On iPhone: open the app in Safari, then Share → Add to Home Screen.',
     },
   ];
