@@ -35,7 +35,12 @@
     list-style: none;
     display: flex;
     gap: 20px;
-    max-width: fit-content;
+    /* Must be bounded by .Xbar, not by its own content: with
+       max-width: fit-content the row grew past the pill and the last link
+       hung outside it once a 7th item was added. min-width: 0 lets flex
+       shrink it, so overflow-x below can actually take effect. */
+    max-width: 100%;
+    min-width: 0;
     align-items: center;
     justify-content: center;
     margin: 5px 13px;
@@ -130,12 +135,12 @@
 /* Tablet */
 @media (min-width: 700px) {
     .Xbar {
-        max-width: 600px;
+        max-width: 700px;
         border-radius: 16px;
     }
 
     .nav-list {
-        gap: 14px;
+        gap: 10px;
     }
 
     .nav-link {
@@ -146,12 +151,12 @@
 /* Desktop */
 @media screen and (min-width: 1024px) {
     .Xbar {
-        max-width: 700px;
+        max-width: 820px;
         border-radius: 13px;
     }
 
     .nav-list {
-        gap: 20px;
+        gap: 18px;
     }
 
     .nav-link {

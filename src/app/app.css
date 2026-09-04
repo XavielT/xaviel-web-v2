@@ -25,6 +25,15 @@
     max-width: 700px;
 }
 
+/* The nav row holds 7 links since the Apps section was added; at 700px the
+   last one sat outside the pill. The host element caps .Xbar, so it has to
+   grow here too. */
+@media screen and (min-width: 1024px) {
+    .navbar app-navbar {
+        max-width: 820px;
+    }
+}
+
 /*home*/
 
 .home-container {
