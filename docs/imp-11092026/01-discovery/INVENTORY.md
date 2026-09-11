@@ -82,18 +82,36 @@ recorded here because they collapse most of §9 and change what later phases are
 | §14 Q1 — link out, or host the app on the site? | **Link out**, exactly like Music Hub | §9's hosting risks (framework incompatibility, 5.1 MB bundle vs the 1 MB budget, router ownership, CSS collision, TS/toolchain divergence) **do not apply**. The site change is one `AppCard` entry plus an icon. |
 | §14 Q2 — which checkout is canonical? | **`/home/xaviel/dev2/xaviel-web-v2`** | §1–§7 already describe this tree, so they stand as written. Later phases run here. |
 
-**What this leaves as the only real blocker (§14 Q3):** the app has nothing to link *to*
-yet. Verified 2026-09-11:
+### 0.4 Shipped 2026-09-11 — this section supersedes the "not deployed" findings below
 
-- **Web app: not deployed.** No live URL exists. The 5.1 MB `dist/` export is local only.
-- **Android: a release exists but carries no APK.** `XavielT/tu-combustible-rd` has tag
-  and release **v1.1.0** (2026-08-19) — but `gh release view` reports **zero assets**, so
-  `releases/latest` would land the visitor on a page with nothing to download. This is a
-  softer failure than a 404, but still a dead end.
+The integration was carried out the same day this inventory was written, so several
+statements elsewhere in this document describe a state that no longer exists. Where §8,
+§10, §11 and §14 say Tu Combustible RD is undeployed, has no APK, or has no PWA, **read
+this section instead**. They are left unedited as the record of what discovery found.
 
-Because `app-card.html` renders an empty `url`/`apkUrl` as a disabled "coming soon"
-button (§3.2 step 6), the card **can ship now** and light up as each target appears. That
-is exactly the case the component was built for.
+| Was | Now |
+|---|---|
+| Web app not deployed | Live at **https://tu-combustible-rd.vercel.app**, Vercel project `tu-combustible-rd`, Git-connected to `XavielT/tu-combustible-rd` so pushes to `main` deploy — the same arrangement as Music Hub |
+| Release v1.1.0 carried no APK | `tu-combustible-rd-v1.1.0.apk` (42 MB, versionCode 2) attached to the release |
+| No web manifest, no service worker | `public/manifest.webmanifest`, four icons (192/512 × any/maskable), apple-touch icon, and a hand-written `public/sw.js`. Verified over HTTPS: worker `activated` at scope `/`, manifest parses, `display: standalone` |
+| Card not in the catalog | Both buttons live, `PWA` badge, and the Add to Home Screen hint — site commits `3c3ccc4` and `c9cbdbf` |
+
+Three defects surfaced while getting there, all fixed in app commits `88a3f1f` and
+`94731d7`:
+
+1. **`react-native-web` ships `Alert.alert` as an empty function.** The app calls it in 14
+   places, so on web every confirmation did nothing — and since the work lives in a
+   button's `onPress`, deletes were *dead buttons*, not merely silent ones. Form
+   validation was invisible and the post-save economy report never appeared. Fixed by
+   `lib/alert.ts`, which maps the same call shape onto the browser dialogs.
+2. **The browser tab had no title.** expo-router emits its react-helmet `<title>` empty
+   during static rendering, ahead of anything in `+html.tsx` — and the first title in a
+   document wins. Screen titles do not reach it either. `tools/finalize-web.mjs` fills
+   helmet's own element after export.
+3. **`/sw.js` needed `no-store`.** A cached service worker never updates itself.
+
+Note for later phases: §9's hosting risks remain correct and remain unexercised — nothing
+was embedded. The app runs on its own origin and the site links to it.
 
 ---
 
@@ -987,9 +1005,10 @@ phases plausibly need. Treat the names as provisional.**
 | `{{APP_AUTH}}` | **none** |
 | `{{APP_WEB_EXPORT}}` | `expo export` static output, exists at `dist/`, **5.1 MB** |
 | `{{APP_ANDROID_PKG}}` | `com.xavieltucombustiblerd.app` (versionCode 2) |
-| `{{APP_APK_URL}}` | **UNKNOWN — no release published yet** (see §14 Q3) |
-| `{{APP_LIVE_URL}}` | **UNKNOWN — not deployed anywhere** (see §14 Q1) |
-| `{{PWA_STATUS_SITE}}` | none (no manifest, no SW, no icons) |
+| `{{APP_APK_URL}}` | `https://github.com/XavielT/tu-combustible-rd/releases/latest` (APK attached 2026-09-11 — see §0.4) |
+| `{{APP_LIVE_URL}}` | `https://tu-combustible-rd.vercel.app` (deployed 2026-09-11 — see §0.4) |
+| `{{PWA_STATUS_SITE}}` | none (no manifest, no SW, no icons) — **still true, the portfolio itself is not a PWA** |
+| `{{PWA_STATUS_APP}}` | installable as of 2026-09-11 (see §0.4) |
 | `{{PWA_REFERENCE_IMPL}}` | `music-hub` (`ngsw-config.json`, `public/manifest.webmanifest`, `public/icons/`) |
 
 ---
@@ -1056,13 +1075,9 @@ decisions.md` should be written (not merely updated) from this document before P
 
 **Q2 — ANSWERED: `/home/xaviel/dev2/xaviel-web-v2` is canonical.** See §0.3.
 
-**Q3 — OPEN, and now the only thing blocking the card. Where should the two buttons
-   point?** Verified 2026-09-11: the repo is `XavielT/tu-combustible-rd` (not
-   `tu-gasolina-rd`), release **v1.1.0** exists but has **no APK asset attached**, and the
-   web app is **not deployed anywhere**. So today both `url` and `apkUrl` would be empty
-   strings. Three ways forward, not mutually exclusive: (a) attach an APK to the existing
-   v1.1.0 release, (b) deploy the Expo web export to Vercel to get a `url`, (c) ship the
-   card now with both buttons disabled and fill them in later.
+**Q3 — ANSWERED, and done: all three options were taken.** The web export was deployed,
+   the APK was attached to the v1.1.0 release, and the card ships with both buttons live.
+   See §0.4.
 
 **Q4 — Still relevant only if you want cloud sync in the app itself. Is the shared
    x-core Supabase project intended to back Tu Combustible RD too?**
