@@ -1,23 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Tu Combustible RD">
   <defs>
-    <linearGradient id="tcrd-drop" x1="32" y1="12" x2="32" y2="50" gradientUnits="userSpaceOnUse">
+    <linearGradient id="gd" x1="32" y1="23.5" x2="32" y2="49.5" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#F7CC5E"/>
-      <stop offset="0.55" stop-color="#F0B429"/>
-      <stop offset="1" stop-color="#C48A16"/>
-    </linearGradient>
-  </defs>
-
-  <!-- Canopy: the same background colour the app declares for its Android adaptive icon. -->
+      <stop offset="0.6" stop-color="#F0B429"/>
+      <stop offset="1" stop-color="#D79A1C"/>
+    </linearGradient></defs>
   <rect width="64" height="64" rx="14" fill="#0B1F1C"/>
-
-  <!-- Fuel drop -->
-  <path d="M32 12.5c0 0 12 13.6 12 21.5a12 12 0 0 1-24 0c0-7.9 12-21.5 12-21.5z"
-        fill="url(#tcrd-drop)"/>
-
-  <!-- Highlight, so the drop reads as a drop and not a flat blob at 64px -->
-  <ellipse cx="27.5" cy="33.5" rx="3.1" ry="4.6" fill="#FFFFFF" opacity="0.28"/>
-
-  <!-- Gauge arc: the app is about measuring consumption, not just fuel. -->
-  <path d="M20.5 48.5a13 13 0 0 1 23 0" fill="none" stroke="#3C9A8A"
-        stroke-width="2.6" stroke-linecap="round" opacity="0.9"/>
+  
+  <g transform="translate(0,2.5)">
+    <path d="M15.6 44.5A19 19 0 1 1 48.4 44.5" fill="none" stroke="#F3EFE4"
+          stroke-width="4" stroke-linecap="round" opacity="0.92"/>
+    <path d="M32 21c0 0 8.6 9.9 8.6 15.5a8.6 8.6 0 0 1-17.2 0C23.4 30.9 32 21 32 21z" fill="url(#gd)"/>
+    <ellipse cx="28.7" cy="35.8" rx="2.1" ry="3.1" fill="#FFFFFF" opacity="0.30"/>
+  </g>
 </svg>
