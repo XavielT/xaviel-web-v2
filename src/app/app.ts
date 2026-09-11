@@ -95,11 +95,12 @@ export class App {
       name: 'Tu Combustible RD',
       description:
         'Fuel and running-cost tracker for Dominican drivers: log every fill-up, see your real km/gal and cost per kilometre, and keep expenses and maintenance per vehicle. Prices use the weekly MICM reference. Everything stays on your device.',
-      badges: ['React Native', 'Expo', 'TypeScript'],
+      badges: ['React Native', 'Expo', 'TypeScript', 'PWA'],
       url: 'https://tu-combustible-rd.vercel.app',
       // Same reasoning as Music Hub above: the releases page rather than the
       // direct .apk asset, so the link survives a version bump.
       apkUrl: 'https://github.com/XavielT/tu-combustible-rd/releases/latest',
+      iosHint: 'On iPhone: open the app in Safari, then Share → Add to Home Screen.',
     },
   ];
 
