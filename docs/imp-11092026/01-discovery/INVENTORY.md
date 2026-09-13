@@ -85,9 +85,23 @@ to. See §8.3, §9. `[verified]`
 | Data fetching | One `fetch()` from `ContactForm` to `/api/contact`. No HttpClient, no `provideHttpClient`. `[verified]` | `contact-form.ts:89` |
 | Package manager | npm 10.9.2 (declared), npm 11.12.1 installed locally `[verified]` | `package.json:19`; `npm -v` |
 | Node version | v24.15.0 locally. **No `engines` field, no `.nvmrc`** — Vercel picks its own default. `[verified]` | `node -v`; `package.json` has no `engines` |
-| Test setup | Vitest 4.0.8 + jsdom 27.1.0, run through `@angular/build:unit-test` (`npm test` → `ng test`). 10 `.spec.ts` files, all CLI-generated smoke tests. **Not executed during this phase.** `[verified]` | `package.json:41,45`, `angular.json:66-68` |
+| Test setup | Vitest 4.0.8 + jsdom 27.1.0, run through `@angular/build:unit-test` (`npm test` → `ng test`). 10 `.spec.ts` files, all CLI-generated smoke tests. **5 of the 10 fail on `main`** — see below. `[verified — executed 2026-09-13]` | `package.json:41,45`, `angular.json:66-68` |
 | Lint / format | **No linter.** No ESLint config, no `lint` script, `@angular-eslint` not installed. Prettier config only, inline in `package.json` (printWidth 100, singleQuote) with no `format` script. `[verified]` | `package.json:8-18`; no eslint files in repo root |
 | Hosting + deploy | Vercel, project `xaviel-web-v2`. `buildCommand: npm run build`, output `dist/portfolio-v2/browser`, SPA rewrite of everything to `/index.html`, `/api/*` to serverless functions. **No `.github/` directory** — deploy is Vercel's Git integration. `[inferred — no workflow file, but `.vercel/` and `vercel.json` are present]` | `vercel.json`, `.vercel/project.json` |
+
+**⚠ The test suite is red on `main`, and was before this cycle started.** Measured
+2026-09-13 by running `npx ng test --watch=false` on a clean `main`: **5 test files fail,
+5 pass** (13 errors total). Two distinct causes, both environmental rather than logic bugs:
+
+| Cause | Files affected |
+|---|---|
+| `ReferenceError: IntersectionObserver is not defined` — jsdom has no such global, and `progress-bar-card.ts:20` calls it from a `setTimeout` | `app.spec.ts`, `progress-bar-card.spec.ts` |
+| `TypeError: Cannot read properties of undefined` reading `icon` / `pdf` / `variant` — the CLI smoke tests instantiate components without providing their required `@Input()` | `navbar.spec.ts`, `card.spec.ts`, `certificate-card.spec.ts` |
+
+This matters for every later phase, because `03-conventions.md` requires "existing tests
+still pass" and they do not. **A phase should compare against this baseline, not against
+green, and must not fix these as a drive-by** — that is its own piece of work. Recorded in
+`04-tracking/PROGRESS.md` under "Observed, deferred".
 
 **Notable dependencies:** `@vercel/analytics` ^2.0.1 (called at bootstrap,
 `main.ts:4,6`), `@vercel/node` ^5.6.15 and `resend` ^6.9.3 (the contact function),
@@ -874,11 +888,18 @@ prompt's own "the code wins", at minimum ADR-05, ADR-04 and ADR-02 need revising
   in any of the three repositories. No installs, no builds, no `git fetch`, no network
   access. `git status` was clean at the start of this phase, and the only file added is
   this one.
-- **Nothing was executed.** No `npm run build`, no `npm test`, no `expo export`, no
-  browser. Every claim is read from source. Consequently these remain unverified: that the
-  site builds; that the 10 spec files pass; that either deployed URL currently resolves;
-  that `x-core`'s RLS is enforced; that Tu Combustible RD's backup/import works in the web
-  build (§8.3).
+- **Nothing was executed during the discovery pass itself.** Every claim in this document
+  was read from source.
+- **Two claims were later verified by execution** (2026-09-13, while vendoring the i18n
+  files on `imp-11092026/phase-1-i18n`), and this document was corrected to match:
+  - `npm run build` **passes** on `main` — 305.48 kB main chunk, 77.73 kB transferred,
+    against a 500 kB warning budget. One pre-existing warning: `NG8113: CertificateCard is
+    not used within the template of App` (the certificates section is commented out in
+    `app.html`).
+  - `npx ng test --watch=false` is **red on `main`** — 5 of 10 files fail. See §1.
+- **Still unverified:** that either deployed URL currently resolves; that `x-core`'s RLS is
+  enforced; that Tu Combustible RD's backup/import works in the web build (§8.3). No
+  network access and no browser in any of these sessions.
 - **Marked `[inferred]`:** the Vercel Git-integration deploy mechanism (no workflow file
   exists, but `.vercel/project.json` and `vercel.json` are present); the ≈100 string count
   (grep-based, ±10); the web-build behaviour of `lib/backup.ts`'s native modules.
