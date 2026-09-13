@@ -49,9 +49,37 @@ export class AuthService {
   private _profile = signal<Profile | null>(null);
   readonly profile = this._profile.asReadonly();
 
+  /**
+   * Whether the signed-in user administers THIS site.
+   *
+   * The answer comes from `public.is_site_admin()` in the database, never from
+   * anything the browser holds. It is cached per session only to avoid an RPC on
+   * every guard activation — it is not a security decision. ADR-04: the whole
+   * bundle is public, so a signal saying `true` proves nothing. RLS is what
+   * refuses the data; this only decides which screen to draw.
+   *
+   * Deliberately NOT `profiles.is_admin`, which is Music Hub's library-admin
+   * column and means something else entirely.
+   */
+  private _isSiteAdmin = signal(false);
+  readonly isSiteAdmin = this._isSiteAdmin.asReadonly();
+
   /** False until the stored session has been restored (or found absent). */
   private _ready = signal(false);
   readonly ready = this._ready.asReadonly();
+
+  /**
+   * Resolves once the stored session has been restored, or found absent.
+   *
+   * The route guard needs to *wait* rather than poll: for the first tick after a
+   * reload `session()` is null whether or not anyone is signed in, so a guard
+   * that read it immediately would bounce every hard refresh of /admin to the
+   * login screen.
+   */
+  private restored!: Promise<void>;
+  whenReady(): Promise<void> {
+    return this.restored;
+  }
 
   readonly user = computed<User | null>(() => this._session()?.user ?? null);
   readonly signedIn = computed(() => this._session() !== null);
@@ -60,7 +88,7 @@ export class AuthService {
     // getSession() reads the persisted session and refreshes it if the access
     // token has expired, so a reload inside the refresh-token's lifetime comes
     // back signed in.
-    this.supabase.client.auth
+    this.restored = this.supabase.client.auth
       .getSession()
       .then(({ data }) => this.adopt(data.session))
       .catch(() => this.adopt(null))
@@ -83,6 +111,25 @@ export class AuthService {
   async signOut() {
     const { error } = await this.supabase.client.auth.signOut();
     return { error };
+  }
+
+  /**
+   * Ask the database whether the current user administers this site.
+   *
+   * Returns false for every failure, and that is the point: signed out, the RPC
+   * comes back `42501 permission denied for function` because EXECUTE is granted
+   * to `authenticated` only. Treating an error as "not an admin" is the correct
+   * reading of every case — refused, offline, or genuinely false.
+   */
+  async refreshAdmin(): Promise<boolean> {
+    if (!this.session()) {
+      this._isSiteAdmin.set(false);
+      return false;
+    }
+    const { data, error } = await this.supabase.client.rpc('is_site_admin');
+    const admin = !error && data === true;
+    this._isSiteAdmin.set(admin);
+    return admin;
   }
 
   /**
@@ -112,8 +159,10 @@ export class AuthService {
     this._session.set(session);
     if (!session) {
       this._profile.set(null);
+      this._isSiteAdmin.set(false);
       return;
     }
     void this.loadProfile();
+    void this.refreshAdmin();
   }
 }
