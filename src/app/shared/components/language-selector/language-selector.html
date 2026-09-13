@@ -1,0 +1,8 @@
+<div class="lang-selector" role="group" [attr.aria-label]="'lang.label' | t">
+    <button *ngFor="let language of languages" type="button" class="lang-option"
+        [class.active]="current() === language.value" [attr.aria-pressed]="current() === language.value"
+        [attr.aria-label]="'lang.switchTo' | t: { name: language.label }" [attr.lang]="language.value"
+        (click)="select(language.value)">
+        {{ language.value | uppercase }}
+    </button>
+</div>

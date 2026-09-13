@@ -2,11 +2,12 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Badge } from '../../ui/badge/badge';
 import { AppCard as AppCardModel } from '../../models/app-card.model';
+import { TPipe } from '../../i18n/t.pipe';
 
 @Component({
   selector: 'app-app-card',
   standalone: true,
-  imports: [Badge, CommonModule],
+  imports: [Badge, CommonModule, TPipe],
   templateUrl: './app-card.html',
   styleUrl: './app-card.css',
 })

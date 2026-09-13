@@ -1,7 +1,7 @@
 <div class="progress-bar-card tw-flex tw-flex-col tw-gap-2">
     <div class="skillName-and-percent-container">
         <div class="icon-and-name-skill">
-            <img [src]="skill.icon" class="tw-w-6 tw-h-6" alt="skill icon" />
+            <img [src]="skill.icon" class="tw-w-6 tw-h-6" [alt]="'skills.iconAlt' | t" />
             <span class="skillName tw-text-sm tw-font-medium">{{ skill.name }}</span>
         </div>
         <div class="skill-level">

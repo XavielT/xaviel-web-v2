@@ -1,10 +1,10 @@
 <div class="maintenance">
     <div class="maintenance-info">
-        <h2 class="maintenance-title">This section is under Maintenance</h2>
-        <span class="maintenance-subtitle">It will be available shortly</span>
+        <h2 class="maintenance-title">{{ 'maintenance.title' | t }}</h2>
+        <span class="maintenance-subtitle">{{ 'maintenance.subtitle' | t }}</span>
     </div>
     <div class="maintenance-img-container">
-        <img class="maintenance-img" src="/assets/icons/maintenance-hub.svg" alt="Maintenance Icon"/>
+        <img class="maintenance-img" src="/assets/icons/maintenance-hub.svg" [alt]="'maintenance.iconAlt' | t"/>
     </div>
 
 </div>

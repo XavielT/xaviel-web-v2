@@ -1,7 +1,7 @@
 <div class="app-card">
 
     <div class="app-card-head">
-        <img class="app-card-icon" [src]="app.icon" alt="{{ app.name }} icon" />
+        <img class="app-card-icon" [src]="app.icon" [alt]="'appCard.iconAlt' | t: { name: app.name }" />
         <div class="app-card-headings">
             <h3 class="app-card-name">{{ app.name }}</h3>
             <div class="app-card-badges">
@@ -10,17 +10,19 @@
         </div>
     </div>
 
-    <p class="app-card-description">{{ app.description }}</p>
+    <p class="app-card-description">{{ app.description | t }}</p>
 
     <div class="app-card-actions">
         <a *ngIf="hasWebApp" class="app-card-btn app-card-btn-primary" [href]="app.url" target="_blank"
-            rel="noopener noreferrer">Open app</a>
-        <span *ngIf="!hasWebApp" class="app-card-btn app-card-btn-disabled" title="Coming soon">Open app</span>
+            rel="noopener noreferrer">{{ 'appCard.open' | t }}</a>
+        <span *ngIf="!hasWebApp" class="app-card-btn app-card-btn-disabled"
+            [title]="'appCard.comingSoon' | t">{{ 'appCard.open' | t }}</span>
 
         <a *ngIf="hasApk" class="app-card-btn" [href]="app.apkUrl" target="_blank"
-            rel="noopener noreferrer">Android APK</a>
-        <span *ngIf="!hasApk" class="app-card-btn app-card-btn-disabled" title="Coming soon">Android APK</span>
+            rel="noopener noreferrer">{{ 'appCard.apk' | t }}</a>
+        <span *ngIf="!hasApk" class="app-card-btn app-card-btn-disabled"
+            [title]="'appCard.comingSoon' | t">{{ 'appCard.apk' | t }}</span>
     </div>
 
-    <p class="app-card-ios" *ngIf="app.iosHint">{{ app.iosHint }}</p>
+    <p class="app-card-ios" *ngIf="app.iosHint">{{ app.iosHint | t }}</p>
 </div>

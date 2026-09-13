@@ -1,24 +1,24 @@
 <form class="contact-form" #contactForm="ngForm" (submit)="onSubmit($event, contactForm)">
     <div class="form-title">
-        <h2>Contact Information</h2>
+        <h2>{{ 'form.heading' | t }}</h2>
     </div>
     <div class="info-container">
 
         <div class="form-group">
-            <label class="form-label" for="name">Name</label>
+            <label class="form-label" for="name">{{ 'form.name' | t }}</label>
             <div class="input-bg">
-                <img class="form-input-icon" src="assets/icons/user-hub.svg" alt="Input icon" />
-                <input class="form-input" type="text" id="name" name="name" placeholder="Your Name" required ngModel
-                    #name="ngModel" minlength="2" />
+                <img class="form-input-icon" src="assets/icons/user-hub.svg" [alt]="'form.inputIconAlt' | t" />
+                <input class="form-input" type="text" id="name" name="name" [placeholder]="'form.namePlaceholder' | t"
+                    required ngModel #name="ngModel" minlength="2" />
             </div>
             <span class="input-error" *ngIf="name.invalid && (name.touched || contactForm.submitted)">
 
                 <span *ngIf="name.errors?.['required']">
-                    Name is required
+                    {{ 'form.nameRequired' | t }}
                 </span>
 
                 <span *ngIf="name.errors?.['minlength']">
-                    Name must be at least 2 characters
+                    {{ 'form.nameMinLength' | t }}
                 </span>
 
             </span>
@@ -26,30 +26,31 @@
         </div>
 
         <div class="form-group">
-            <label class="form-label" for="email">Email</label>
+            <label class="form-label" for="email">{{ 'form.email' | t }}</label>
             <div class="input-bg">
-                <img class="form-input-icon" src="assets/icons/arroba-hub.svg" alt="Input icon" />
-                <input class="form-input" type="email" id="email" name="email" placeholder="your@gmail.com" required
-                    email ngModel #email="ngModel" />
+                <img class="form-input-icon" src="assets/icons/arroba-hub.svg" [alt]="'form.inputIconAlt' | t" />
+                <input class="form-input" type="email" id="email" name="email"
+                    [placeholder]="'form.emailPlaceholder' | t" required email ngModel #email="ngModel" />
             </div>
 
             <span class="input-error" *ngIf="email.invalid && (email.touched || contactForm.submitted)">
 
                 <span *ngIf="email.errors?.['required']">
-                    Email is required
+                    {{ 'form.emailRequired' | t }}
                 </span>
 
                 <span *ngIf="email.errors?.['email']">
-                    Enter a valid email
+                    {{ 'form.emailInvalid' | t }}
                 </span>
 
             </span>
         </div>
 
         <div class="form-group">
-            <label class="form-label">Reason for contact</label>
+            <label class="form-label">{{ 'form.reason' | t }}</label>
             <div class="input-bg custom-select">
-                <img class="form-input-icon" src="assets/icons/dropdown-arrow-hub.svg" alt="Input icon" />
+                <img class="form-input-icon" src="assets/icons/dropdown-arrow-hub.svg"
+                    [alt]="'form.inputIconAlt' | t" />
 
                 <!-- hidden input to send the value -->
                 <input type="hidden" name="topic" [(ngModel)]="selectedValue" required>
@@ -58,45 +59,45 @@
                 <input type="text" name="company" class="honeypot">
 
                 <button type="button" class="select-trigger" (click)="toggleDropdown()">
-                    {{ selectedLabel }}
+                    {{ selectedLabelKey | t }}
                 </button>
 
                 <!-- dropdown -->
                 <ul class="select-dropdown" *ngIf="isOpen">
-                    <li (click)="selectOption('job','Job Opportunity')">Job Opportunity</li>
-                    <li (click)="selectOption('project','Project')">Project</li>
-                    <li (click)="selectOption('other','Other reasons')">Other reason</li>
+                    <li *ngFor="let topic of topics" (click)="selectOption(topic.value, topic.labelKey)">
+                        {{ topic.labelKey | t }}
+                    </li>
                 </ul>
             </div>
         </div>
 
     </div>
     <div class="form-group">
-        <label class="form-label" for="message">Message</label>
+        <label class="form-label" for="message">{{ 'form.message' | t }}</label>
         <textarea class="form-text-area" type="text" id="message" name="message" rows="5"
-            placeholder="Write your message..." required minlength="10" ngModel #message="ngModel">
+            [placeholder]="'form.messagePlaceholder' | t" required minlength="10" ngModel #message="ngModel">
         </textarea>
         <span class="input-error" *ngIf="message.invalid && (message.touched || contactForm.submitted)">
 
             <span *ngIf="message.errors?.['required']">
-                Message is required
+                {{ 'form.messageRequired' | t }}
             </span>
 
             <span *ngIf="message.errors?.['minlength']">
-                Message must be at least 10 characters
+                {{ 'form.messageMinLength' | t }}
             </span>
 
         </span>
     </div>
     <div class="buttons-container">
-        <button class="rst-btn" type="button" (click)="clearForm(contactForm)">Clear</button>
+        <button class="rst-btn" type="button" (click)="clearForm(contactForm)">{{ 'form.clear' | t }}</button>
         <button class="snd-btn" type="submit" [disabled]="isLoading">
-            <span *ngIf="!isLoading" class="tw-flex">Send <img class="tw-w-[25px]" src="assets/icons/send.svg"
-                    alt="Send Icon" /></span>
+            <span *ngIf="!isLoading" class="tw-flex">{{ 'form.send' | t }} <img class="tw-w-[25px]"
+                    src="assets/icons/send.svg" [alt]="'form.sendIconAlt' | t" /></span>
 
             <span *ngIf="isLoading" class="sending">
                 <span class="spinner"></span>
-                Sending...
+                {{ 'form.sending' | t }}
             </span>
         </button>
     </div>
@@ -106,24 +107,24 @@
         <div *ngIf="messageStatus === 'success'" class="message success-message">
             <span class="message-icon">✓</span>
             <div class="message-text">
-                <strong>Message sent!</strong>
-                <p>I will get back to you soon.</p>
+                <strong>{{ 'form.successTitle' | t }}</strong>
+                <p>{{ 'form.successBody' | t }}</p>
             </div>
         </div>
 
         <div *ngIf="messageStatus === 'error'" class="message error-message">
             <span class="message-icon">⚠</span>
             <div class="message-text">
-                <strong>Something went wrong</strong>
-                <p>Please try again later.</p>
+                <strong>{{ 'form.errorTitle' | t }}</strong>
+                <p>{{ 'form.errorBody' | t }}</p>
             </div>
         </div>
 
         <div *ngIf="messageStatus === 'rateLimit'" class="message rate-limit-message">
             <span class="message-icon">⏱</span>
             <div class="message-text">
-                <strong>Please wait</strong>
-                <p>You can send another message in a few seconds.</p>
+                <strong>{{ 'form.rateLimitTitle' | t }}</strong>
+                <p>{{ 'form.rateLimitBody' | t }}</p>
             </div>
         </div>
 
