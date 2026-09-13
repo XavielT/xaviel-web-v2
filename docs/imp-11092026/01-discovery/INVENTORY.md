@@ -336,10 +336,14 @@ Reasons to prefer it over the alternatives:
 3. **Zero new dependencies**, which conventions rule 3 asks for.
 4. ~100 strings is well inside what a plain dictionary handles comfortably.
 
-**However — ADR-05 requires routed locales (`/es/...`, `/en/...`) and this site has no
+**The original ADR-05 required routed locales (`/es/...`, `/en/...`) and this site has no
 router at all** (`app.routes.ts:3`). Routed locales would mean inventing a routing layer
-for a single-page anchor-scroll site purely to carry a locale segment. See §9.4; this
-needs a decision before Phase 1.
+for a single-page anchor-scroll site purely to carry a locale segment.
+
+> **RESOLVED 2026-09-13 — the runtime selector was chosen.** ADR-05 has been rewritten
+> accordingly ("Runtime language selector for i18n"), and `PROMPT-01-i18n.md` rewritten to
+> match. Locale is application state persisted in `localStorage`; no routing, no
+> `hreflang`, no per-locale paths. See §9.4.1.
 
 ## 6. Existing auth
 
@@ -673,17 +677,24 @@ to surface has evaporated. What is left is listed honestly, with the genuine ris
 ### 9.4 ADR conflicts — what the code contradicts
 
 Per the prompt's closing instruction ("the ADRs were written from the domain, not from the
-code, and the code wins"):
+code, and the code wins").
 
-1. **ADR-05 assumes a router that does not exist.** It mandates `/es/...` / `/en/...` URL
+> **Acted on 2026-09-13.** `00-context/02-architecture-decisions.md` has been rewritten
+> against this section. ADR-05 reversed its decision; ADR-01 through ADR-04 and ADR-06 kept
+> their decisions and had their Next.js vocabulary and stale premises corrected. The four
+> downstream documents that contradicted the new ADR-05 were corrected too — see §9.5.
+
+1. **ADR-05 assumed a router that does not exist.** It mandated `/es/...` / `/en/...` URL
    segments. `app.routes.ts:3` is `[]` and the site navigates by anchor. Routed locales
-   require building a routing layer first, for a single page. Its stated rationale
-   (indexability, shareable per-language URLs) also assumes server rendering — this SPA
+   would require building a routing layer first, for a single page. Its stated rationale
+   (indexability, shareable per-language URLs) also assumed server rendering — this SPA
    serves one `index.html` for every path via `vercel.json`, so crawlers see whatever the
-   client renders regardless. **Recommendation: adopt Music Hub's persisted runtime
-   selector, and record the deviation.** Needs your decision (Q1).
-2. **ADR-05's library suggestions are all Next.js.** `next-intl`, `next-i18next`,
-   `react-i18next` — none applies. See §5.
+   client renders regardless. **RESOLVED: the runtime selector was chosen**, ADR-05 was
+   rewritten, and the cost (no per-language shareable or independently indexable URLs) is
+   recorded in the new ADR.
+2. **ADR-05's library suggestions were all Next.js.** `next-intl`, `next-i18next`,
+   `react-i18next` — none applies. See §5. **RESOLVED: no library; Music Hub's
+   `I18nService` is ported instead.**
 3. **ADR-04's mechanisms are partly unavailable.** "Route middleware" and "runs
    server-side only" presuppose Next.js middleware and server actions. This site has
    neither; the only server surface is `api/contact.ts` as a Vercel function. The RLS-first
@@ -709,6 +720,29 @@ code, and the code wins"):
    `/home/xaviel/dev2/xaviel-web-v2` (this one). Likewise, the context package is not at
    `docs/imp-11092026/00-context/` in the repo but at
    `/home/xaviel/improvements/imps xaviel-web/september 2026/imp 11092026/`. `[verified]`
+
+### 9.5 Documents changed by the ADR revision (2026-09-13)
+
+The ADR-05 reversal, and ADR-04's correction from Next.js middleware to an Angular guard,
+both propagate beyond the ADR file. These documents mandated the opposite and were
+corrected, so no phase prompt now contradicts its own ADR. None of these files is under
+version control; a pre-edit copy of `00-context/`, `02-prompts/` and `04-tracking/` was
+taken first.
+
+| Document | What changed |
+|---|---|
+| `00-context/02-architecture-decisions.md` | All six ADRs revised. ADR-05 rewritten (decision reversed). ADR-01 records the real pattern and that G1 shipped; ADR-02 gains the data-model precondition; ADR-03 notes it is new ground for `x-core`; ADR-04 swaps Next.js middleware for an Angular guard + Edge/Vercel function; ADR-06 records the site's zero-baseline and the app's finished PWA |
+| `02-prompts/PROMPT-01-i18n.md` | Rewritten. Removed locale routing, the cookie, `hreflang` and per-locale metadata; added the Music Hub port, the `app.ts` data arrays as a second extraction source, storage-failure handling, and corrected verification steps |
+| `02-prompts/PROMPT-02-supabase-auth.md` | Dropped the browser/server/middleware client trio and cookie sessions (no server exists) for one root-provided service with `localStorage` persistence; points at Music Hub's client as reference and flags its `flowType: 'implicit'` as a choice not to copy blindly |
+| `02-prompts/PROMPT-03-admin-shell.md` | Dropped the `/es/admin` reconciliation and the "protect server-side" mitigation (no server exists); the middleware stop-condition became a guard stop-condition; added that Phase 3 must stand up the router for the first time |
+| `02-prompts/PROMPT-07-pwa.md` | One Spanish manifest instead of a locale-aware one; language must not become a cache key; lint expectations corrected |
+| `00-context/03-conventions.md` | Example commit messages; two new anti-patterns (locale in the URL; assuming a Next.js-shaped stack) |
+| `04-tracking/PROGRESS.md` | Phase 1 notes capture the localStorage key and data-array keying instead of routing shape; Phase 2 notes capture flowType and config location instead of server client and middleware; final regression checklist drops the `/en/` URL and `hreflang` rows and adds detection, persistence and storage-blocked rows |
+
+Two things deliberately **not** changed: `01-project-brief.md` (its G3 and its definition
+of done never required URLs — a runtime selector satisfies them as written), and the "both
+locales" phrasing in PROMPT-04 and PROMPT-06, which remains true when read as "both
+languages".
 
 ## 10. PWA readiness
 
@@ -795,15 +829,18 @@ continuation of it (§9.4.6, §7); and ADR-01's premise being thinner than it re
 (§9.4.4). Plus two factual errors in the Phase 0 prompt itself: the main-site path and the
 context-package location (§9.4.9).
 
+**All nine have been acted on.** The ADR file was rewritten on 2026-09-13, along with the
+four downstream documents that contradicted it — see §9.5 for the change list.
+
 ### Questions needing an answer before Phase 1
 
-**Q1 — Routed locales, or a persisted runtime selector?** *(blocking Phase 1)*
-ADR-05 mandates `/es/` and `/en/` URLs. This site has no router and no server rendering.
-Building routing solely to carry a locale segment on a single anchor-scroll page is real
-work for a benefit (per-language indexable URLs) that an SPA serving one `index.html` for
-every path largely cannot deliver anyway. My recommendation is to port Music Hub's
-`I18nService` + `t` pipe + `es.ts`/`en.ts` (§5) and record the ADR-05 deviation. Confirm,
-or tell me to build the routing.
+**Q1 — ANSWERED: the runtime selector.** *(no longer blocking)*
+ADR-05 has been rewritten as "Runtime language selector for i18n": locale is application
+state persisted in `localStorage`, implemented by porting Music Hub's `I18nService` + `t`
+pipe + `es.ts`/`en.ts`. No routing, no `hreflang`, no locale paths. The cost — no
+per-language shareable or independently indexable URLs, and no way back without adding SSR
+or prerendering — is recorded in the ADR itself. `PROMPT-01-i18n.md` has been rewritten to
+match, so Phase 1 can start.
 
 **Q2 — Should Phase 4 be re-scoped to verification only?** Given §0.3, my proposal is:
 confirm both links resolve, confirm the SVG icon renders at card size, confirm parity with
