@@ -1,13 +1,14 @@
 <div class="certificate-card">
     <div class="certificate-container">
         <a [href]="certificate.pdf" target="_blank">
-            <img class="certificate-img" [src]="certificate.img" [alt]="certificate.name" />
+            <img class="certificate-img" [src]="certificate.img" [alt]="certificate.name | t" />
         </a>
     </div>
     <div class="certificate-info">
         <a class="certificate-link" [href]="certificate.pdf" target="_blank">
-            <h3 class="certificate-title">{{ certificate.name }}</h3>
-            <img class="certificate-link-icon" src="assets/icons/external-link-hub.svg" alt="Link icon" />
+            <h3 class="certificate-title">{{ certificate.name | t }}</h3>
+            <img class="certificate-link-icon" src="assets/icons/external-link-hub.svg"
+                [alt]="'certificates.linkIconAlt' | t" />
         </a>
     </div>
     <div class="certificate-info-line">

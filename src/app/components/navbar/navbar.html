@@ -11,34 +11,36 @@
             <ul class="nav-list">
                 <li>
                     <a class="nav-link" href="#home" (click)="closeMenu()"
-                        [class.active]="activeSection() === 'home'">Home</a>
+                        [class.active]="activeSection() === 'home'">{{ 'nav.home' | t }}</a>
                 </li>
                 <li>
                     <a class="nav-link" href="#about" (click)="closeMenu()"
-                        [class.active]="activeSection() === 'about'">About</a>
+                        [class.active]="activeSection() === 'about'">{{ 'nav.about' | t }}</a>
                 </li>
                 <li>
                     <a class="nav-link" href="#main-projects" (click)="closeMenu()"
-                        [class.active]="activeSection() === 'main-projects'">Main Projects</a>
+                        [class.active]="activeSection() === 'main-projects'">{{ 'nav.mainProjects' | t }}</a>
                 </li>
                 <li>
                     <a class="nav-link" href="#apps" (click)="closeMenu()"
-                        [class.active]="activeSection() === 'apps'">Apps</a>
+                        [class.active]="activeSection() === 'apps'">{{ 'nav.apps' | t }}</a>
                 </li>
                 <li>
                     <a class="nav-link" href="#skills" (click)="closeMenu()"
-                        [class.active]="activeSection() === 'skills'">SKills</a>
+                        [class.active]="activeSection() === 'skills'">{{ 'nav.skills' | t }}</a>
                 </li>
                 <li>
                     <a class="nav-link" href="#certificates" (click)="closeMenu()"
-                        [class.active]="activeSection() === 'certificates'">Certificates</a>
+                        [class.active]="activeSection() === 'certificates'">{{ 'nav.certificates' | t }}</a>
                 </li>
                 <li>
                     <a class="nav-link" href="#contact" (click)="closeMenu()"
-                        [class.active]="activeSection() === 'contact'">Contact</a>
+                        [class.active]="activeSection() === 'contact'">{{ 'nav.contact' | t }}</a>
                 </li>
             </ul>
         </nav>
+
+        <app-language-selector></app-language-selector>
 
     </div>
 </div>

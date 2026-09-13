@@ -1,8 +1,10 @@
 import { Component, Input, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Skill } from '../../models/skill.model';
+import { TPipe } from '../../i18n/t.pipe';
 
 @Component({
   selector: 'app-progress-bar-card',
+  imports: [TPipe],
   templateUrl: './progress-bar-card.html',
   styleUrl: './progress-bar-card.css',
 })

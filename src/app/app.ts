@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { Navbar } from "./components/navbar/navbar";
 import { Footer } from "./components/footer/footer";
@@ -14,18 +15,30 @@ import { ProjectCard } from './shared/models/project-card.model';
 import { AppCard as AppCardModel } from './shared/models/app-card.model';
 import { AppCard } from './shared/components/app-card/app-card';
 import { CommonModule } from '@angular/common';
+import { I18nService } from './shared/i18n/i18n.service';
+import { TPipe } from './shared/i18n/t.pipe';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Navbar, Footer, Xlogo, Badge, Card, ProgressBarCard, CertificateCard, ContactForm, AppCard, CommonModule],
+  imports: [RouterOutlet, Navbar, Footer, Xlogo, Badge, Card, ProgressBarCard, CertificateCard, ContactForm, AppCard, CommonModule, TPipe],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('portfolio-v2');
   isHover = false;
+
+  private i18n = inject(I18nService);
+  private pageTitle = inject(Title);
+
+  constructor() {
+    // `t` reads the language signal, so this re-runs on every switch and the
+    // browser tab follows the page. index.html carries the Spanish title as the
+    // static default, which is what a visitor sees before Angular boots.
+    effect(() => this.pageTitle.setTitle(this.i18n.t('meta.title')));
+  }
 
   isGithubHover = signal(false);
   isEmailHover = signal(false);
@@ -75,12 +88,18 @@ export class App {
 
   // Apps you can actually install and use, as opposed to source-code projects.
   // Adding a future app is one entry in this array.
+  //
+  // TRANSLATED FIELDS HOLD KEYS, NOT PROSE. `description` and `iosHint` are
+  // TranslationKeys resolved by `| t` in app-card.html; the words themselves
+  // live in es.ts/en.ts. `name` and `badges` stay literal because they are
+  // proper nouns and technology names, which are not translated in either
+  // language. Keeping the split here means adding a third language never
+  // touches this file.
   apps: AppCardModel[] = [
     {
       icon: '/assets/apps-imgs/music-hub.png',
       name: 'Music Hub',
-      description:
-        'A personal music app: upload your own songs, they sync across every device through Supabase, and download them for offline listening. Installable on iPhone and desktop, with a native Android build.',
+      description: 'app.musicHub.description',
       badges: ['Angular', 'Capacitor', 'Supabase', 'PWA'],
       url: 'https://music-hub-xaviel.vercel.app',
       // Points at the releases page rather than the direct
@@ -88,28 +107,29 @@ export class App {
       // whenever no release is published, while this page never breaks and
       // always offers the newest build.
       apkUrl: 'https://github.com/XavielT/music-hub/releases/latest',
-      iosHint: 'On iPhone: open the app in Safari, then Share → Add to Home Screen.',
+      // Both apps ship the same hint, so it is one shared key.
+      iosHint: 'apps.iosHint',
     },
     {
       icon: '/assets/apps-imgs/tu-combustible-rd.svg',
       name: 'Tu Combustible RD',
-      description:
-        'Fuel and running-cost tracker for Dominican drivers: log every fill-up, see your real km/gal and cost per kilometre, and keep expenses and maintenance per vehicle. Prices use the weekly MICM reference. Everything stays on your device.',
+      description: 'app.tuCombustible.description',
       badges: ['React Native', 'Expo', 'TypeScript', 'PWA'],
       url: 'https://tu-combustible-rd.vercel.app',
       // Same reasoning as Music Hub above: the releases page rather than the
       // direct .apk asset, so the link survives a version bump.
       apkUrl: 'https://github.com/XavielT/tu-combustible-rd/releases/latest',
-      iosHint: 'On iPhone: open the app in Safari, then Share → Add to Home Screen.',
+      iosHint: 'apps.iosHint',
     },
   ];
 
-  //Projects cards
+  // Projects cards. Same split as `apps` above: `description` is a
+  // TranslationKey, `title` and `badges` are proper nouns left literal.
   projects: ProjectCard[] = [
     {
       image: '/assets/projects-imgs/x-autohub.png',
       title: 'X AutoHub',
-      description: 'Website for displaying a catalog of parts and vehicles. Implementation of search, filtering and shopping cart functionalities. Integration of payment gateway and administration panel for product and order management.',
+      description: 'project.xAutohub.description',
       badges: ['Angular', 'NodeJS', 'SCSS', 'Typescript'],
       variant: 'featured',
       url: 'https://github.com/XavielT/x-autohub',
@@ -117,7 +137,7 @@ export class App {
     {
       image: '/assets/projects-imgs/good-drive.jpeg',
       title: 'Good Drive',
-      description: 'Uber / Indriver type travel platform mobile app. With the specialty of referral system. Implementation of geolocation functionalities, real-time chat, rating system, driver and passenger view, and referral system with rewards.',
+      description: 'project.goodDrive.description',
       badges: ['Flutter', 'Dart'],
       variant: 'featured',
       url: 'https://github.com/XavielT/Good-drive',
@@ -125,7 +145,7 @@ export class App {
     {
       image: '/assets/projects-imgs/under-development.png',
       title: 'Mi Taller',
-      description: 'Web for mechanical workshop management. Implementation of customer, vehicle, work order, inventory and billing management functionalities. Integration of notification system and administration panel to track tasks and statistics.',
+      description: 'project.miTaller.description',
       badges: ['Angular', 'SCSS', 'Typescript', 'NodeJS'],
       variant: 'featured',
       url: 'https://github.com/XavielT/mi-taller',
@@ -133,7 +153,7 @@ export class App {
     {
       image: '/assets/projects-imgs/under-development.png',
       title: 'Pork Tech',
-      description: 'Mobile app for pig farm management. Implementation of functionalities for animal monitoring, feed management, health control, event registration and report generation. Integration of notification system for alerts and reminders.',
+      description: 'project.porkTech.description',
       badges: ['Flutter', 'Dart', 'PostgreSQL', 'NodeJS'],
       variant: 'featured',
       url: 'https://github.com/XavielT/pork-tech',
@@ -208,19 +228,22 @@ export class App {
     return skill.name;
   }
 
+  // `name` is a TranslationKey here — unlike projects and apps, a certificate's
+  // name is a descriptive course title rather than a proper noun, so it does
+  // translate. The section is currently commented out in app.html.
   certificates : Certificate[]=[
     {
-      name: 'Responsive Design',
+      name: 'certificate.responsiveDesign.name',
       img: 'assets/certificates-imgs/responsive-design-certificate.png',
       pdf: 'assets/certificates-pdfs/Certificado-Responsive-Web-Design.pdf',
     },
     {
-      name: 'Scrum fundamentals',
+      name: 'certificate.scrumFundamentals.name',
       img: 'assets/certificates-imgs/scrum-certificate.png',
       pdf: 'assets/certificates-pdfs/Certificado-Fundamentos-SCRUM.pdf',
     },
     {
-      name: 'Jira fundamentals',
+      name: 'certificate.jiraFundamentals.name',
       img: 'assets/certificates-imgs/jira-certificate.png',
       pdf: 'assets/certificates-pdfs/Certificado-Introduccion-JIRA.pdf',
     }

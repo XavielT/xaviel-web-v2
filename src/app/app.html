@@ -8,30 +8,30 @@
 
 <!-- ---------Home--------- -->
 <section id="home" class="home-container">
-    <app-badge text="Available for projects" variant="success" size="lg" [showDot]="true"
+    <app-badge [text]="'home.badge' | t" variant="success" size="lg" [showDot]="true"
         [animatedDot]="true"></app-badge>
     <div class="home-title">
-        <h1 class="title">Software
-            <span class="title-highlight">Developer</span>
+        <h1 class="title">{{ 'home.titleLead' | t }}
+            <span class="title-highlight">{{ 'home.titleHighlight' | t }}</span>
         </h1>
-        <p class="title-text">Creating modern and functional web experiences. Specializing in Angular and UI design.</p>
+        <p class="title-text">{{ 'home.tagline' | t }}</p>
     </div>
     <div class="home-btns-container">
         <button class="home-btn" (mouseenter)="onGithubEnter()" (mouseleave)="onGithubLeave()">
-            
+
             <a class="home-btn-link" href="#main-projects">
-            <img class="home-btn-icon" [src]="isGithubHover() 
-      ? '/assets/icons/github.svg' 
+            <img class="home-btn-icon" [src]="isGithubHover()
+      ? '/assets/icons/github.svg'
       : '/assets/icons/github-outline.svg'" />
 
-            <span> View Projects </span>
+            <span> {{ 'home.viewProjects' | t }} </span>
         </a>
         </button>
         <button class="home-btn-highlight" (mouseenter)="onEmailEnter()" (mouseleave)="onEmailLeave()">
             <a class="home-btn-link" href="#contact">
-                <img class="home-btn-icon" [src]="isEmailHover() 
-            ? '/assets/icons/email-fill-hub.svg' 
-            : '/assets/icons/email-outline.svg'" /><span>Contact</span>
+                <img class="home-btn-icon" [src]="isEmailHover()
+            ? '/assets/icons/email-fill-hub.svg'
+            : '/assets/icons/email-outline.svg'" /><span>{{ 'home.contact' | t }}</span>
             </a>
         </button>
     </div>
@@ -53,7 +53,7 @@
         <p>Hola 👋 soy un modal</p>
         <button (click)="myDialog.close()">Cerrar</button>
       </dialog>
-      
+
       <button (click)="myDialog.showModal()">Abrir</button>-->
 </section>
 
@@ -63,17 +63,14 @@
         <!--Left-->
         <div class="about-left">
             <div class="about-title-container">
-                <img class="about-title-icon" src="/assets/icons/profile-hub.svg" alt="About icon">
-                <h3 class="about-title">About Me</h3>
+                <img class="about-title-icon" src="/assets/icons/profile-hub.svg" [alt]="'about.titleIconAlt' | t">
+                <h3 class="about-title">{{ 'about.title' | t }}</h3>
             </div>
-            <p class="about-description">Frontend-focused Software Developer building modern web applications with
-                Angular, TypeScript, and JavaScript. I specialize in clean interfaces, smooth user experiences, and
-                scalable frontend architecture.
-            </p>
+            <p class="about-description">{{ 'about.description' | t }}</p>
 
             <button class="about-btn">
                 <a href="assets/pdfs/CV-2026.pdf" target="_blank" rel="noopener noreferrer">
-                    See Resume
+                    {{ 'about.resume' | t }}
                 </a>
             </button>
         </div>
@@ -82,23 +79,23 @@
         <div class="about-right">
             <div class="about-right-content">
                 <div class="about-right-icon-container"><img class="about-right-icon" src="/assets/icons/code.svg"
-                        alt="About Icon"></div>
+                        [alt]="'about.statIconAlt' | t"></div>
                 <div class="about-right-text">
-                    <h4>15+</h4><span>Completed Projects</span>
+                    <h4>15+</h4><span>{{ 'about.completedProjects' | t }}</span>
                 </div>
             </div>
             <div class="about-right-content">
                 <div class="about-right-icon-container"><img class="about-right-icon" src="/assets/icons/work.svg"
-                        alt="About Icon"></div>
+                        [alt]="'about.statIconAlt' | t"></div>
                 <div class="about-right-text">
-                    <h4>2+</h4><span>Years of experience</span>
+                    <h4>2+</h4><span>{{ 'about.yearsExperience' | t }}</span>
                 </div>
             </div>
             <div class="about-right-content">
                 <div class="about-right-icon-container"><img class="about-right-icon" src="/assets/icons/person.svg"
-                        alt="About Icon"></div>
+                        [alt]="'about.statIconAlt' | t"></div>
                 <div class="about-right-text">
-                    <h4>10+</h4><span>Satisfied Customers</span>
+                    <h4>10+</h4><span>{{ 'about.satisfiedCustomers' | t }}</span>
                 </div>
             </div>
         </div>
@@ -110,7 +107,7 @@
 <section id="main-projects" class="container projects-container">
 
     <div class="main-title-container">
-        <h3 class="main-title">Main Projects</h3><span class="main-span">Some of my recent work</span>
+        <h3 class="main-title">{{ 'projects.title' | t }}</h3><span class="main-span">{{ 'projects.subtitle' | t }}</span>
     </div>
 
     <div class="main-cards"><!-- Project Card -->
@@ -122,7 +119,7 @@
 <section id="apps" class="container apps-container">
 
     <div class="main-title-container">
-        <h3 class="main-title">Apps</h3><span class="main-span">Things you can install and use</span>
+        <h3 class="main-title">{{ 'apps.title' | t }}</h3><span class="main-span">{{ 'apps.subtitle' | t }}</span>
     </div>
 
     <div class="apps-cards">
@@ -133,7 +130,7 @@
 <!-- ---------Skills--------- -->
 <section id="skills" class="container skills-container">
     <div class="Skills-title-container">
-        <h3 class="Skills-title">Skills</h3><span class="Skills-span">Main Technologies I work with</span>
+        <h3 class="Skills-title">{{ 'skills.title' | t }}</h3><span class="Skills-span">{{ 'skills.subtitle' | t }}</span>
     </div>
     <div class="Skills-cards">
         <!-- Skill Progress Bar Card -->
@@ -146,7 +143,7 @@
 <!--<section id="certificates" class="container certificates-container">
 
     <div class="certificates-title-container">
-        <h3 class="certificates-title">Certificates</h3><span class="certificates-span">Technologies I work with</span>
+        <h3 class="certificates-title">{{ 'certificates.title' | t }}</h3><span class="certificates-span">{{ 'certificates.subtitle' | t }}</span>
     </div>
 
     <div class="Certificates-cards">
@@ -155,15 +152,14 @@
     </div>
 
 
-    
+
 </section>-->
 
 <!-- ---------Contact--------- -->
 <section id="contact" class="container contact-form-container">
     <div class="contact-title-container">
-        <h3 class="contact-title"><span class="contact-title-highlight">¿ </span>Do you have a project in mind<span
-                class="contact-title-highlight"> ?</span></h3><span class="contact-span">I'm available for new projects
-            and collaborations. Feel free to contact me.</span>
+        <h3 class="contact-title"><span class="contact-title-highlight">{{ 'contact.titleOpen' | t }} </span>{{ 'contact.title' | t }}<span
+                class="contact-title-highlight"> {{ 'contact.titleClose' | t }}</span></h3><span class="contact-span">{{ 'contact.subtitle' | t }}</span>
     </div>
     <app-contact-form></app-contact-form>
 </section>

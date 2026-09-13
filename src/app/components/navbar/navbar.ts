@@ -1,8 +1,10 @@
 import { Component, signal, AfterViewInit } from '@angular/core';
+import { TPipe } from '../../shared/i18n/t.pipe';
+import { LanguageSelector } from '../../shared/components/language-selector/language-selector';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [TPipe, LanguageSelector],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })

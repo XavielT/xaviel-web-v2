@@ -1,12 +1,14 @@
 import { Component, ChangeDetectorRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TPipe } from '../../shared/i18n/t.pipe';
+import { TranslationKey } from '../../shared/i18n/es';
 
 
 @Component({
   selector: 'app-contact-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TPipe],
   templateUrl: './contact-form.html',
   styleUrl: './contact-form.css',
 })
@@ -19,7 +21,18 @@ export class ContactForm {
   isOpen = false;
 
   selectedValue = '';
-  selectedLabel = 'Select an option';
+
+  // The label is a TranslationKey rather than a rendered string, so the chosen
+  // option re-reads in the new language when the visitor switches. Storing the
+  // words here instead would freeze the dropdown in whatever language it was
+  // picked in. `value` is what the API receives and never translates.
+  selectedLabelKey: TranslationKey = 'form.selectOption';
+
+  readonly topics: { value: string; labelKey: TranslationKey }[] = [
+    { value: 'job', labelKey: 'form.reasonJob' },
+    { value: 'project', labelKey: 'form.reasonProject' },
+    { value: 'other', labelKey: 'form.reasonOther' },
+  ];
 
 
 
@@ -31,9 +44,9 @@ export class ContactForm {
     this.isOpen = !this.isOpen;
   }
 
-  selectOption(value: string, label: string) {
+  selectOption(value: string, labelKey: TranslationKey) {
     this.selectedValue = value;
-    this.selectedLabel = label;
+    this.selectedLabelKey = labelKey;
     this.isOpen = false;
   }
 
@@ -96,7 +109,7 @@ export class ContactForm {
         this.cd.detectChanges();
 
         contactForm.resetForm();
-        this.selectedLabel = 'Select an option';
+        this.selectedLabelKey = 'form.selectOption';
         this.selectedValue = '';
 
       } else if (response.status === 429) {
@@ -152,7 +165,7 @@ export class ContactForm {
 
   clearForm(form: any) {
     form.reset();
-    this.selectedLabel = 'Select an option';
+    this.selectedLabelKey = 'form.selectOption';
     this.selectedValue = '';
     this.messageStatus = null;
   }
