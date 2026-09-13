@@ -44,6 +44,8 @@ Thumbs.db
 
 #Sensible data
 .env*
+# ...but the placeholder template is meant to be committed.
+!.env.example
 
 .vercel
 .env*.local
