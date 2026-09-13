@@ -28,8 +28,17 @@ grant usage on schema tucombustible to anon, authenticated;
 alter default privileges in schema tucombustible
   grant select, insert, update, delete on tables to authenticated;
 
-alter default privileges in schema tucombustible
-  grant select on tables to anon;
+-- Deliberately NO default grant to anon.
+--
+-- An earlier version of this migration default-granted anon SELECT on every
+-- future table in the schema. That is the wrong default for Tu Combustible RD:
+-- its tables are one person's vehicles, fill-ups and expenses, so a signed-out
+-- read should be opt-in per table rather than automatic with RLS as the only
+-- thing in the way. Get RLS wrong once on one table and the default turns that
+-- slip into a public data set.
+--
+-- Where Phase 5 genuinely wants public read (fuel_prices is the likely case),
+-- it grants it on that table explicitly, next to the policy that allows it.
 
 -- ---------------------------------------------------------------------------
 -- Exposure probe
@@ -59,6 +68,11 @@ on conflict (id) do nothing;
 -- (requirement 8). This row is a health check containing no information, so
 -- world-readable is the correct, stated intent — not an oversight.
 alter table tucombustible.schema_check enable row level security;
+
+-- Granted explicitly, since the schema no longer default-grants to anon. The
+-- probe has to be readable while signed out — a round trip that only works for
+-- an authenticated caller would not prove the schema is exposed.
+grant select on tucombustible.schema_check to anon, authenticated;
 
 drop policy if exists "schema_check: readable by anyone" on tucombustible.schema_check;
 create policy "schema_check: readable by anyone"

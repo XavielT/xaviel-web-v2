@@ -84,6 +84,10 @@ select id, 'creator' from auth.users where email = 'you@example.com'
 on conflict (user_id) do nothing;
 ```
 
+**Already done** for the creator's account, `note = 'creator'`. It is deliberately *not* a
+migration file: that would put a personal email address into the repo, and this repo may
+go public. The allowlist is one row of data, seeded once, not schema.
+
 The admin identity is a database row on purpose. It is not in `src/environments/`, not in
 a build-time constant, and not in any variable the browser can read (ADR-04) — the whole
 Angular bundle is public.
@@ -91,10 +95,67 @@ Angular bundle is public.
 ## `public.profiles` is shared
 
 Music Hub created it and its signup trigger. This site reads it for identity and **does not
-own it**. Two consequences worth knowing before Phase 5:
+own it**. Three consequences, all confirmed against the live database:
 
+- The signup trigger is `on_auth_user_created` → `public.handle_new_user()`, which inserts
+  `(id, display_name)` into `public.profiles`. It already satisfies this cycle's
+  "profiles row auto-created on signup" requirement, so no second trigger was added.
 - A Tu Combustible RD user who signs up gets a row in the same table Music Hub's members
   are in, and will appear in Music Hub's admin user list.
-- Music Hub gates signup with an `allowed_emails` allowlist. **If that gate is enforced by
-  a trigger on `auth.users` rather than only in Music Hub's UI, public signup for Tu
-  Combustible RD will be rejected** — which would block G4. Untested; see the phase report.
+- **`profiles` SELECT is `using (true)` for `authenticated`** — any signed-in user reads
+  every profile row. Phase 2 asked for own-row-only reads; that was not applied, because
+  the policy is Music Hub's and narrowing it would break its member list. Writes are
+  already correct: `update` is `id = auth.uid() or is_admin()`, and `insert` is
+  `id = auth.uid()`. If Tu Combustible ever stores anything private on a profile, it needs
+  its own table in `tucombustible`, not a column here.
+
+### Signup is invite-only, globally — this blocks G4
+
+`auth.users` carries a Music Hub trigger, `enforce_invite_only`, which raises
+`P0001 'Sign-ups are invite-only. Ask Xaviel for an invite.'` unless the email is already
+in `public.allowed_emails`. It is a database trigger, not a UI check, so it applies to
+**every** signup against x-core — including Tu Combustible RD's in Phase 5.
+
+Phase 5 has to decide this deliberately. Roughly:
+
+- make the trigger app-aware (e.g. skip the check when `raw_user_meta_data->>'app'` is
+  `tucombustible`) — touches Music Hub's trigger, so it is Music Hub's call;
+- or give Tu Combustible RD its own Supabase project;
+- or keep Tu Combustible invite-only too, and accept that.
+
+Not decided here. Flagged so it is not discovered as a mystery 500 mid-Phase-5.
+
+## Two repos, one migration history
+
+`supabase_migrations.schema_migrations` is shared with Music Hub — it already held 33 of
+its migrations when this phase started. This repo's two migrations are timestamped after
+all of them, so they append cleanly.
+
+The thing to know: `supabase migration list` run from *either* repo shows the other's
+migrations as remote-only, and that is expected, not drift. Keep new migration timestamps
+genuinely current in both repos and they stay ordered; a back-dated file will trip the
+CLI's out-of-order check.
+
+## The anon default-grant trap
+
+Supabase sets a default privilege on schema `public` granting `EXECUTE` on every **newly
+created function** to `anon`, `authenticated` and `service_role`:
+
+```sql
+select defaclacl from pg_default_acl d
+join pg_namespace n on n.oid = d.defaclnamespace
+where n.nspname = 'public' and d.defaclobjtype = 'f';
+-- {postgres=X/…, anon=X/…, authenticated=X/…, service_role=X/…}
+```
+
+That is a **direct grant to `anon`**, not one inherited through `PUBLIC`. So
+`revoke all on function … from public` does not remove it — the first version of
+`is_site_admin()` was anon-executable despite exactly that revoke. Always follow with:
+
+```sql
+revoke all on function public.<fn>() from anon;
+select has_function_privilege('anon', 'public.<fn>()', 'EXECUTE');  -- must be false
+```
+
+`supabase--get_advisors` (lint `0028_anon_security_definer_function_executable`) catches
+this. Run it after every migration that adds a function.

@@ -9,7 +9,7 @@
     "test": "ng test",
     "db:push": "supabase db push",
     "db:diff": "supabase db diff -f",
-    "types:gen": "supabase gen types typescript --project-id nakgrkcqyuycadeuenuw --schema public --schema tucombustible > src/app/shared/services/database.types.ts"
+    "types:gen": "supabase gen types typescript --project-id nakgrkcqyuycadeuenuw --schema public --schema tucombustible > src/app/shared/services/database.types.ts.tmp && mv src/app/shared/services/database.types.ts.tmp src/app/shared/services/database.types.ts || (rm -f src/app/shared/services/database.types.ts.tmp; echo \"types:gen failed — run: npx supabase login\" >&2; exit 1)"
   },
   "prettier": {
     "printWidth": 100,

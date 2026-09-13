@@ -77,6 +77,13 @@ const options: SupabaseClientOptions<'public'> = {
     // (password reset is out of scope this phase), so there is nothing in the
     // URL to detect. Leaving it on would have supabase-js parse and rewrite the
     // fragment of every page load for nothing.
+    //
+    // PHASE 5 MUST REVISIT THIS. The moment sign-up sends a confirmation email,
+    // the link comes back to this origin as `?code=...` and, under PKCE, has to
+    // be exchanged for a session. With this false, supabase-js ignores it and
+    // the user lands on the site still signed out, with no error anywhere — the
+    // confirmation silently does nothing. Either set it true then, or call
+    // exchangeCodeForSession() explicitly on the landing route.
     detectSessionInUrl: false,
 
     // PKCE, which is supabase-js's default, rather than the 'implicit' flow
@@ -123,6 +130,13 @@ export class SupabaseService {
    * Returns 404 with `PGRST106` until the schema is both created *and* added to
    * Project Settings → API → Exposed schemas. ADR-03 flags that as the way this
    * setup silently fails; both steps are required, not either.
+   *
+   * DEVIATION FROM ADR-03, which says to configure the client with
+   * `db: { schema: 'tucombustible' }`. That would make the namespaced schema the
+   * default for *every* query on this client — including `public.profiles`,
+   * which AuthService reads, and which would then 404. The schema is a
+   * per-query switch instead, so `public` stays the default where auth lives.
+   * Same end state ADR-03 wants; one client, not two.
    */
   appSchema() {
     return this.client.schema(environment.appSchema as never);

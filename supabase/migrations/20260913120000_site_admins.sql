@@ -77,8 +77,28 @@ comment on function public.is_site_admin() is
 -- The function is safe to expose precisely because it answers only about the
 -- caller and returns a boolean, never the list.
 revoke all on function public.is_site_admin() from public;
+
+-- `revoke ... from public` is NOT enough here, and this is the trap.
+--
+-- Supabase ships a default privilege on schema public that grants EXECUTE on
+-- every newly created function to anon, authenticated and service_role:
+--
+--   pg_default_acl → public/f → {postgres=X, anon=X, authenticated=X, service_role=X}
+--
+-- That is a *direct* grant to the anon role, not one inherited through PUBLIC,
+-- so revoking from PUBLIC leaves it untouched. The first version of this
+-- migration did exactly that and shipped an anon-executable SECURITY DEFINER
+-- function; Supabase's own linter caught it (lint 0028), and
+-- has_function_privilege('anon', ...) confirmed it. The revoke below is the
+-- part that actually does the work.
+revoke all on function public.is_site_admin() from anon;
+
 grant execute on function public.is_site_admin() to authenticated;
 
 -- Not granted to anon on purpose: a signed-out visitor is never an admin, and
 -- leaving it unexecutable means an anonymous probe gets "permission denied"
 -- rather than a cheerful false it could use to fingerprint the deployment.
+-- Verify with:
+--   select has_function_privilege('anon', 'public.is_site_admin()', 'EXECUTE');
+-- which must be false. Music Hub's public.is_admin() has the same ACL shape:
+--   {postgres=X/postgres, authenticated=X/postgres, service_role=X/postgres}
