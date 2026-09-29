@@ -110,14 +110,16 @@ export class Home {
       iosHint: 'apps.iosHint',
     },
     {
-      icon: '/assets/apps-imgs/tu-combustible-rd.svg',
-      name: 'Tu Combustible RD',
-      description: 'app.tuCombustible.description',
-      badges: ['React Native', 'Expo', 'TypeScript', 'PWA'],
-      url: 'https://tu-combustible-rd.vercel.app',
+      // Tu Combustible RD grew into Car Guy (v2.0, 2026-09-25; v2.1 "Hachi-Gō",
+      // 2026-09-29). The old web URL still serves it, but this is its home now.
+      icon: '/assets/apps-imgs/car-guy.png',
+      name: 'Car Guy',
+      description: 'app.carGuy.description',
+      badges: ['React Native', 'Expo', 'TypeScript', 'Supabase', 'PWA'],
+      url: 'https://car-guy.vercel.app',
       // Same reasoning as Music Hub above: the releases page rather than the
       // direct .apk asset, so the link survives a version bump.
-      apkUrl: 'https://github.com/XavielT/tu-combustible-rd/releases/latest',
+      apkUrl: 'https://github.com/XavielT/car-guy/releases/latest',
       iosHint: 'apps.iosHint',
     },
   ];

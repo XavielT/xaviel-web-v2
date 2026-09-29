@@ -19,7 +19,7 @@
  * WHAT IS NOT IN HERE. Proper nouns and technical terms are deliberately left as
  * literals in the markup and in `app.ts`: brand names (GitHub, Linkedin,
  * Whatsapp, Gmail), project and app names (X AutoHub, Good Drive, Mi Taller,
- * Pork Tech, Music Hub, Tu Combustible RD), technology badges (Angular, Expo,
+ * Pork Tech, Music Hub, Car Guy), technology badges (Angular, Expo,
  * Supabase, PWA…) and skill names. Translating any of them would be wrong in
  * both languages.
  */
@@ -143,8 +143,8 @@ export const ES = {
   // --- app catalog prose (data lives in app.ts, which stores these keys) ---
   'app.musicHub.description':
     'App de música personal: sube tus propias canciones, se sincronizan en todos tus dispositivos con Supabase y las descargas para escucharlas sin conexión. Se instala en iPhone y en computadora, y tiene una versión nativa para Android.',
-  'app.tuCombustible.description':
-    'Control de combustible y gastos para conductores dominicanos: registra cada carga, mira tu rendimiento real en km/gal y el costo por kilómetro, y lleva los gastos y el mantenimiento de cada vehículo. Los precios usan la referencia semanal del MICM. Todo se queda en tu dispositivo.',
+  'app.carGuy.description':
+    'Tu carro, al día. Con historia. Mantenimiento, chequeos, combustible y gastos de todo el garaje, más un álbum de fotos con su fecha real, el build, la ficha técnica para el taller, días de pista con setup y tiempos, y una ficha pública para compartir. Todo vive en tu teléfono; la cuenta es opcional.',
 
   // --- project prose (data lives in app.ts, which stores these keys) -------
   'project.xAutohub.description':

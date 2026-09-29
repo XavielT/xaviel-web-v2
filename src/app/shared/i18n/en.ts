@@ -123,8 +123,8 @@ export const EN: Record<TranslationKey, string> = {
   // --- app catalog prose (data lives in app.ts, which stores these keys) ---
   'app.musicHub.description':
     'A personal music app: upload your own songs, they sync across every device through Supabase, and download them for offline listening. Installable on iPhone and desktop, with a native Android build.',
-  'app.tuCombustible.description':
-    'Fuel and running-cost tracker for Dominican drivers: log every fill-up, see your real km/gal and cost per kilometre, and keep expenses and maintenance per vehicle. Prices use the weekly MICM reference. Everything stays on your device.',
+  'app.carGuy.description':
+    'Your car, up to date — with its story. Maintenance, checks, fuel and costs for the whole garage, plus a dated photo album, a build log, DIY service data, track days with setups and lap times, and a shareable public page. Everything lives on your phone; the account is optional.',
 
   // --- project prose (data lives in app.ts, which stores these keys) -------
   'project.xAutohub.description':
