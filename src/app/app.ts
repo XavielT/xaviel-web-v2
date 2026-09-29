@@ -91,15 +91,17 @@ export class App {
       iosHint: 'On iPhone: open the app in Safari, then Share → Add to Home Screen.',
     },
     {
-      icon: '/assets/apps-imgs/tu-combustible-rd.svg',
-      name: 'Tu Combustible RD',
+      // Tu Combustible RD grew into Car Guy (v2.0, 2026-09-25; v2.1 "Hachi-Gō",
+      // 2026-09-29). The old web URL still serves it, but this is its home now.
+      icon: '/assets/apps-imgs/car-guy.png',
+      name: 'Car Guy',
       description:
-        'Fuel and running-cost tracker for Dominican drivers: log every fill-up, see your real km/gal and cost per kilometre, and keep expenses and maintenance per vehicle. Prices use the weekly MICM reference. Everything stays on your device.',
-      badges: ['React Native', 'Expo', 'TypeScript', 'PWA'],
-      url: 'https://tu-combustible-rd.vercel.app',
+        'Your car, up to date — with its story. Maintenance, checks, fuel and costs for the whole garage, plus a dated photo album, a build log, DIY service data, track days with setups and lap times, and a shareable public page. Everything lives on your phone; the account is optional.',
+      badges: ['React Native', 'Expo', 'TypeScript', 'Supabase', 'PWA'],
+      url: 'https://car-guy.vercel.app',
       // Same reasoning as Music Hub above: the releases page rather than the
       // direct .apk asset, so the link survives a version bump.
-      apkUrl: 'https://github.com/XavielT/tu-combustible-rd/releases/latest',
+      apkUrl: 'https://github.com/XavielT/car-guy/releases/latest',
       iosHint: 'On iPhone: open the app in Safari, then Share → Add to Home Screen.',
     },
   ];
