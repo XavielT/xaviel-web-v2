@@ -22,5 +22,8 @@
         <span *ngIf="!hasApk" class="app-card-btn app-card-btn-disabled" title="Coming soon">Android APK</span>
     </div>
 
+    <a *ngIf="app.apkDirectUrl" class="app-card-link" [href]="app.apkDirectUrl"
+        rel="noopener noreferrer">Direct APK</a>
+
     <p class="app-card-ios" *ngIf="app.iosHint">{{ app.iosHint }}</p>
 </div>

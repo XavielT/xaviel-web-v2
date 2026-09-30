@@ -103,6 +103,20 @@
     cursor: not-allowed;
 }
 
+.app-card-link {
+    align-self: flex-start;
+    margin-top: -4px;
+    color: var(--Hub);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 13px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.app-card-link:hover {
+    color: var(--HubDark);
+}
+
 .app-card-ios {
     margin: 0;
     color: var(--Txt-weak2);
