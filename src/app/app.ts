@@ -92,11 +92,12 @@ export class App {
     },
     {
       // Tu Combustible RD grew into Car Guy (v2.0, 2026-09-25; v2.1 "Hachi-Gō",
-      // 2026-09-29; v2.2 adds trips, partial fill-ups, photo garage). The old web URL still serves it, but this is its home now.
+      // 2026-09-29; v2.2 adds trips, partial fill-ups, photo garage; v2.4 "Tōge", 2026-10-01,
+      // adds English, drive mode + map, official fuel prices). The old web URL still serves it, but this is its home now.
       icon: '/assets/apps-imgs/car-guy.png',
       name: 'Car Guy',
       description:
-        'Your car, up to date — with its story. Maintenance, checks, fuel (partial fill-ups too) and costs for the whole garage, GPS trips logged by hand or automatically, a photo garage and build log, DIY service data, track days with setups and lap times, and a shareable public page. Everything lives on your phone; the account is optional.',
+        'Your car, up to date — with its story. Maintenance, checks, fuel (partial fill-ups too, with the official weekly prices) and costs for the whole garage, a drive mode with a live map, GPS trips logged by hand or automatically, a photo garage and build log, DIY service data, track days with setups and lap times, and a shareable public page. In English or Spanish. Everything lives on your phone; the account is optional.',
       badges: ['React Native', 'Expo', 'TypeScript', 'Supabase', 'PWA'],
       url: 'https://car-guy.vercel.app',
       // Same reasoning as Music Hub above: the releases page rather than the
