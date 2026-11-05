@@ -109,14 +109,16 @@ export class App {
     },
     {
       // X Money 2.19 (2026-11): personal finance that works offline and syncs through Supabase.
-      // The web app is public; apkUrl stays empty (the button shows "coming soon") until its GitHub release exists.
+      // Web app on Vercel; the APK comes from the GitHub release the CI publishes on every new version (stable links:
+      // the releases page and the fixed asset name x-money.apk, so they survive a version bump). Needs an invite code to sign up.
       icon: '/assets/apps-imgs/x-money.png',
       name: 'X Money',
       description:
         'Personal finance that keeps your numbers honest. Accounts, credit cards with statements, income sources, budgets, goals, loans with a simulator, a small resale business and smart alerts — all calculated on the device and working offline, then synced across devices. Optional AI never invents a figure: it only explains, and capture turns a bank-notice screenshot, an invoice, a voice note or an email into a draft you approve. In English or Spanish.',
       badges: ['Angular', 'Capacitor', 'TypeScript', 'Supabase', 'PWA'],
       url: 'https://x-money-xavielts-projects.vercel.app',
-      apkUrl: '',
+      apkUrl: 'https://github.com/XavielT/x-money/releases/latest',
+      apkDirectUrl: 'https://github.com/XavielT/x-money/releases/latest/download/x-money.apk',
       iosHint: 'On iPhone: open the app in Safari, then Share → Add to Home Screen.',
     },
   ];
