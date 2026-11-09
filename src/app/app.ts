@@ -110,7 +110,7 @@ export class App {
       iosHint: 'On iPhone: open the app in Safari, then Share → Add to Home Screen.',
     },
     {
-      // X Money 2.20.7 (2026-11): personal finance that works offline and syncs through Supabase.
+      // X Money 2.21.0 (2026-11): personal finance that works offline and syncs through Supabase.
       // Web app on Vercel; the APK comes from the GitHub release the CI publishes on every new version (stable links:
       // the releases page and the fixed asset name x-money.apk, so they survive a version bump). Needs an invite code to sign up.
       icon: '/assets/apps-imgs/x-money.png',
