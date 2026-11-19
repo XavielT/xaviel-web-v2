@@ -21,7 +21,7 @@ export class CountUp implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     const node = this.el.nativeElement;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduce = typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce || typeof IntersectionObserver === 'undefined') {
       node.textContent = this.target + this.suffix;
       return;

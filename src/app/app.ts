@@ -56,7 +56,7 @@ export class App implements OnDestroy {
 
   private startTypewriter() {
     // Without motion, show a static line instead of an endless animation.
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       this.typedText.set(this.roles[0]);
       return;
     }
