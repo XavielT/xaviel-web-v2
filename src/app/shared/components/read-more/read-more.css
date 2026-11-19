@@ -1,0 +1,70 @@
+:host {
+    display: block;
+}
+
+.rm-wrap {
+    position: relative;
+}
+
+.rm-body {
+    margin: 0;
+    overflow: hidden;
+    font: inherit;
+    color: inherit;
+    line-height: inherit;
+    transition: max-height 0.45s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* Soft fade over the last line while collapsed, hints that there is more. */
+.rm-fade::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1.6em;
+    background: linear-gradient(to bottom, transparent, rgba(12, 10, 4, 0.85));
+    pointer-events: none;
+}
+
+.rm-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--Hub);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.rm-toggle:hover {
+    color: var(--HubDark);
+}
+
+.rm-toggle:focus-visible {
+    outline: 2px solid var(--Hub);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+.rm-chevron {
+    transition: transform 0.35s ease;
+}
+
+.rm-chevron-up {
+    transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .rm-body,
+    .rm-chevron {
+        transition: none;
+    }
+}

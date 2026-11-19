@@ -775,3 +775,197 @@
         grid-template-columns: 1fr;
     }
 }
+
+/*---------------------------------------------------------- Motion & polish ----------------------------------------------------------*/
+
+/* Scroll progress bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.scroll-progress-bar {
+    height: 100%;
+    transform-origin: left;
+    background: linear-gradient(90deg, var(--Hub), var(--HubDark));
+    box-shadow: 0 0 10px rgba(var(--Hub-rgb), 0.8);
+}
+
+/* Slow drifting glow behind the page */
+.bg-orbs {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.22;
+    background: var(--Hub);
+    animation: orb-drift 22s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+    width: 420px;
+    height: 420px;
+    top: -120px;
+    left: -100px;
+}
+
+.orb-2 {
+    width: 360px;
+    height: 360px;
+    top: 35%;
+    right: -120px;
+    background: var(--HubDark);
+    animation-duration: 28s;
+    animation-delay: -8s;
+}
+
+@keyframes orb-drift {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(60px, 80px) scale(1.15); }
+}
+
+/* Hero entrance: children rise in one after another */
+.hero-in > * {
+    opacity: 0;
+    animation: hero-rise 0.8s cubic-bezier(.2, .7, .2, 1) forwards;
+}
+
+.hero-in > :nth-child(1) { animation-delay: 0.05s; }
+.hero-in > :nth-child(2) { animation-delay: 0.2s; }
+.hero-in > :nth-child(3) { animation-delay: 0.4s; }
+.hero-in > :nth-child(4) { animation-delay: 0.55s; }
+
+@keyframes hero-rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Gradient sweep on the highlighted word */
+.title-highlight {
+    background: linear-gradient(100deg, var(--Hub) 20%, #fff2c2 45%, var(--HubDark) 70%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: title-sheen 5s ease-in-out infinite;
+}
+
+@keyframes title-sheen {
+    0%, 100% { background-position: 0% 0; }
+    50% { background-position: 100% 0; }
+}
+
+/* Typewriter line */
+.hero-typed {
+    margin: 4px 0 0;
+    min-height: 1.6em;
+    text-align: center;
+    color: var(--Txt-weak);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 22px;
+}
+
+.hero-typed-text {
+    color: var(--Hub);
+    font-weight: 600;
+}
+
+.hero-caret {
+    display: inline-block;
+    width: 2px;
+    height: 1.05em;
+    margin-left: 3px;
+    vertical-align: text-bottom;
+    background: var(--Hub);
+    animation: caret-blink 1s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+    50% { opacity: 0; }
+}
+
+@media (max-width: 700px) {
+    .hero-typed {
+        font-size: 16px;
+    }
+}
+
+/* Skills filter chips */
+.skills-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.skills-chip {
+    padding: 7px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: transparent;
+    color: var(--Txt-weak);
+    cursor: pointer;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 14px;
+    transition: all 0.25s ease;
+}
+
+.skills-chip:hover {
+    border-color: var(--Hub);
+    color: var(--Hub);
+}
+
+.skills-chip:focus-visible {
+    outline: 2px solid var(--Hub);
+    outline-offset: 2px;
+}
+
+.skills-chip-active {
+    background: var(--Hub);
+    border-color: var(--Hub);
+    color: var(--Black);
+    font-weight: 600;
+}
+
+.skills-chip-active:hover {
+    color: var(--Black);
+}
+
+/* About copy sits a bit taller now that it can be longer */
+.about-description {
+    line-height: 1.6;
+}
+
+/* Respect users who ask for less motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .orb,
+    .title-highlight,
+    .hero-caret {
+        animation: none;
+    }
+
+    .hero-in > * {
+        animation: none;
+        opacity: 1;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

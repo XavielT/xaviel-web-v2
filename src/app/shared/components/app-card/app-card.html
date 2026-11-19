@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <p class="app-card-description">{{ app.description }}</p>
+    <app-read-more class="app-card-description" [text]="app.description" [lines]="3"></app-read-more>
 
     <div class="app-card-actions">
         <a *ngIf="hasWebApp" class="app-card-btn app-card-btn-primary" [href]="app.url" target="_blank"

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnDestroy, computed, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navbar } from "./components/navbar/navbar";
 import { Footer } from "./components/footer/footer";
@@ -14,16 +14,19 @@ import { ProjectCard } from './shared/models/project-card.model';
 import { AppCard as AppCardModel } from './shared/models/app-card.model';
 import { AppCard } from './shared/components/app-card/app-card';
 import { CommonModule } from '@angular/common';
+import { ReadMore } from './shared/components/read-more/read-more';
+import { CountUp } from './shared/directives/count-up';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Navbar, Footer, Xlogo, Badge, Card, ProgressBarCard, CertificateCard, ContactForm, AppCard, CommonModule],
+  imports: [RouterOutlet, Navbar, Footer, Xlogo, Badge, Card, ProgressBarCard, CertificateCard, ContactForm, AppCard, CommonModule, ReadMore, CountUp],
+  host: { '(window:scroll)': 'onScroll()' },
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
+export class App implements OnDestroy {
   protected readonly title = signal('portfolio-v2');
   isHover = false;
 
@@ -46,7 +49,70 @@ export class App {
     this.isEmailHover.set(false);
   }
 
+  // ---- Hero: typewriter that cycles through what I do ----
+  private readonly roles = ['modern web apps', 'Angular interfaces', 'mobile apps', 'clean UI design'];
+  typedText = signal('');
+  private typeTimer?: ReturnType<typeof setTimeout>;
+
+  private startTypewriter() {
+    // Without motion, show a static line instead of an endless animation.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.typedText.set(this.roles[0]);
+      return;
+    }
+    let role = 0;
+    let chars = 0;
+    let deleting = false;
+    const step = () => {
+      const word = this.roles[role];
+      chars += deleting ? -1 : 1;
+      this.typedText.set(word.slice(0, chars));
+      let delay = deleting ? 35 : 80;
+      if (!deleting && chars === word.length) {
+        deleting = true;
+        delay = 1600;
+      } else if (deleting && chars === 0) {
+        deleting = false;
+        role = (role + 1) % this.roles.length;
+        delay = 350;
+      }
+      this.typeTimer = setTimeout(step, delay);
+    };
+    this.typeTimer = setTimeout(step, 900);
+  }
+
+  ngOnDestroy() {
+    clearTimeout(this.typeTimer);
+  }
+
+  // ---- Scroll progress bar ----
+  scrollProgress = signal(0);
+
+  onScroll() {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    this.scrollProgress.set(max > 0 ? Math.min(window.scrollY / max, 1) : 0);
+  }
+
+  // ---- About ----
+  aboutText =
+    'Frontend-focused Software Developer building modern web applications with Angular, TypeScript, and JavaScript. ' +
+    'I specialize in clean interfaces, smooth user experiences, and scalable frontend architecture. ' +
+    'Beyond the browser, I ship real apps: installable PWAs and native Android builds with Capacitor, React Native and Flutter, ' +
+    'backed by Supabase and PostgreSQL. I like taking a product from the first sketch in Figma to a deployed, maintained release, ' +
+    'and I care about details like offline support, accessibility and performance. ' +
+    'I am always learning, and open to freelance work and collaborations.';
+
+  // ---- Skills filter ----
+  readonly skillCategories = ['All', 'Frontend', 'Mobile', 'Tools & Data'] as const;
+  skillFilter = signal<string>('All');
+  filteredSkills = computed(() => {
+    const f = this.skillFilter();
+    return f === 'All' ? this.skills : this.skills.filter(s => s.category === f);
+  });
+
   ngAfterViewInit() {
+    this.startTypewriter();
+    this.onScroll();
     const reveals = document.querySelectorAll('.reveal');
 
     const observer = new IntersectionObserver(entries => {
@@ -166,62 +232,74 @@ export class App {
     {
       name: 'Angular',
       icon: 'assets/skills-icons/angular-icon.svg',
-      level: 63
+      level: 63,
+      category: 'Frontend'
     },
     {
       name: 'JavaScript',
       icon: 'assets/skills-icons/javascript-icon.svg',
-      level: 77
+      level: 77,
+      category: 'Frontend'
     },
     {
       name: 'TypeScript',
       icon: 'assets/skills-icons/typescript-icon.svg',
-      level: 70
+      level: 70,
+      category: 'Frontend'
     },
     {
       name: 'CSS',
       icon: 'assets/skills-icons/css-icon.svg',
-      level: 90
+      level: 90,
+      category: 'Frontend'
     },
     {
       name: 'React',
       icon: 'assets/skills-icons/react-icon.svg',
-      level: 46
+      level: 46,
+      category: 'Frontend'
     },
     {
       name: 'Git',
       icon: 'assets/skills-icons/git-icon.svg',
-      level: 77
+      level: 77,
+      category: 'Tools & Data'
     },
     {
       name: 'Linux',
       icon: 'assets/skills-icons/linux-icon.svg',
-      level: 54
+      level: 54,
+      category: 'Tools & Data'
     },
     {
       name: 'PostgreSQL',
       icon: 'assets/skills-icons/sql-icon.svg',
-      level: 63
+      level: 63,
+      category: 'Tools & Data'
     },
     {
       name: 'Figma',
       icon: 'assets/skills-icons/figma-icon.svg',
-      level: 78
+      level: 78,
+      category: 'Tools & Data'
     },
     {
       name: 'React Native',
       icon: 'assets/skills-icons/react-icon.svg',
-      level: 43
+      level: 43,
+      category: 'Mobile'
     },
     {
       name: 'Flutter',
       icon: 'assets/skills-icons/flutter-icon.svg',
-      level: 43
+      level: 43,
+      category: 'Mobile'
     },
     {
       name: 'Tailwind CSS',
       icon: 'assets/skills-icons/tailwind-icon.svg',
-      level: 43
+      level: 43,
+      category: 'Frontend'
     },
   ]
 

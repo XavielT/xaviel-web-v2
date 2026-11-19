@@ -1,8 +1,25 @@
 /* GLobals */
 .card {
+    position: relative;
+    overflow: hidden;
     border-radius: 16px;
     padding: 20px;
     transition: all 0.3s ease;
+}
+
+/* Cursor spotlight */
+.card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(var(--Hub-rgb), 0.18), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.card:hover::before {
+    opacity: 1;
 }
 
 .card:hover{
@@ -55,10 +72,12 @@
     margin-bottom: 10px;
     font-size: 17px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    line-height: 1.55;
 }
 
 .badges{
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 

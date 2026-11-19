@@ -1,3 +1,6 @@
+<div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" [style.transform]="'scaleX(' + scrollProgress() + ')'"></div></div>
+<div class="bg-orbs" aria-hidden="true"><span class="orb orb-1"></span><span class="orb orb-2"></span></div>
+
 <app-xlogo></app-xlogo>
 
 <div class="navbar">
@@ -7,13 +10,16 @@
 <router-outlet></router-outlet>
 
 <!-- ---------Home--------- -->
-<section id="home" class="home-container">
+<section id="home" class="home-container hero-in">
     <app-badge text="Available for projects" variant="success" size="lg" [showDot]="true"
         [animatedDot]="true"></app-badge>
     <div class="home-title">
         <h1 class="title">Software
             <span class="title-highlight">Developer</span>
         </h1>
+        <p class="hero-typed" aria-live="off">
+            <span class="hero-typed-prefix">I build </span><span class="hero-typed-text">{{ typedText() }}</span><span class="hero-caret"></span>
+        </p>
         <p class="title-text">Creating modern and functional web experiences. Specializing in Angular and UI design.</p>
     </div>
     <div class="home-btns-container">
@@ -66,10 +72,7 @@
                 <img class="about-title-icon" src="/assets/icons/profile-hub.svg" alt="About icon">
                 <h3 class="about-title">About Me</h3>
             </div>
-            <p class="about-description">Frontend-focused Software Developer building modern web applications with
-                Angular, TypeScript, and JavaScript. I specialize in clean interfaces, smooth user experiences, and
-                scalable frontend architecture.
-            </p>
+            <app-read-more class="about-description" [lines]="4" [text]="aboutText"></app-read-more>
 
             <button class="about-btn">
                 <a href="assets/pdfs/CV-2026.pdf" target="_blank" rel="noopener noreferrer">
@@ -84,21 +87,21 @@
                 <div class="about-right-icon-container"><img class="about-right-icon" src="/assets/icons/code.svg"
                         alt="About Icon"></div>
                 <div class="about-right-text">
-                    <h4>15+</h4><span>Completed Projects</span>
+                    <h4 [appCountUp]="15" suffix="+">15+</h4><span>Completed Projects</span>
                 </div>
             </div>
             <div class="about-right-content">
                 <div class="about-right-icon-container"><img class="about-right-icon" src="/assets/icons/work.svg"
                         alt="About Icon"></div>
                 <div class="about-right-text">
-                    <h4>2+</h4><span>Years of experience</span>
+                    <h4 [appCountUp]="2" suffix="+">2+</h4><span>Years of experience</span>
                 </div>
             </div>
             <div class="about-right-content">
                 <div class="about-right-icon-container"><img class="about-right-icon" src="/assets/icons/person.svg"
                         alt="About Icon"></div>
                 <div class="about-right-text">
-                    <h4>10+</h4><span>Satisfied Customers</span>
+                    <h4 [appCountUp]="10" suffix="+">10+</h4><span>Satisfied Customers</span>
                 </div>
             </div>
         </div>
@@ -114,7 +117,8 @@
     </div>
 
     <div class="main-cards"><!-- Project Card -->
-        <app-card *ngFor="let project of projects" [project]="project"></app-card>
+        <app-card class="reveal" *ngFor="let project of projects; let i = index" [style.transition-delay.ms]="i * 120"
+            [project]="project"></app-card>
     </div>
 </section>
 
@@ -126,7 +130,8 @@
     </div>
 
     <div class="apps-cards">
-        <app-app-card *ngFor="let app of apps" [app]="app"></app-app-card>
+        <app-app-card class="reveal" *ngFor="let app of apps; let i = index" [style.transition-delay.ms]="i * 120"
+            [app]="app"></app-app-card>
     </div>
 </section>
 
@@ -135,18 +140,23 @@
     <div class="Skills-title-container">
         <h3 class="Skills-title">Skills</h3><span class="Skills-span">Main Technologies I work with</span>
     </div>
+    <div class="skills-filters" role="tablist" aria-label="Filter skills">
+        <button type="button" class="skills-chip" role="tab" *ngFor="let c of skillCategories"
+            [class.skills-chip-active]="skillFilter() === c" [attr.aria-selected]="skillFilter() === c"
+            (click)="skillFilter.set(c)">{{ c }}</button>
+    </div>
     <div class="Skills-cards">
         <!-- Skill Progress Bar Card -->
-        <app-progress-bar-card *ngFor="let skill of skills; trackBy: trackByName"
+        <app-progress-bar-card *ngFor="let skill of filteredSkills(); trackBy: trackByName"
             [skill]="skill"></app-progress-bar-card>
     </div>
 </section>
 
 <!-- ---------Certificates--------- -->
-<!--<section id="certificates" class="container certificates-container">
+<section id="certificates" class="container certificates-container reveal">
 
     <div class="certificates-title-container">
-        <h3 class="certificates-title">Certificates</h3><span class="certificates-span">Technologies I work with</span>
+        <h3 class="certificates-title">Certificates</h3><span class="certificates-span">Courses I have completed</span>
     </div>
 
     <div class="Certificates-cards">
@@ -155,8 +165,8 @@
     </div>
 
 
-    
-</section>-->
+
+</section>
 
 <!-- ---------Contact--------- -->
 <section id="contact" class="container contact-form-container">
