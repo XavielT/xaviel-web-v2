@@ -23,18 +23,49 @@ export class ContactForm {
 
 
 
+  /* Live feedback */
+  readonly emailAddress = 'xavieljoseterrerocuevas9@gmail.com';
+  readonly messageMax = 1000;
+  readonly messageMin = 10;
+  messageLength = 0;
+  topicTouched = false;
+  emailCopied = false;
+  private copyTimer?: ReturnType<typeof setTimeout>;
+
+  onMessageInput(value: string) {
+    this.messageLength = (value ?? '').length;
+  }
+
+  async copyEmail() {
+    try {
+      await navigator.clipboard.writeText(this.emailAddress);
+      this.emailCopied = true;
+    } catch {
+      // Clipboard can be blocked (insecure context, permissions); fall back to a selectable prompt.
+      window.prompt('Copy my email:', this.emailAddress);
+      return;
+    }
+    clearTimeout(this.copyTimer);
+    this.copyTimer = setTimeout(() => {
+      this.emailCopied = false;
+      this.cd.detectChanges();
+    }, 2000);
+  }
+
   /* Button */
   isLoading = false;
   messageStatus: 'success' | 'error' | 'rateLimit' | null = null;
 
   toggleDropdown() {
     this.isOpen = !this.isOpen;
+    if (!this.isOpen) this.topicTouched = true;
   }
 
   selectOption(value: string, label: string) {
     this.selectedValue = value;
     this.selectedLabel = label;
     this.isOpen = false;
+    this.topicTouched = true;
   }
 
   isValidEmail(email: string): boolean {
@@ -48,29 +79,26 @@ export class ContactForm {
     event.preventDefault();
 
     const formElement = event.currentTarget as HTMLFormElement;
+    this.topicTouched = true;
 
     const formData = new FormData(formElement);
     const data: any = Object.fromEntries(formData.entries());
 
     /* VALIDATION */
 
-    if (!data['name'] || data['name'].toString().trim().length < 2) {
-      this.showErrorMessage();
-      return;
-    }
+    // The per-field messages are already on screen; here we just take the user to the first problem.
+    const problem =
+      !data['name'] || data['name'].toString().trim().length < 2 ? 'name'
+      : !data['email'] || !this.isValidEmail(data['email']) ? 'email'
+      : !this.selectedValue ? 'topic'
+      : !data['message'] || data['message'].toString().trim().length < this.messageMin ? 'message'
+      : null;
 
-    if (!data['email'] || !this.isValidEmail(data['email'])) {
-      this.showErrorMessage();
-      return;
-    }
-
-    if (!this.selectedValue) {
-      this.showErrorMessage();
-      return;
-    }
-
-    if (!data['message'] || data['message'].toString().trim().length < 10) {
-      this.showErrorMessage();
+    if (problem) {
+      const target = problem === 'topic'
+        ? formElement.querySelector<HTMLElement>('.select-trigger')
+        : formElement.querySelector<HTMLElement>('#' + problem);
+      target?.focus();
       return;
     }
 
@@ -98,6 +126,8 @@ export class ContactForm {
         contactForm.resetForm();
         this.selectedLabel = 'Select an option';
         this.selectedValue = '';
+        this.topicTouched = false;
+        this.messageLength = 0;
 
       } else if (response.status === 429) {
 
@@ -125,18 +155,9 @@ export class ContactForm {
       setTimeout(() => {
         this.messageStatus = null;
         this.cd.detectChanges();
-      }, 3000);
+      }, 6000);
 
     }
-  }
-
-  private showErrorMessage() {
-    this.messageStatus = 'error';
-    this.cd.detectChanges();
-    setTimeout(() => {
-      this.messageStatus = null;
-      this.cd.detectChanges();
-    }, 3000);
   }
 
   @HostListener('document:click', ['$event'])
@@ -155,6 +176,8 @@ export class ContactForm {
     this.selectedLabel = 'Select an option';
     this.selectedValue = '';
     this.messageStatus = null;
+    this.topicTouched = false;
+    this.messageLength = 0;
   }
 
 }

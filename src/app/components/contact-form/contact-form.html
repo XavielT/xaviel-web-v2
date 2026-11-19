@@ -2,6 +2,12 @@
     <div class="form-title">
         <h2>Contact Information</h2>
     </div>
+    <p class="form-direct">
+        Prefer email?
+        <button type="button" class="copy-email" (click)="copyEmail()" [class.copied]="emailCopied">
+            {{ emailCopied ? '✓ Copied!' : emailAddress }}
+        </button>
+    </p>
     <div class="info-container">
 
         <div class="form-group">
@@ -68,14 +74,20 @@
                     <li (click)="selectOption('other','Other reasons')">Other reason</li>
                 </ul>
             </div>
+            <span class="input-error" *ngIf="!selectedValue && (topicTouched || contactForm.submitted) && !isOpen">
+                Please choose a reason
+            </span>
         </div>
 
     </div>
     <div class="form-group">
         <label class="form-label" for="message">Message</label>
         <textarea class="form-text-area" type="text" id="message" name="message" rows="5"
-            placeholder="Write your message..." required minlength="10" ngModel #message="ngModel">
-        </textarea>
+            placeholder="Write your message..." required minlength="10" ngModel #message="ngModel"
+            [maxlength]="messageMax" (input)="onMessageInput(message.value)"></textarea>
+        <span class="char-count" [class.char-count-ok]="messageLength >= messageMin">
+            {{ messageLength }} / {{ messageMax }}
+        </span>
         <span class="input-error" *ngIf="message.invalid && (message.touched || contactForm.submitted)">
 
             <span *ngIf="message.errors?.['required']">

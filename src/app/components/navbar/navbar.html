@@ -9,6 +9,8 @@
 
         <nav [class.open]="menuOpen()">
             <ul class="nav-list">
+                <span class="nav-indicator" aria-hidden="true" [style.left.px]="indicator().left"
+                    [style.width.px]="indicator().width" [style.opacity]="indicator().visible ? 1 : 0"></span>
                 <li>
                     <a class="nav-link" href="#home" (click)="closeMenu()"
                         [class.active]="activeSection() === 'home'">Home</a>
