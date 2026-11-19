@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Card } from './card';
+import { stubBrowserApis } from '../../../../testing/browser-stubs';
+
 
 describe('Card', () => {
   let component: Card;
@@ -12,7 +14,9 @@ describe('Card', () => {
     })
     .compileComponents();
 
+    stubBrowserApis();
     fixture = TestBed.createComponent(Card);
+    fixture.componentRef.setInput('project', { image: '/x.png', title: 'Test', description: 'Desc', badges: ['Angular'], variant: 'featured' });
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Navbar } from './navbar';
+import { stubBrowserApis } from '../../../testing/browser-stubs';
+
 
 describe('Navbar', () => {
   let component: Navbar;
@@ -12,6 +14,7 @@ describe('Navbar', () => {
     })
     .compileComponents();
 
+    stubBrowserApis();
     fixture = TestBed.createComponent(Navbar);
     component = fixture.componentInstance;
     await fixture.whenStable();

@@ -13,6 +13,7 @@ describe('CertificateCard', () => {
     .compileComponents();
 
     fixture = TestBed.createComponent(CertificateCard);
+    fixture.componentRef.setInput('certificate', { name: 'Test', img: '/x.png', pdf: '/x.pdf' });
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
