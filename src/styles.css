@@ -125,3 +125,14 @@ body {
 @media screen and (min-width: 1024px) {
     
 }
+/* Keyboard focus: visible ring for links and controls (mouse clicks don't trigger it). */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--Hub, #ffb300);
+  outline-offset: 3px;
+  border-radius: 6px;
+}

@@ -3,7 +3,8 @@
     <div class="nav-container">
 
         <!-- Hamburger Button -->
-        <button class="menu-toggle" (click)="toggleMenu()">
+        <button class="menu-toggle" (click)="toggleMenu()" type="button" aria-label="Toggle navigation menu"
+            [attr.aria-expanded]="menuOpen()">
             {{ menuOpen() ? '✖' : '☰' }}
         </button>
 

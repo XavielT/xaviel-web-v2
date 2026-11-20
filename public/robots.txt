@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xavielweb.vercel.app/sitemap.xml

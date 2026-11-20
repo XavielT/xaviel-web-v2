@@ -13,7 +13,7 @@
         <div class="form-group">
             <label class="form-label" for="name">Name</label>
             <div class="input-bg">
-                <img class="form-input-icon" src="assets/icons/user-hub.svg" alt="Input icon" />
+                <img class="form-input-icon" src="assets/icons/user-hub.svg" alt="" aria-hidden="true" />
                 <input class="form-input" type="text" id="name" name="name" placeholder="Your Name" required ngModel
                     #name="ngModel" minlength="2" />
             </div>
@@ -34,7 +34,7 @@
         <div class="form-group">
             <label class="form-label" for="email">Email</label>
             <div class="input-bg">
-                <img class="form-input-icon" src="assets/icons/arroba-hub.svg" alt="Input icon" />
+                <img class="form-input-icon" src="assets/icons/arroba-hub.svg" alt="" aria-hidden="true" />
                 <input class="form-input" type="email" id="email" name="email" placeholder="your@gmail.com" required
                     email ngModel #email="ngModel" />
             </div>
@@ -55,7 +55,7 @@
         <div class="form-group">
             <label class="form-label">Reason for contact</label>
             <div class="input-bg custom-select">
-                <img class="form-input-icon" src="assets/icons/dropdown-arrow-hub.svg" alt="Input icon" />
+                <img class="form-input-icon" src="assets/icons/dropdown-arrow-hub.svg" alt="" aria-hidden="true" />
 
                 <!-- hidden input to send the value -->
                 <input type="hidden" name="topic" [(ngModel)]="selectedValue" required>
