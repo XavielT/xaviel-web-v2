@@ -88,9 +88,17 @@ export class App implements OnDestroy {
   // ---- Scroll progress bar ----
   scrollProgress = signal(0);
 
+  showTop = signal(false);
+
   onScroll() {
     const max = document.documentElement.scrollHeight - window.innerHeight;
     this.scrollProgress.set(max > 0 ? Math.min(window.scrollY / max, 1) : 0);
+    this.showTop.set(window.scrollY > 700);
+  }
+
+  scrollToTop() {
+    const reduce = typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
   }
 
   // ---- About ----

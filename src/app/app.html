@@ -1,6 +1,14 @@
 <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" [style.transform]="'scaleX(' + scrollProgress() + ')'"></div></div>
 <div class="bg-orbs" aria-hidden="true"><span class="orb orb-1"></span><span class="orb orb-2"></span></div>
 
+<button type="button" class="back-to-top" [class.visible]="showTop()" (click)="scrollToTop()"
+    aria-label="Back to top" [attr.tabindex]="showTop() ? 0 : -1">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+</button>
+
 <app-xlogo></app-xlogo>
 
 <div class="navbar">
@@ -37,7 +45,7 @@
             <a class="home-btn-link" href="#contact">
                 <img class="home-btn-icon" [src]="isEmailHover() 
             ? '/assets/icons/email-fill-hub.svg' 
-            : '/assets/icons/email-outline.svg'" /><span>Contact</span>
+            : '/assets/icons/email-outline.svg'" /><span>Hire me</span>
             </a>
         </button>
     </div>
@@ -74,11 +82,18 @@
             </div>
             <app-read-more class="about-description" [lines]="4" [text]="aboutText"></app-read-more>
 
-            <button class="about-btn">
-                <a href="assets/pdfs/CV-2026.pdf" target="_blank" rel="noopener noreferrer">
-                    See Resume
-                </a>
-            </button>
+            <div class="about-btns">
+                <button class="about-btn">
+                    <a href="assets/pdfs/CV-Xaviel-Terrero-EN.pdf" target="_blank" rel="noopener noreferrer">
+                        Resume (EN)
+                    </a>
+                </button>
+                <button class="about-btn">
+                    <a href="assets/pdfs/CV-Xaviel-Terrero-ES.pdf" target="_blank" rel="noopener noreferrer">
+                        Currículum (ES)
+                    </a>
+                </button>
+            </div>
         </div>
 
         <!--Right-->
