@@ -224,7 +224,7 @@ export class App implements OnDestroy {
       url: 'https://github.com/XavielT/Good-drive',
     },
     {
-      image: '/assets/projects-imgs/under-development.webp',
+      image: '/assets/projects-imgs/mi-taller.webp',
       title: 'Mi Taller',
       descKey: 'projects.mitaller',
       badges: ['Angular', 'SCSS', 'Typescript', 'NodeJS'],
