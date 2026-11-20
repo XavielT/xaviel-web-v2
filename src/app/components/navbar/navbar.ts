@@ -34,7 +34,30 @@ export class Navbar implements AfterViewInit {
     this.indicator.set({ left: link.offsetLeft, width: link.offsetWidth, visible: true });
   }
 
+  /** True while the bar is slid out of view (scrolling down past the hero). */
+  hidden = signal(false);
+
+  private lastScrollY = 0;
+  /** After a link click the page smooth-scrolls; keep the bar visible until that settles. */
+  private pinnedUntil = 0;
+
+  @HostListener('window:scroll')
+  onScroll() {
+    const y = window.scrollY;
+    const delta = y - this.lastScrollY;
+
+    if (y < 80 || this.menuOpen() || Date.now() < this.pinnedUntil) {
+      this.hidden.set(false);
+    } else if (delta > 6) {
+      this.hidden.set(true);
+    } else if (delta < -6) {
+      this.hidden.set(false);
+    }
+    this.lastScrollY = y;
+  }
+
   ngAfterViewInit(): void {
+    this.lastScrollY = window.scrollY;
     const sections = document.querySelectorAll('section');
 
     const observer = new IntersectionObserver(
@@ -65,6 +88,8 @@ export class Navbar implements AfterViewInit {
 
   closeMenu() {
     this.menuOpen.set(false);
+    this.hidden.set(false);
+    this.pinnedUntil = Date.now() + 900;
   }
 }
 

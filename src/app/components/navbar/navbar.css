@@ -290,8 +290,21 @@
     }
 }
 
+/* Auto-hide: slide up out of view while scrolling down, back on scroll up or keyboard focus. */
+.Xbar {
+    transition: box-shadow 0.35s cubic-bezier(.4, 0, .2, 1), transform 0.35s cubic-bezier(.22, 1, .36, 1);
+}
+
+.Xbar.is-hidden:not(:focus-within) {
+    transform: translateY(calc(-100% - 40px));
+}
+
 @media (prefers-reduced-motion: reduce) {
     .nav-indicator {
+        transition: none;
+    }
+
+    .Xbar {
         transition: none;
     }
 }
