@@ -1033,3 +1033,52 @@
     letter-spacing: 0.02em;
     opacity: 0.85;
 }
+
+/* Hero title: centre and balance the wrap so longer languages (Spanish) never hug the screen edge. */
+.title {
+    text-align: center;
+    text-wrap: balance;
+    padding-inline: 12px;
+}
+
+.home-title {
+    max-width: 100%;
+}
+
+/* Spanish is ~40% longer, so the title steps down one notch at each breakpoint. */
+.title.title-es {
+    font-size: 34px;
+}
+
+@media (min-width: 700px) {
+    .title.title-es {
+        font-size: 50px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .title.title-es {
+        font-size: 62px;
+    }
+}
+
+/* Hero buttons: size to their label instead of a fixed width, so longer translations never wrap. */
+.home-btn,
+.home-btn-highlight {
+    width: auto;
+    min-width: 150px;
+    padding-inline: 18px;
+    white-space: nowrap;
+}
+
+.home-btn-link {
+    align-items: center;
+    white-space: nowrap;
+}
+
+@media (min-width: 700px) {
+    .home-btn,
+    .home-btn-highlight {
+        min-width: 200px;
+    }
+}

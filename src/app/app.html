@@ -22,7 +22,7 @@
     <app-badge [text]="i18n.t('hero.badge')" variant="success" size="lg" [showDot]="true"
         [animatedDot]="true"></app-badge>
     <div class="home-title">
-        <h1 class="title">{{ i18n.t('hero.titleA') }}
+        <h1 class="title" [class.title-es]="i18n.lang() === 'es'">{{ i18n.t('hero.titleA') }}
             <span class="title-highlight">{{ i18n.t('hero.titleB') }}</span>
         </h1>
         <p class="hero-typed" aria-live="off">

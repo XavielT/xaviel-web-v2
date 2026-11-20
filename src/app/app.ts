@@ -213,6 +213,7 @@ export class App implements OnDestroy {
       badges: ['Angular', 'NodeJS', 'SCSS', 'Typescript'],
       variant: 'featured',
       url: 'https://github.com/XavielT/x-autohub',
+      demoUrl: 'https://xautohubrd.com',
     },
     {
       image: '/assets/projects-imgs/good-drive.jpeg',
@@ -229,6 +230,7 @@ export class App implements OnDestroy {
       badges: ['Angular', 'SCSS', 'Typescript', 'NodeJS'],
       variant: 'featured',
       url: 'https://github.com/XavielT/mi-taller',
+      demoUrl: 'https://mitaller-rd.vercel.app',
     },
     {
       image: '/assets/projects-imgs/under-development.webp',
