@@ -17,6 +17,7 @@
 
 <router-outlet></router-outlet>
 
+<main>
 <!-- ---------Home--------- -->
 <section id="home" class="home-container hero-in">
     <app-badge [text]="i18n.t('hero.badge')" variant="success" size="lg" [showDot]="true"
@@ -31,23 +32,16 @@
         <p class="title-text">{{ i18n.t('hero.text') }}</p>
     </div>
     <div class="home-btns-container">
-        <button class="home-btn" (mouseenter)="onGithubEnter()" (mouseleave)="onGithubLeave()">
-            
-            <a class="home-btn-link" href="#main-projects">
-            <img class="home-btn-icon" [src]="isGithubHover() 
-      ? '/assets/icons/github.svg' 
-      : '/assets/icons/github-outline.svg'" />
-
+        <a class="home-btn" href="#main-projects" (mouseenter)="onGithubEnter()" (mouseleave)="onGithubLeave()">
+            <img class="home-btn-icon" alt="" aria-hidden="true"
+                [src]="isGithubHover() ? '/assets/icons/github.svg' : '/assets/icons/github-outline.svg'" />
             <span>{{ i18n.t('hero.viewProjects') }}</span>
         </a>
-        </button>
-        <button class="home-btn-highlight" (mouseenter)="onEmailEnter()" (mouseleave)="onEmailLeave()">
-            <a class="home-btn-link" href="#contact">
-                <img class="home-btn-icon" [src]="isEmailHover() 
-            ? '/assets/icons/email-fill-hub.svg' 
-            : '/assets/icons/email-outline.svg'" /><span>{{ i18n.t('hero.hire') }}</span>
-            </a>
-        </button>
+        <a class="home-btn-highlight" href="#contact" (mouseenter)="onEmailEnter()" (mouseleave)="onEmailLeave()">
+            <img class="home-btn-icon" alt="" aria-hidden="true"
+                [src]="isEmailHover() ? '/assets/icons/email-fill-hub.svg' : '/assets/icons/email-outline.svg'" />
+            <span>{{ i18n.t('hero.hire') }}</span>
+        </a>
     </div>
     <div class="home-social-links">
         <a class="social-link github" href="https://github.com/XavielT" target="_blank" rel="noopener noreferrer">
@@ -78,7 +72,7 @@
         <div class="about-left">
             <div class="about-title-container">
                 <img class="about-title-icon" src="/assets/icons/profile-hub.svg" alt="" aria-hidden="true">
-                <h3 class="about-title">{{ i18n.t('about.title') }}</h3>
+                <h2 class="about-title">{{ i18n.t('about.title') }}</h2>
             </div>
             <app-read-more class="about-description" [lines]="4" [text]="i18n.t('about.text')"></app-read-more>
 
@@ -102,21 +96,21 @@
                 <div class="about-right-icon-container"><img class="about-right-icon" src="/assets/icons/code.svg"
                         alt="" aria-hidden="true"></div>
                 <div class="about-right-text">
-                    <h4 [appCountUp]="15" suffix="+">15+</h4><span>{{ i18n.t('about.statProjects') }}</span>
+                    <h3 [appCountUp]="15" suffix="+">15+</h3><span>{{ i18n.t('about.statProjects') }}</span>
                 </div>
             </div>
             <div class="about-right-content">
                 <div class="about-right-icon-container"><img class="about-right-icon" src="/assets/icons/work.svg"
                         alt="" aria-hidden="true"></div>
                 <div class="about-right-text">
-                    <h4 [appCountUp]="2" suffix="+">2+</h4><span>{{ i18n.t('about.statYears') }}</span>
+                    <h3 [appCountUp]="2" suffix="+">2+</h3><span>{{ i18n.t('about.statYears') }}</span>
                 </div>
             </div>
             <div class="about-right-content">
                 <div class="about-right-icon-container"><img class="about-right-icon" src="/assets/icons/person.svg"
                         alt="" aria-hidden="true"></div>
                 <div class="about-right-text">
-                    <h4 [appCountUp]="10" suffix="+">10+</h4><span>{{ i18n.t('about.statClients') }}</span>
+                    <h3 [appCountUp]="10" suffix="+">10+</h3><span>{{ i18n.t('about.statClients') }}</span>
                 </div>
             </div>
         </div>
@@ -128,7 +122,7 @@
 <section id="main-projects" class="container projects-container">
 
     <div class="main-title-container">
-        <h3 class="main-title">{{ i18n.t('projects.title') }}</h3><span class="main-span">{{ i18n.t('projects.subtitle') }}</span>
+        <h2 class="main-title">{{ i18n.t('projects.title') }}</h2><span class="main-span">{{ i18n.t('projects.subtitle') }}</span>
     </div>
 
     <div class="main-cards"><!-- Project Card -->
@@ -141,7 +135,7 @@
 <section id="apps" class="container apps-container">
 
     <div class="main-title-container">
-        <h3 class="main-title">{{ i18n.t('apps.title') }}</h3><span class="main-span">{{ i18n.t('apps.subtitle') }}</span>
+        <h2 class="main-title">{{ i18n.t('apps.title') }}</h2><span class="main-span">{{ i18n.t('apps.subtitle') }}</span>
     </div>
 
     <div class="apps-cards">
@@ -153,7 +147,7 @@
 <!-- ---------Skills--------- -->
 <section id="skills" class="container skills-container">
     <div class="Skills-title-container">
-        <h3 class="Skills-title">{{ i18n.t('skills.title') }}</h3><span class="Skills-span">{{ i18n.t('skills.subtitle') }}</span>
+        <h2 class="Skills-title">{{ i18n.t('skills.title') }}</h2><span class="Skills-span">{{ i18n.t('skills.subtitle') }}</span>
     </div>
     <div class="skills-filters" role="tablist" [attr.aria-label]="i18n.t('skills.filter')">
         <button type="button" class="skills-chip" role="tab" *ngFor="let c of skillCategories"
@@ -171,7 +165,7 @@
 <section id="certificates" class="container certificates-container reveal">
 
     <div class="certificates-title-container">
-        <h3 class="certificates-title">{{ i18n.t('certs.title') }}</h3><span class="certificates-span">{{ i18n.t('certs.subtitle') }}</span>
+        <h2 class="certificates-title">{{ i18n.t('certs.title') }}</h2><span class="certificates-span">{{ i18n.t('certs.subtitle') }}</span>
     </div>
 
     <div class="Certificates-cards">
@@ -186,12 +180,14 @@
 <!-- ---------Contact--------- -->
 <section id="contact" class="container contact-form-container">
     <div class="contact-title-container">
-        <h3 class="contact-title"><span class="contact-title-highlight">¿ </span>{{ i18n.t('contact.title') }}<span
-                class="contact-title-highlight"> ?</span></h3><span class="contact-span">{{ i18n.t('contact.text') }}</span>
+        <h2 class="contact-title"><span class="contact-title-highlight">¿ </span>{{ i18n.t('contact.title') }}<span
+                class="contact-title-highlight"> ?</span></h2><span class="contact-span">{{ i18n.t('contact.text') }}</span>
         <span class="contact-availability">{{ i18n.t('contact.availability') }}</span>
     </div>
     <app-contact-form></app-contact-form>
 </section>
 
+
+</main>
 
 <app-footer></app-footer>

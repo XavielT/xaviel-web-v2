@@ -521,7 +521,7 @@
     flex-direction: column;
 }
 
-.about-right-text h4 {
+.about-right-text h3 {
     color: white;
     font-family: 'ROLNER', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 30px;
@@ -1081,4 +1081,38 @@
     .home-btn-highlight {
         min-width: 200px;
     }
+}
+
+/* <main> landmark for assistive tech; it must not change the layout. */
+main {
+    display: contents;
+}
+
+/* The whole hero button is the link, not just the text inside it (a bigger, safer target). */
+.home-btn,
+.home-btn-highlight {
+    padding: 0;
+}
+
+.home-btn-link {
+    width: 100%;
+    justify-content: center;
+    padding: 6px 18px;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* The hero buttons are the links themselves (no <a> nested in a <button>). */
+a.home-btn,
+a.home-btn-highlight {
+    padding: 6px 18px;
+    text-decoration: none;
+}
+
+a.home-btn {
+    color: var(--Black);
+}
+
+a.home-btn-highlight {
+    color: white;
 }

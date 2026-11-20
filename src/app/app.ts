@@ -159,7 +159,7 @@ export class App implements OnDestroy {
   // Adding a future app is one entry in this array.
   private readonly appsBase: AppBase[] = [
     {
-      icon: '/assets/apps-imgs/music-hub.png',
+      icon: '/assets/apps-imgs/music-hub.webp',
       name: 'Music Hub',
       descKey: 'apps.musichub',
       badges: ['Angular', 'Capacitor', 'Supabase', 'PWA'],
@@ -216,7 +216,7 @@ export class App implements OnDestroy {
       demoUrl: 'https://xautohubrd.com',
     },
     {
-      image: '/assets/projects-imgs/good-drive.jpeg',
+      image: '/assets/projects-imgs/good-drive.webp',
       title: 'Good Drive',
       descKey: 'projects.gooddrive',
       badges: ['Flutter', 'Dart'],

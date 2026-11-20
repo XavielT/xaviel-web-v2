@@ -15,7 +15,7 @@ const en = {
   'nav.certificates': 'Certificates',
   'nav.contact': 'Contact',
   'nav.toggle': 'Toggle navigation menu',
-  'nav.lang': 'Switch language to Spanish',
+  'nav.lang': 'EN/ES: switch language to Spanish',
   'nav.backTop': 'Back to top',
 
   // Hero
@@ -130,7 +130,7 @@ const es: Record<TranslationKey, string> = {
   'nav.certificates': 'Certificados',
   'nav.contact': 'Contacto',
   'nav.toggle': 'Abrir o cerrar el menú',
-  'nav.lang': 'Cambiar el idioma a inglés',
+  'nav.lang': 'EN/ES: cambiar el idioma a inglés',
   'nav.backTop': 'Volver arriba',
 
   // Hero
