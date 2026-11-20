@@ -92,8 +92,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(500).json({ error: 'Failed to send email', details: response.error });
     }
 
-    console.log('Email sent successfully:', response.id);
-    return res.status(200).json({ success: true, id: response.id });
+    const id = response.data?.id;
+    console.log('Email sent successfully:', id);
+    return res.status(200).json({ success: true, id });
 
   } catch (error: any) {
     console.error('Exception in contact API:', error);
