@@ -7,7 +7,9 @@ import {
   OnChanges,
   OnDestroy,
   ViewChild,
+  inject,
 } from '@angular/core';
+import { I18n } from '../../../core/i18n';
 
 /**
  * Collapses long text to a few lines with a "Read more" toggle.
@@ -27,6 +29,7 @@ export class ReadMore implements AfterViewInit, OnChanges, OnDestroy {
 
   @ViewChild('body', { static: true }) body!: ElementRef<HTMLElement>;
 
+  readonly i18n = inject(I18n);
   expanded = false;
   overflowing = false;
   collapsedHeight = 0;

@@ -1,4 +1,4 @@
-<div class="card" [ngClass]="'card-' + computedVariant" (mousemove)="onMove($event)">
+<div class="card" [ngClass]="'card-' + computedVariant" (mousemove)="onMove($event)" (mouseleave)="onLeave($event)">
 
     <img class="card-img" loading="lazy" decoding="async" [src]="project.image" alt="{{ project.title }}" />
 
@@ -13,5 +13,12 @@
         <!--badges-->
         <app-badge *ngFor="let badge of project.badges" [text]="badge" variant="tech" size="sm" class="tag">
         </app-badge>
+    </div>
+
+    <div class="card-actions" *ngIf="project.url || project.demoUrl">
+        <a *ngIf="project.demoUrl" class="card-btn card-btn-primary" [href]="project.demoUrl" target="_blank"
+            rel="noopener noreferrer">{{ i18n.t('projects.demo') }}</a>
+        <a *ngIf="project.url" class="card-btn" [href]="project.url" target="_blank"
+            rel="noopener noreferrer">{{ i18n.t('projects.code') }}</a>
     </div>
 </div>

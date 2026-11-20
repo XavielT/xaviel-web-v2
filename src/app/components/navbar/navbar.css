@@ -308,3 +308,43 @@
         transition: none;
     }
 }
+
+/* Language switch */
+.lang-toggle {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Gefika', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.lang-toggle .on {
+    color: var(--Hub);
+}
+
+.lang-toggle .lang-sep {
+    opacity: 0.4;
+}
+
+.lang-toggle:hover {
+    border-color: var(--Hub);
+    box-shadow: 0 0 8px rgba(var(--Hub-rgb), 0.4);
+}
+
+@media (max-width: 700px) {
+    /* Hamburger on the left, language switch pushed to the right of the pill. */
+    .lang-toggle {
+        margin-left: 14px;
+    }
+}

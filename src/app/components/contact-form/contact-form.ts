@@ -1,6 +1,7 @@
-import { Component, ChangeDetectorRef, HostListener } from '@angular/core';
+import { Component, ChangeDetectorRef, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { I18n } from '../../core/i18n';
 
 
 @Component({
@@ -18,8 +19,19 @@ export class ContactForm {
   /* To manage the select option */
   isOpen = false;
 
+  readonly i18n = inject(I18n);
+
   selectedValue = '';
-  selectedLabel = 'Select an option';
+
+  /** Label of the chosen reason, in the current language (so it follows the language switch). */
+  get selectedLabel(): string {
+    switch (this.selectedValue) {
+      case 'job': return this.i18n.t('form.optJob');
+      case 'project': return this.i18n.t('form.optProject');
+      case 'other': return this.i18n.t('form.optOther');
+      default: return this.i18n.t('form.select');
+    }
+  }
 
 
 
@@ -42,7 +54,7 @@ export class ContactForm {
       this.emailCopied = true;
     } catch {
       // Clipboard can be blocked (insecure context, permissions); fall back to a selectable prompt.
-      window.prompt('Copy my email:', this.emailAddress);
+      window.prompt(this.i18n.t('form.copyPrompt'), this.emailAddress);
       return;
     }
     clearTimeout(this.copyTimer);
@@ -61,9 +73,8 @@ export class ContactForm {
     if (!this.isOpen) this.topicTouched = true;
   }
 
-  selectOption(value: string, label: string) {
+  selectOption(value: string) {
     this.selectedValue = value;
-    this.selectedLabel = label;
     this.isOpen = false;
     this.topicTouched = true;
   }
@@ -124,7 +135,6 @@ export class ContactForm {
         this.cd.detectChanges();
 
         contactForm.resetForm();
-        this.selectedLabel = 'Select an option';
         this.selectedValue = '';
         this.topicTouched = false;
         this.messageLength = 0;
@@ -173,7 +183,6 @@ export class ContactForm {
 
   clearForm(form: any) {
     form.reset();
-    this.selectedLabel = 'Select an option';
     this.selectedValue = '';
     this.messageStatus = null;
     this.topicTouched = false;

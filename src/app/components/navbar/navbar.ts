@@ -1,4 +1,5 @@
 import { Component, signal, AfterViewInit, ElementRef, HostListener, effect, inject } from '@angular/core';
+import { I18n } from '../../core/i18n';
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +11,7 @@ export class Navbar implements AfterViewInit {
   activeSection = signal<string>('home');
 
   private host = inject<ElementRef<HTMLElement>>(ElementRef);
+  readonly i18n = inject(I18n);
 
   /** Position of the sliding highlight under the active link (desktop only; hidden by CSS on mobile). */
   indicator = signal({ left: 0, width: 0, visible: false });
@@ -17,6 +19,8 @@ export class Navbar implements AfterViewInit {
   constructor() {
     effect(() => {
       this.activeSection();
+      // Labels change width with the language, so the highlight has to be re-measured.
+      this.i18n.lang();
       // Wait a frame so the `active` class and layout are up to date before measuring.
       requestAnimationFrame(() => this.updateIndicator());
     });

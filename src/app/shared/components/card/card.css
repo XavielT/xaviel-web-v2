@@ -4,7 +4,8 @@
     overflow: hidden;
     border-radius: 16px;
     padding: 20px;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease, transform 0.15s ease-out;
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
 }
 
 /* Cursor spotlight */
@@ -23,7 +24,7 @@
 }
 
 .card:hover{
-    transform: scale(1.1);
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(1.04);
     box-shadow: 0 0 30px rgba(var(--Hub-rgb), 0.4);
 }
 
@@ -93,7 +94,7 @@
 .card-featured {
     background: rgba(var(--Hub-rgb), 0.08);
     border: 1px solid rgba(var(--Hub-rgb), 0.6);
-    transform: scale(1.03);
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(1.02);
     box-shadow: 0 0 30px rgba(var(--Hub-rgb), 0.4);
     width: 100%;
     margin-top: 60px;
@@ -103,4 +104,47 @@
 .card-minimal {
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Code / Live demo buttons */
+.card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.card-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(var(--Hub-rgb), 0.55);
+    color: var(--Hub);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.card-btn:hover {
+    background: rgba(var(--Hub-rgb), 0.14);
+}
+
+.card-btn-primary {
+    background: var(--Hub);
+    border-color: var(--Hub);
+    color: var(--Black);
+    font-weight: 600;
+}
+
+.card-btn-primary:hover {
+    background: var(--HubDark);
+    border-color: var(--HubDark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        transform: none !important;
+    }
 }

@@ -1,30 +1,30 @@
 <form class="contact-form" #contactForm="ngForm" (submit)="onSubmit($event, contactForm)">
     <div class="form-title">
-        <h2>Contact Information</h2>
+        <h2>{{ i18n.t('form.title') }}</h2>
     </div>
     <p class="form-direct">
-        Prefer email?
+        {{ i18n.t('form.preferEmail') }}
         <button type="button" class="copy-email" (click)="copyEmail()" [class.copied]="emailCopied">
-            {{ emailCopied ? '✓ Copied!' : emailAddress }}
+            {{ emailCopied ? i18n.t('form.copied') : emailAddress }}
         </button>
     </p>
     <div class="info-container">
 
         <div class="form-group">
-            <label class="form-label" for="name">Name</label>
+            <label class="form-label" for="name">{{ i18n.t('form.name') }}</label>
             <div class="input-bg">
                 <img class="form-input-icon" src="assets/icons/user-hub.svg" alt="" aria-hidden="true" />
-                <input class="form-input" type="text" id="name" name="name" placeholder="Your Name" required ngModel
+                <input class="form-input" type="text" id="name" name="name" [placeholder]="i18n.t('form.namePh')" required ngModel
                     #name="ngModel" minlength="2" />
             </div>
             <span class="input-error" *ngIf="name.invalid && (name.touched || contactForm.submitted)">
 
                 <span *ngIf="name.errors?.['required']">
-                    Name is required
+                    {{ i18n.t('form.nameReq') }}
                 </span>
 
                 <span *ngIf="name.errors?.['minlength']">
-                    Name must be at least 2 characters
+                    {{ i18n.t('form.nameMin') }}
                 </span>
 
             </span>
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            <label class="form-label" for="email">Email</label>
+            <label class="form-label" for="email">{{ i18n.t('form.email') }}</label>
             <div class="input-bg">
                 <img class="form-input-icon" src="assets/icons/arroba-hub.svg" alt="" aria-hidden="true" />
                 <input class="form-input" type="email" id="email" name="email" placeholder="your@gmail.com" required
@@ -42,18 +42,18 @@
             <span class="input-error" *ngIf="email.invalid && (email.touched || contactForm.submitted)">
 
                 <span *ngIf="email.errors?.['required']">
-                    Email is required
+                    {{ i18n.t('form.emailReq') }}
                 </span>
 
                 <span *ngIf="email.errors?.['email']">
-                    Enter a valid email
+                    {{ i18n.t('form.emailInvalid') }}
                 </span>
 
             </span>
         </div>
 
         <div class="form-group">
-            <label class="form-label">Reason for contact</label>
+            <label class="form-label">{{ i18n.t('form.reason') }}</label>
             <div class="input-bg custom-select">
                 <img class="form-input-icon" src="assets/icons/dropdown-arrow-hub.svg" alt="" aria-hidden="true" />
 
@@ -69,21 +69,21 @@
 
                 <!-- dropdown -->
                 <ul class="select-dropdown" *ngIf="isOpen">
-                    <li (click)="selectOption('job','Job Opportunity')">Job Opportunity</li>
-                    <li (click)="selectOption('project','Project')">Project</li>
-                    <li (click)="selectOption('other','Other reasons')">Other reason</li>
+                    <li (click)="selectOption('job')">{{ i18n.t('form.optJob') }}</li>
+                    <li (click)="selectOption('project')">{{ i18n.t('form.optProject') }}</li>
+                    <li (click)="selectOption('other')">{{ i18n.t('form.optOther') }}</li>
                 </ul>
             </div>
             <span class="input-error" *ngIf="!selectedValue && (topicTouched || contactForm.submitted) && !isOpen">
-                Please choose a reason
+                {{ i18n.t('form.reasonReq') }}
             </span>
         </div>
 
     </div>
     <div class="form-group">
-        <label class="form-label" for="message">Message</label>
+        <label class="form-label" for="message">{{ i18n.t('form.message') }}</label>
         <textarea class="form-text-area" type="text" id="message" name="message" rows="5"
-            placeholder="Write your message..." required minlength="10" ngModel #message="ngModel"
+            [placeholder]="i18n.t('form.messagePh')" required minlength="10" ngModel #message="ngModel"
             [maxlength]="messageMax" (input)="onMessageInput(message.value)"></textarea>
         <span class="char-count" [class.char-count-ok]="messageLength >= messageMin">
             {{ messageLength }} / {{ messageMax }}
@@ -91,24 +91,24 @@
         <span class="input-error" *ngIf="message.invalid && (message.touched || contactForm.submitted)">
 
             <span *ngIf="message.errors?.['required']">
-                Message is required
+                {{ i18n.t('form.messageReq') }}
             </span>
 
             <span *ngIf="message.errors?.['minlength']">
-                Message must be at least 10 characters
+                {{ i18n.t('form.messageMin') }}
             </span>
 
         </span>
     </div>
     <div class="buttons-container">
-        <button class="rst-btn" type="button" (click)="clearForm(contactForm)">Clear</button>
+        <button class="rst-btn" type="button" (click)="clearForm(contactForm)">{{ i18n.t('form.clear') }}</button>
         <button class="snd-btn" type="submit" [disabled]="isLoading">
-            <span *ngIf="!isLoading" class="tw-flex">Send <img class="tw-w-[25px]" src="assets/icons/send.svg"
+            <span *ngIf="!isLoading" class="tw-flex">{{ i18n.t('form.send') }} <img class="tw-w-[25px]" src="assets/icons/send.svg"
                     alt="Send Icon" /></span>
 
             <span *ngIf="isLoading" class="sending">
                 <span class="spinner"></span>
-                Sending...
+                {{ i18n.t('form.sending') }}
             </span>
         </button>
     </div>
@@ -118,24 +118,24 @@
         <div *ngIf="messageStatus === 'success'" class="message success-message">
             <span class="message-icon">✓</span>
             <div class="message-text">
-                <strong>Message sent!</strong>
-                <p>I will get back to you soon.</p>
+                <strong>{{ i18n.t('form.okTitle') }}</strong>
+                <p>{{ i18n.t('form.okText') }}</p>
             </div>
         </div>
 
         <div *ngIf="messageStatus === 'error'" class="message error-message">
             <span class="message-icon">⚠</span>
             <div class="message-text">
-                <strong>Something went wrong</strong>
-                <p>Please try again later.</p>
+                <strong>{{ i18n.t('form.errTitle') }}</strong>
+                <p>{{ i18n.t('form.errText') }}</p>
             </div>
         </div>
 
         <div *ngIf="messageStatus === 'rateLimit'" class="message rate-limit-message">
             <span class="message-icon">⏱</span>
             <div class="message-text">
-                <strong>Please wait</strong>
-                <p>You can send another message in a few seconds.</p>
+                <strong>{{ i18n.t('form.waitTitle') }}</strong>
+                <p>{{ i18n.t('form.waitText') }}</p>
             </div>
         </div>
 
