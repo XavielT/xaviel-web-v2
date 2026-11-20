@@ -110,6 +110,11 @@ const en = {
   'form.waitTitle': 'Please wait',
   'form.waitText': 'You can send another message in a few seconds.',
 
+  // 404
+  'notfound.title': 'Page not found',
+  'notfound.text': "The page you're looking for doesn't exist or has moved.",
+  'notfound.back': 'Back to home',
+
   // Footer and document
   'footer.rights': '© 2026 Xaviel Web. All rights reserved.',
   'footer.contact': 'Contact',
@@ -232,6 +237,11 @@ const es: Record<TranslationKey, string> = {
   'form.errText': 'Inténtalo de nuevo más tarde.',
   'form.waitTitle': 'Espera un momento',
   'form.waitText': 'Podrás enviar otro mensaje en unos segundos.',
+
+  // 404
+  'notfound.title': 'Página no encontrada',
+  'notfound.text': 'La página que buscas no existe o fue movida.',
+  'notfound.back': 'Volver al inicio',
 
   // Footer and document
   'footer.rights': '© 2026 Xaviel Web. Todos los derechos reservados.',

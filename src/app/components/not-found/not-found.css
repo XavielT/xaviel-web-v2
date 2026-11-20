@@ -1,0 +1,60 @@
+.nf {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 24px;
+    text-align: center;
+    background:
+        radial-gradient(600px circle at 50% 40%, rgba(var(--Hub-rgb), 0.22), transparent 70%),
+        #070707;
+}
+
+.nf-code {
+    margin: 0;
+    font-family: 'Gefika', 'Trebuchet MS', sans-serif;
+    font-size: clamp(90px, 22vw, 190px);
+    line-height: 1;
+    background: linear-gradient(100deg, var(--Hub) 20%, #fff2c2 50%, var(--HubDark) 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nf-title {
+    margin: 0;
+    color: white;
+    font-family: 'Gefika', 'Trebuchet MS', sans-serif;
+    font-size: clamp(24px, 5vw, 38px);
+}
+
+.nf-text {
+    margin: 0 0 12px;
+    max-width: 440px;
+    color: var(--Txt-weak2);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 17px;
+}
+
+.nf-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 26px;
+    border-radius: 999px;
+    background: var(--Hub);
+    color: var(--Black);
+    font-family: 'ROLNER', 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nf-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 16px rgba(var(--Hub-rgb), 0.6);
+}

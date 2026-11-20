@@ -216,14 +216,6 @@ export class App implements OnDestroy {
       demoUrl: 'https://xautohubrd.com',
     },
     {
-      image: '/assets/projects-imgs/good-drive.webp',
-      title: 'Good Drive',
-      descKey: 'projects.gooddrive',
-      badges: ['Flutter', 'Dart'],
-      variant: 'featured',
-      url: 'https://github.com/XavielT/Good-drive',
-    },
-    {
       image: '/assets/projects-imgs/mi-taller.webp',
       title: 'Mi Taller',
       descKey: 'projects.mitaller',
@@ -231,6 +223,14 @@ export class App implements OnDestroy {
       variant: 'featured',
       url: 'https://github.com/XavielT/mi-taller',
       demoUrl: 'https://mitaller-rd.vercel.app',
+    },
+    {
+      image: '/assets/projects-imgs/good-drive.webp',
+      title: 'Good Drive',
+      descKey: 'projects.gooddrive',
+      badges: ['Flutter', 'Dart'],
+      variant: 'featured',
+      url: 'https://github.com/XavielT/Good-drive',
     },
     {
       image: '/assets/projects-imgs/under-development.webp',
